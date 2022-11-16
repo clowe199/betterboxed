@@ -13,4 +13,5 @@ public class TMDBController {
         TmdbAccount movies = new TmdbApi(apiKey).getAccount();
         System.out.println(movies);
     }
+    // Lean
 }
