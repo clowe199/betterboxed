@@ -12,7 +12,6 @@ public class UserDataTest {
         		.emailAddress("address")
         		.build();
         
-        
         assertEquals("address", data.getEmailAddress());
         assertArrayEquals(new char[] {'p','a','s','s'}, data.getPassword());
         assertArrayEquals(new char[] {'u','s','e','r'}, data.getUsername());
