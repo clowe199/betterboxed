@@ -18,10 +18,16 @@ public class TMDBController {
         System.out.println(query);
     }
 
+    public void searchMovieName(String movieName){
+        query = "https://api.themoviedb.org/3/search/movie?api_key=" + key + "&query=" + movieName;
+        System.out.println(query);
+    }
     
 
     public static void main(String args[]){
         TMDBController myController = new TMDBController();
         myController.getMovieData("464052");
+
+        myController.searchMovieName("Interstellar");
     }
 }
