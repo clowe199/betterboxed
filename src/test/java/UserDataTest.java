@@ -18,3 +18,5 @@ public class UserDataTest {
         assertArrayEquals(new char[] {'u','s','e','r'}, data.getUsername());
     }
 }
+
+//did it work?
