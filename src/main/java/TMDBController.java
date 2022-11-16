@@ -27,21 +27,22 @@ public class TMDBController {
     public String getKey() {
         return key;
     }
-
+/*
     public void getResponse(){
-        MovieMethod search = new Tmdb;
+        MovieMethod search = new MovieMethod(apiKey);
         movie = movies.getMovie(464052, "en", search);
         System.out.println(movie);
     }
-
+*/
     public void getMovieData(int movieId){
-        movie = movies.getMovie(movieId, "en");
+        MovieMethod test;
+        movie = movies.getMovie(movieId, "en", test);
     }
 
     public void searchMovieName(String movieName){
         MovieResultsPage resultsPage;
         //TmdbKeywords keyword = new TmdbKeywords(apiKey);
-        resultsPage = keyword.getKeywordMovies(movieName, "en", 1);
+        //resultsPage = keyword.getKeywordMovies(movieName, "en", 1);
     }
     
 
@@ -49,6 +50,6 @@ public class TMDBController {
         TMDBController myController = new TMDBController();
         myController.getMovieData(464052);
 
-        myController.searchMovieName("Marvel");
+        //myController.searchMovieName("Marvel");
     }
 }
