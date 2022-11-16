@@ -16,7 +16,6 @@ public class TMDBController {
         query = "https://api.themoviedb.org/3/movie/" + movieId + "?api_key="
         + key + "&language=en-US";
         System.out.println(query);
-        response = requests.get(query);
     }
 
     
