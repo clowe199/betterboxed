@@ -3,13 +3,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-import src.main.UserData;
-import src.main.test.UserData.UserDataBuilder;
-
 public class UserDataTest {
     @Test
     public void test_newUserData(){
-        UserData data = new UserDataBuilder()
+        UserData data = new UserData.UserDataBuilder()
         		.password(new char[] {'p','a','s','s'})
         		.username(new char[] {'u','s','e','r'})
         		.emailAddress("address")
