@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.List;
 
 public class Collection {
     private ArrayList<Movie> movieList;
