@@ -4,17 +4,18 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 // import org.junit.Before;
 import org.junit.jupiter.api.Test;
 
-public class MovieTest {
+public class MovieTest implements TestConstants {
     
     private Movie m = null;
-    final private String NAME = "name";
-    final private int MOVIE_ID = 123;
-    final private String RELEASE_DATE = "00/00/00";
-    final private double AVG_RATING = 5.0;
 
     // @Before
     // public void setup(){
-    //     m = new Movie(NAME, MOVIE_ID, RELEASE_DATE, AVG_RATING);
+    //     m = new Movie.MovieBuilder()
+    //         .movieId(MOVIE_ID)
+    //         .movieName(NAME)
+    //         .releaseDate(RELEASE_DATE)
+    //         .averageRating(AVG_RATING)
+    //         .build();    
     // }
 
     // @After
@@ -24,7 +25,12 @@ public class MovieTest {
 
     @Test
     void testCreateMovie() {
-        m = new Movie(NAME, MOVIE_ID, RELEASE_DATE, AVG_RATING);
+        m = new Movie.MovieBuilder()
+            .movieId(MOVIE_ID)
+            .movieName(NAME)
+            .releaseDate(RELEASE_DATE)
+            .averageRating(AVG_RATING)
+            .build();
         assertEquals(NAME, m.getMovieName());
         assertEquals(MOVIE_ID, m.getMovieId());
         assertEquals(RELEASE_DATE, m.getReleaseDate());

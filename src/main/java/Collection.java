@@ -26,7 +26,7 @@ public class Collection {
         movieList.addAll(movies);
     }
 
-    public void addMovie(Movie m){
+    public void add(Movie m){
         if (!movieList.contains(m))
             movieList.add(m);
     }
@@ -34,5 +34,9 @@ public class Collection {
     public void remove(Movie m){
         if (movieList.contains(m))
             movieList.remove(m);
+    }
+
+    public boolean contains(Movie m){
+        return movieList.contains(m);
     }
 }
