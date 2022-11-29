@@ -8,7 +8,7 @@ public class TMDBController {
     private String key = "7f8fa1bf325f4325f96ae5abae237bd1";
     private String query;
 
-    public void TMDBController(){
+    public TMDBController(String key){
         apiKey = new TmdbApi(key);
     }
 
@@ -23,11 +23,4 @@ public class TMDBController {
         System.out.println(query);
     }
     
-
-    public static void main(String args[]){
-        TMDBController myController = new TMDBController();
-        myController.getMovieData("464052");
-        myController.searchMovieName("Interstellar");
-
-    }
 }
