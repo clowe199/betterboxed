@@ -9,7 +9,7 @@ public class TMDBController {
     private TmdbApi apiKey;
     private TmdbAccount userAccount;
     private TmdbMovies movies;
-    private String key = "7f8fa1bf325f4325f96ae5abae237bd1";
+    private String key;
     private String query;
 
     public TMDBController(String key){
