@@ -11,3 +11,6 @@ testbetterbox/target/test-classes/UserDataTest.class
 testbetterbox/src/test/.DS_Store
 target
 ./src/target/classes
+src/test/java
+.gitignore
+src/test/java/
