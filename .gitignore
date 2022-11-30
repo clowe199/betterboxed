@@ -1,8 +1,6 @@
 pom.xml
 src/.DS_Store
 src/main/.DS_Store
-src/main/java/TMDBController.java
-src/main/java/UserData.java
 src/test/.DS_Store
 src/test/java/UserDataTest.java
 testbetterbox/src/test/java/UserDataTest.java
