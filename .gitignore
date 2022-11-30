@@ -4,3 +4,4 @@ src/main/.DS_Store
 src/test
 target
 .vscode/settings.json
+.gitignore

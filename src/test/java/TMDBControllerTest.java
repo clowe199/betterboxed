@@ -15,17 +15,17 @@ public class TMDBControllerTest implements TestConstants{
     @Before
     public void before(){
         controller = new TMDBController(key);
-        System.out.println("Running tests on TMDB Controller");
     }
 
 
     @Test
     public void testGetMovieData(){
-        controller.getMovieData("464052");
+        controller.getMovieData(464052);
     }
 
-    @After
-    public void after(){
-        System.out.println("Tests completed");
+    @Test
+    public void testSearchMovieName(){
+        controller.searchMovieName("The Dark Knight");
     }
+
 }
