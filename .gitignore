@@ -1,0 +1,15 @@
+pom.xml
+src/.DS_Store
+src/main/.DS_Store
+src/test/.DS_Store
+src/test/java/UserDataTest.java
+testbetterbox/src/test/java/UserDataTest.java
+testbetterbox/target/classes/TMDBController.class
+testbetterbox/target/classes/UserData.class
+testbetterbox/target/classes/UserData$UserDataBuilder.class
+testbetterbox/target/test-classes/UserDataTest.class
+testbetterbox/src/test/.DS_Store
+target
+./src/target/classes
+.gitignore
+
