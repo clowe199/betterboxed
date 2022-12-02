@@ -8,43 +8,43 @@ import info.movito.themoviedbapi.model.MovieDb;
 import info.movito.themoviedbapi.model.core.MovieResultsPage;
 import info.movito.themoviedbapi.model.people.Person;
 
-public class TMDBController {
-    private TmdbApi apiKey;
+public class TMDBController extends ApiKey {
+    private static final String ENGLISH_LANG = "en";
+    private TmdbApi api;
     private TmdbMovies movies;
-    private TmdbSearch tSearch;
-    private static final String key = "7f8fa1bf325f4325f96ae5abae237bd1";
+    private TmdbSearch search;
 
     public TMDBController(){
-        apiKey = new TmdbApi(key);
-        movies = apiKey.getMovies();
-        tSearch = new TmdbSearch(apiKey);
+        api = new TmdbApi(apiKey);
+        movies = api.getMovies();
+        search = new TmdbSearch(api);
     }
 
     public Movie getMovieData(int movieId){
-        MovieDb movie = movies.getMovie(movieId, "en");
+        MovieDb movie = movies.getMovie(movieId, ENGLISH_LANG);
         Movie testMovie = new Movie(movie);
         return testMovie;    
     }
 
     public List<MovieDb> searchMovieName(String movieName){
-        MovieResultsPage mrp = tSearch.searchMovie(movieName, 0, "en", false, 0);
+        MovieResultsPage mrp = search.searchMovie(movieName, 0, ENGLISH_LANG, false, 0);
         List<MovieDb> list = mrp.getResults();
         return list;
     }
 
     public List<Person> searchPerson(String personName){        
-        PersonResultsPage prp = tSearch.searchPerson(personName, false, 0);
+        PersonResultsPage prp = search.searchPerson(personName, false, 0);
         List<Person> list = prp.getResults();
         return list;        
     }
 
     public List<MovieDb> getSimilarMovies(int movieId) {
-        MovieResultsPage mrp = movies.getSimilarMovies(movieId, key, null);
+        MovieResultsPage mrp = movies.getSimilarMovies(movieId, apiKey, null);
         return mrp.getResults();
     }
 
     public List<MovieDb> getHighlyRatedMovies(){
-        MovieResultsPage mrp = movies.getTopRatedMovies("en", 0);
+        MovieResultsPage mrp = movies.getTopRatedMovies(ENGLISH_LANG, 0);
         return mrp.getResults();
     }    
 }

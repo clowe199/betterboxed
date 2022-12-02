@@ -13,9 +13,9 @@ public class UserDataTest extends TestConstants {
     @Before
     public void setup(){
         this.data = new UserData.UserDataBuilder()
-        		.password(new char[] {'p','a','s','s'})
-        		.username(new char[] {'u','s','e','r'})
-        		.emailAddress("address")
+        		.password(TEST_PASSWORD)
+        		.username(TEST_USERNAME)
+        		.emailAddress(TEST_ADDRESS)
         		.build();
     }
 
@@ -27,9 +27,9 @@ public class UserDataTest extends TestConstants {
     @Test
     public void testNewUserData(){
         setup();
-        assertEquals("address", data.getEmailAddress());
-        assertArrayEquals(new char[] {'p','a','s','s'}, data.getPassword());
-        assertArrayEquals(new char[] {'u','s','e','r'}, data.getUsername());
+        assertEquals(TEST_ADDRESS, data.getEmailAddress());
+        assertArrayEquals(TEST_PASSWORD, data.getPassword());
+        assertArrayEquals(TEST_USERNAME, data.getUsername());
         assertEquals(UserData.WATCHED_TITLE, data.getWatchedList().getName());
         assertEquals(UserData.WATCH_LATER_TITLE, data.getWatchLaterList().getName());
     }
@@ -38,10 +38,10 @@ public class UserDataTest extends TestConstants {
     public void testAddAndRemoveToWatched(){
         setup();
         Movie m = new Movie.MovieBuilder()
-            .movieId(MOVIE_ID)
-            .movieName(NAME)
-            .releaseDate(RELEASE_DATE)
-            .averageRating(AVG_RATING)
+            .movieId(TEST_MOVIE_ID)
+            .movieName(TEST_TITLE)
+            .releaseDate(TEST_RELEASE_DATE)
+            .averageRating(TEST_AVG_RATING)
             .build();
         data.addToWatched(m);
         assertTrue(data.watchedContains(m));
@@ -53,10 +53,10 @@ public class UserDataTest extends TestConstants {
     public void testAddAndRemoveToWatchLater(){
         setup();
         Movie m = new Movie.MovieBuilder()
-            .movieId(MOVIE_ID)
-            .movieName(NAME)
-            .releaseDate(RELEASE_DATE)
-            .averageRating(AVG_RATING)
+            .movieId(TEST_MOVIE_ID)
+            .movieName(TEST_TITLE)
+            .releaseDate(TEST_RELEASE_DATE)
+            .averageRating(TEST_AVG_RATING)
             .build();        
         data.addToWatchLater(m);
         assertTrue(data.watchLaterContains(m));
@@ -92,10 +92,10 @@ public class UserDataTest extends TestConstants {
         setup();
         data.addCollection(COLLECTION_NAME1);
         Movie m = new Movie.MovieBuilder()
-            .movieId(MOVIE_ID)
-            .movieName(NAME)
-            .releaseDate(RELEASE_DATE)
-            .averageRating(AVG_RATING)
+            .movieId(TEST_MOVIE_ID)
+            .movieName(TEST_TITLE)
+            .releaseDate(TEST_RELEASE_DATE)
+            .averageRating(TEST_AVG_RATING)
             .build(); 
                    
         data.addToCollection(m, COLLECTION_NAME1);

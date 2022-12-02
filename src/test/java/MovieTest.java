@@ -11,10 +11,10 @@ public class MovieTest extends TestConstants {
     @Before
     public void setup(){
         m = new Movie.MovieBuilder()
-            .movieId(MOVIE_ID)
-            .movieName(NAME)
-            .releaseDate(RELEASE_DATE)
-            .averageRating(AVG_RATING)
+            .movieId(TEST_MOVIE_ID)
+            .movieName(TEST_TITLE)
+            .releaseDate(TEST_RELEASE_DATE)
+            .averageRating(TEST_AVG_RATING)
             .build();    
     }
 
@@ -26,15 +26,15 @@ public class MovieTest extends TestConstants {
     @Test
     public void testCreateMovie() {
         m = new Movie.MovieBuilder()
-            .movieId(MOVIE_ID)
-            .movieName(NAME)
-            .releaseDate(RELEASE_DATE)
-            .averageRating(AVG_RATING)
+            .movieId(TEST_MOVIE_ID)
+            .movieName(TEST_TITLE)
+            .releaseDate(TEST_RELEASE_DATE)
+            .averageRating(TEST_AVG_RATING)
             .build();
-        assertEquals(NAME, m.getMovieName());
-        assertEquals(MOVIE_ID, m.getMovieId());
-        assertEquals(RELEASE_DATE, m.getReleaseDate());
-        assertEquals(AVG_RATING, m.getAverageRating());
+        assertEquals(TEST_TITLE, m.getMovieName());
+        assertEquals(TEST_MOVIE_ID, m.getMovieId());
+        assertEquals(TEST_RELEASE_DATE, m.getReleaseDate());
+        assertEquals(TEST_AVG_RATING, m.getAverageRating());
 
     }
 

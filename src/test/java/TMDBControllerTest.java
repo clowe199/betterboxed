@@ -16,8 +16,6 @@ public class TMDBControllerTest extends TestConstants{
 
     // Testing Variables
     private TMDBController controller;
-    // private String key = "7f8fa1bf325f4325f96ae5abae237bd1";
-
 
     // Initialize the controller
     @Before

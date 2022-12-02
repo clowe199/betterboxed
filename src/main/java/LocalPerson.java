@@ -1,11 +1,8 @@
-import java.util.List;
-
 import info.movito.themoviedbapi.model.people.Person;
 
-public class LocalPerson {
+public class LocalPerson extends ApiKey {
     private String name;
     private int personId;
-    private List<Movie> featuredMovies;
 
     // public LocalPerson(PersonBuilder p){
     //     firstName = p.firstName;
@@ -25,9 +22,14 @@ public class LocalPerson {
         return personId;
     }
 
-    public List<Movie> getFeaturedMovies() {
-        return featuredMovies;
-    }
+    //Do we even need a getFeaturedMovies method? I'm not deleting this yet, but I don't see a reason
+    //for it in the use cases.
+    
+    // public List<Movie> getFeaturedMovies() {
+    //     TmdbApi api = new TmdbApi(apiKey);
+    //     TmdbPeople people = api.getPeople();
+    //     return people.
+    // }
 
     // public class PersonBuilder {
     //     private String firstName;
