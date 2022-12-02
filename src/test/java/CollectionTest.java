@@ -1,7 +1,11 @@
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+// import static org.junit.jupiter.api.Assertions.assertFalse;
+// import static org.junit.jupiter.api.Assertions.assertTrue;
+// import org.junit.jupiter.api.Test;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import org.junit.Test;
 
-import org.junit.jupiter.api.Test;
+
 
 public class CollectionTest implements TestConstants{
     // final private String NAME = "name";
@@ -11,9 +15,8 @@ public class CollectionTest implements TestConstants{
 
     //probably will add some kind of before and after
     //tags, still struggling to get them to work consistently
-
     @Test
-    void testAddMovie() {
+    public void testAddMovie() {
         Collection c = new Collection();
         Movie m = new Movie.MovieBuilder()
             .movieId(MOVIE_ID)
@@ -27,7 +30,7 @@ public class CollectionTest implements TestConstants{
     }
 
     @Test
-    void testRemove() {
+    public void testRemove() {
         Collection c = new Collection();
         Movie m = new Movie.MovieBuilder()
             .movieId(MOVIE_ID)
@@ -42,7 +45,7 @@ public class CollectionTest implements TestConstants{
     }
 
     @Test
-    void testContains(){
+    public void testContains(){
         Collection c = new Collection();
         Movie m = new Movie.MovieBuilder()
             .movieId(MOVIE_ID)
