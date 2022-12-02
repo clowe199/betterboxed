@@ -1,8 +1,15 @@
+import java.util.List;
+
+import info.movito.themoviedbapi.model.Genre;
+import info.movito.themoviedbapi.model.MovieDb;
+
 public class Movie {
     private String movieName;
     private int movieId;
     private String releaseDate;
     private double averageRating;
+    private List<Genre> genres;
+    // private List<Comment> comments;
     // private List<Comment> commentList;
 
     public Movie(MovieBuilder b){
@@ -10,6 +17,15 @@ public class Movie {
         movieId = b.movieId;
         this.releaseDate = b.releaseDate;
         this.averageRating = b.averageRating;
+    }
+
+    public Movie(MovieDb mdb){
+        movieName = mdb.getTitle();
+        movieId = mdb.getId();
+        releaseDate = mdb.getReleaseDate();
+        averageRating = mdb.getVoteAverage();
+        genres = mdb.getGenres();
+        // comments = new List<Comment>();
     }
 
     public int getMovieId() {
@@ -26,6 +42,15 @@ public class Movie {
 
     public String getMovieName(){
         return movieName;
+    }
+
+    public List<Genre> getGenres(){
+        return genres;
+    }
+
+    public String toString(){
+        return movieName + "; id: " + movieId + "; release: " + releaseDate 
+            + "; avg rating: " + averageRating + "; \ngenres: " + genres;
     }
 
     static public class MovieBuilder {

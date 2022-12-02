@@ -1,30 +1,30 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-// import org.junit.After;
-// import org.junit.Before;
-import org.junit.jupiter.api.Test;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
-public class MovieTest implements TestConstants {
+public class MovieTest extends TestConstants {
     
     private Movie m = null;
 
-    // @Before
-    // public void setup(){
-    //     m = new Movie.MovieBuilder()
-    //         .movieId(MOVIE_ID)
-    //         .movieName(NAME)
-    //         .releaseDate(RELEASE_DATE)
-    //         .averageRating(AVG_RATING)
-    //         .build();    
-    // }
+    @Before
+    public void setup(){
+        m = new Movie.MovieBuilder()
+            .movieId(MOVIE_ID)
+            .movieName(NAME)
+            .releaseDate(RELEASE_DATE)
+            .averageRating(AVG_RATING)
+            .build();    
+    }
 
-    // @After
-    // public void cleanup(){
-    //     m = null;
-    // }
+    @After
+    public void cleanup(){
+        m = null;
+    }
 
     @Test
-    void testCreateMovie() {
+    public void testCreateMovie() {
         m = new Movie.MovieBuilder()
             .movieId(MOVIE_ID)
             .movieName(NAME)
@@ -37,5 +37,7 @@ public class MovieTest implements TestConstants {
         assertEquals(AVG_RATING, m.getAverageRating());
 
     }
+
+    //test creat via MovieDb Constructor
 
 }

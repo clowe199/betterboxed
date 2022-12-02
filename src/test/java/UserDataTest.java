@@ -7,7 +7,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
 
-public class UserDataTest implements TestConstants {
+public class UserDataTest extends TestConstants {
     private UserData data;
 
     @Before
