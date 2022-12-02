@@ -1,17 +1,14 @@
-// import static org.junit.jupiter.api.Assertions.assertFalse;
-// import static org.junit.jupiter.api.Assertions.assertTrue;
+// import static org.junit.Assert.assertFalse;
+// import static org.junit.Assert.assertTrue;
 // import org.junit.jupiter.api.Test;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 
+import org.junit.Test;
 
-public class CollectionTest implements TestConstants{
-    // final private String NAME = "name";
-    // final private int MOVIE_ID = 123;
-    // final private String RELEASE_DATE = "00/00/00";
-    // final private double AVG_RATING = 5.0;
+public class CollectionTest extends TestConstants {
 
     //probably will add some kind of before and after
     //tags, still struggling to get them to work consistently
@@ -19,10 +16,10 @@ public class CollectionTest implements TestConstants{
     public void testAddMovie() {
         Collection c = new Collection();
         Movie m = new Movie.MovieBuilder()
-            .movieId(MOVIE_ID)
-            .movieName(NAME)
-            .releaseDate(RELEASE_DATE)
-            .averageRating(AVG_RATING)
+            .movieId(TEST_MOVIE_ID)
+            .movieName(TEST_TITLE)
+            .releaseDate(TEST_RELEASE_DATE)
+            .averageRating(TEST_AVG_RATING)
             .build();        
         assertFalse(c.getMovieList().contains(m));
         c.add(m);
@@ -33,10 +30,10 @@ public class CollectionTest implements TestConstants{
     public void testRemove() {
         Collection c = new Collection();
         Movie m = new Movie.MovieBuilder()
-            .movieId(MOVIE_ID)
-            .movieName(NAME)
-            .releaseDate(RELEASE_DATE)
-            .averageRating(AVG_RATING)
+            .movieId(TEST_MOVIE_ID)
+            .movieName(TEST_TITLE)
+            .releaseDate(TEST_RELEASE_DATE)
+            .averageRating(TEST_AVG_RATING)
             .build();
         c.getMovieList().add(m);
         assertTrue(c.getMovieList().contains(m));
@@ -48,10 +45,10 @@ public class CollectionTest implements TestConstants{
     public void testContains(){
         Collection c = new Collection();
         Movie m = new Movie.MovieBuilder()
-            .movieId(MOVIE_ID)
-            .movieName(NAME)
-            .releaseDate(RELEASE_DATE)
-            .averageRating(AVG_RATING)
+            .movieId(TEST_MOVIE_ID)
+            .movieName(TEST_TITLE)
+            .releaseDate(TEST_RELEASE_DATE)
+            .averageRating(TEST_AVG_RATING)
             .build();        
         
         c.getMovieList().add(m);

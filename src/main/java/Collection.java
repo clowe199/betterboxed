@@ -1,10 +1,11 @@
 import java.util.ArrayList;
+import java.util.List;
 
 public class Collection {
-    private ArrayList<Movie> movieList;
+    private List<Movie> movieList;
     private String name;
 
-    public ArrayList<Movie> getMovieList() {
+    public List<Movie> getMovieList() {
         return movieList;
     }
 
