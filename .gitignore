@@ -10,6 +10,9 @@ testbetterbox/target/classes/UserData$UserDataBuilder.class
 testbetterbox/target/test-classes/UserDataTest.class
 testbetterbox/src/test/.DS_Store
 target
-./src/target/classes
+src/target/classes
 .gitignore
-
+.apt_generated_tests
+README.txt
+src/main/java/UserData.java
+src/test/java/CollectionTest.java
