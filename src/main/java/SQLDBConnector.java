@@ -10,6 +10,8 @@ public class SQLDBConnector
 
     public static void main(String[] args)
     {
+        insertSaved("kyle", 175854,"lovedmovies");
+        ArrayList<String[]> sensitiveInfo = getSavedMovies("kyle","lovedmovies");
         // insertUser("kyle", "mypassword");
         //insertWatchedLater("kyle", 123456);
 
@@ -18,11 +20,11 @@ public class SQLDBConnector
         // insertWatchedLater("kyle", 47852);
         // insertWatchedLater("kyle", 378527);
         // insertWatchedLater("kyle", 12345);
-        // ArrayList<String[]> sensitiveInfo = getWatchLater("kyle");
+        //ArrayList<String[]> sensitiveInfo = getWatchLater("kyle");
 
-        // for(String[] movie : sensitiveInfo){
-        //     System.out.println(movie[0]);
-        // }
+        for(String[] movie : sensitiveInfo){
+            System.out.println(movie[0]);
+        }
     }
 
     // public static ArrayList<String[]> getSensitiveInfo(){
@@ -44,6 +46,13 @@ public class SQLDBConnector
     //   } 
     //   return sens;
     // }
+
+    //this method does not work yet
+    public static String encryption(char[] pass)
+    {
+        String password = " ";
+        return password;
+    }
     
     public static int insertUser(String username, String password){
         try(Connection conn = DriverManager.getConnection(DB_URL, USER, PASS)){
@@ -83,7 +92,6 @@ public class SQLDBConnector
     public static ArrayList<String[]> getWatchLater(String user)
     {
         final String QUERY = "SELECT movieid from watchlater where username = '" + user +"'";
-        System.out.println(QUERY);
         ArrayList<String[]> movies = new ArrayList<String[]>();
         try(Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
         Statement stmt =  conn.createStatement();
@@ -128,7 +136,6 @@ public class SQLDBConnector
     public static ArrayList<String[]> getWatched(String user)
     {
         final String QUERY = "SELECT movieid from watchedmovies where username = '" + user +"'";
-        System.out.println(QUERY);
         ArrayList<String[]> movies = new ArrayList<String[]>();
         try(Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
         Statement stmt =  conn.createStatement();
@@ -150,14 +157,15 @@ public class SQLDBConnector
         return movies;
     }
 
-    public static int insertSaved(String username, int movieID)
+    public static int insertSaved(String username, int movieID, String collectionID)
     {
         try(Connection conn = DriverManager.getConnection(DB_URL, USER, PASS))
         {
-            CallableStatement cstmt = conn.prepareCall("{? = call insert_saved(?,?)}");
+            CallableStatement cstmt = conn.prepareCall("{? = call insert_saved(?,?,?)}");
             cstmt.registerOutParameter(1, Types.INTEGER);
             cstmt.setString(2, username);
             cstmt.setInt(3, movieID);
+            cstmt.setString(4, collectionID);
             cstmt.execute();
             int returnCode = cstmt.getInt(1);
             return returnCode;
@@ -170,10 +178,9 @@ public class SQLDBConnector
         return -1; 
     }
 
-    public static ArrayList<String[]> getSavedMovies(String user)
+    public static ArrayList<String[]> getSavedMovies(String user, String collectionID)
     {
-        final String QUERY = "SELECT movieid from savedmovies where username = '" + user +"'";
-        System.out.println(QUERY);
+        final String QUERY = "SELECT movieid from savedmovies where username = '" + user +"' " + "AND collectionid = '" + collectionID +"'";
         ArrayList<String[]> movies = new ArrayList<String[]>();
         try(Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
         Statement stmt =  conn.createStatement();
@@ -182,7 +189,6 @@ public class SQLDBConnector
             
             while(rs.next())
             {
-                System.out.println(rs.getString("movieid"));
                 String[] curr = new String[1];
                 curr[0] = rs.getString("movieid");
                 movies.add(curr);
@@ -194,5 +200,27 @@ public class SQLDBConnector
         }
         return movies;
     }
+    
+    //This method does not work
+    public static int insertComment(String username, int movieID, String collectionID)
+    {
+        try(Connection conn = DriverManager.getConnection(DB_URL, USER, PASS))
+        {
+            CallableStatement cstmt = conn.prepareCall("{? = call insert_saved(?,?,?)}");
+            cstmt.registerOutParameter(1, Types.INTEGER);
+            cstmt.setString(2, username);
+            cstmt.setInt(3, movieID);
+            cstmt.setString(4, collectionID);
+            cstmt.execute();
+            int returnCode = cstmt.getInt(1);
+            return returnCode;
+
+        }
+        catch(SQLException e)
+        {
+            e.printStackTrace();
+        }
+        return 0; 
+    } 
 }
 
