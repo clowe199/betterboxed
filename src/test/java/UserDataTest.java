@@ -10,7 +10,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import Accounts.UserData;
-import Models.Movie;
 
 public class UserDataTest extends TestConstants {
     private UserData data;
@@ -42,12 +41,12 @@ public class UserDataTest extends TestConstants {
     @Test
     public void testAddAndRemoveToWatched(){
         setup();
-        Movie m = new Movie.MovieBuilder()
-            .movieId(TEST_MOVIE_ID)
-            .movieName(TEST_TITLE)
-            .releaseDate(TEST_RELEASE_DATE)
-            .averageRating(TEST_AVG_RATING)
-            .build();
+        // Movie m = new Movie.MovieBuilder()
+        //     .movieId(TEST_MOVIE_ID)
+        //     .movieName(TEST_TITLE)
+        //     .releaseDate(TEST_RELEASE_DATE)
+        //     .averageRating(TEST_AVG_RATING)
+        //     .build();
         data.addToWatched(TEST_MOVIE_ID);
         assertTrue(data.watchedContains(TEST_MOVIE_ID));
         data.removeFromWatched(TEST_MOVIE_ID);
@@ -57,12 +56,12 @@ public class UserDataTest extends TestConstants {
     @Test
     public void testAddAndRemoveToWatchLater(){
         setup();
-        Movie m = new Movie.MovieBuilder()
-            .movieId(TEST_MOVIE_ID)
-            .movieName(TEST_TITLE)
-            .releaseDate(TEST_RELEASE_DATE)
-            .averageRating(TEST_AVG_RATING)
-            .build();        
+        // Movie m = new Movie.MovieBuilder()
+        //     .movieId(TEST_MOVIE_ID)
+        //     .movieName(TEST_TITLE)
+        //     .releaseDate(TEST_RELEASE_DATE)
+        //     .averageRating(TEST_AVG_RATING)
+        //     .build();        
         data.addToWatchLater(TEST_MOVIE_ID);
         assertTrue(data.watchLaterContains(TEST_MOVIE_ID));
         data.removeFromWatchLater(TEST_MOVIE_ID);
@@ -96,12 +95,12 @@ public class UserDataTest extends TestConstants {
     public void testAddAndRemoveFromCollection(){
         setup();
         data.addCollection(COLLECTION_NAME1);
-        Movie m = new Movie.MovieBuilder()
-            .movieId(TEST_MOVIE_ID)
-            .movieName(TEST_TITLE)
-            .releaseDate(TEST_RELEASE_DATE)
-            .averageRating(TEST_AVG_RATING)
-            .build(); 
+        // Movie m = new Movie.MovieBuilder()
+        //     .movieId(TEST_MOVIE_ID)
+        //     .movieName(TEST_TITLE)
+        //     .releaseDate(TEST_RELEASE_DATE)
+        //     .averageRating(TEST_AVG_RATING)
+        //     .build(); 
                    
         data.addToCollection(TEST_MOVIE_ID, COLLECTION_NAME1);
         assertTrue(data.collectionContains(TEST_MOVIE_ID, COLLECTION_NAME1));

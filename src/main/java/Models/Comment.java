@@ -2,48 +2,53 @@ package Models;
 import java.util.List;
 
 public class Comment extends Rating {
+    private String ratingId;
     private String content;
-    private int parentId; // -1 if
     private int numLikes;
     private int numDislikes;
 
-    public Comment(int rating, String content, String userName, int movieId, int parentId) {
-        super(rating, userName, movieId);
+
+    /*
+    public Comment(CommentBuilder builder){
+        this.content = builder.content;
+        this.numLikes = builder.numLikes;
+        this.numDislikes = builder.numDislikes;
+        super();
+    }
+*/
+
+    public Comment(String ratingId, int rating, int movieId, String userName, String content, int numLikes, int numDislikes){
+        super(ratingId, rating, movieId, userName);
         this.content = content;
-        this.parentId = parentId;
-        // query for num likes: return 0 if review id not found (this would be a new comment then)
+        this.numLikes = numLikes;
+        this.numDislikes = numDislikes;
     }
 
-    // if a comment, rating is -1; if a full review add a rating and parentId is -1
-    public Comment(String content, String userName, int movieId, int parentId) {
-        this(-1, content, userName, movieId, parentId);
-    }
-
-    public void replyToComment(String content, String userName) {
-        Comment c = new Comment(content, userName, this.getMovieId(), this.getReviewId());
-        //save comment to SQLdb - SQLDBConnector.insertComment(c);
-    }
-
-    public List<Comment> getReplies() {
-        //query SQL for all comments that have this comments id as their parent id
-        //create comment objects for each one and add them to return list.
-        return null;
+    /* Getter Methods */
+    public String getRatingId() {
+        return ratingId;
     }
 
     public String getContent() {
         return content;
     }
 
-    public int getParentId() {
-        return parentId;
-    }
-
     public int getNumLikes() {
         return numLikes;
-    } 
-    
+    }
+
     public int getNumDislikes() {
         return numDislikes;
+    }
+
+
+    /* Setter Methods */
+    public void setRatingId(String ratingId) {
+        this.ratingId = ratingId;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 
     public void setNumLikes(int numLikes) {
@@ -54,5 +59,68 @@ public class Comment extends Rating {
         this.numDislikes = numDislikes;
     }
 
+
+    /* DB Methods */
+    /* 
+    public void insertComment(CommentBuilder builder)
+    {
+        SQLDBConnector.insertComment()
+    }*/
     
+
+    public void replyToComment(String content, String userName) {
+        Comment c = new Comment(this.getRatingId(), this.getRating(), this.getMovieId(), userName, content, this.getNumLikes(), this.getNumDislikes());
+        //save comment to SQLdb - SQLDBConnector.insertComment(c);
+    }
+
+    /*
+    public List<Comment> getReplies() {
+        //query SQL for all comments that have this comments id as their parent id
+        //create comment objects for each one and add them to return list.
+        return null;
+    }*/
+
+
+    /* Builder Class */
+    /*
+    static public class CommentBuilder extends Rating.RatingBuilder{
+        private int ratingId;
+        private String content;
+        private int numLikes;
+        private int numDislikes;
+        private int rating;
+        private int movieId;
+        private String userName;
+
+        public RatingBuilder ratingId(int id)
+        {
+            this.ratingId = id;
+            return this;
+        }
+        
+        public RatingBuilder content(String comment)
+        {
+            this.content = comment;
+            return this;
+        }
+
+        public RatingBuilder numLikes(int likes)
+        {
+            this.numLikes = likes;
+            return this;
+        }
+
+        public RatingBuilder numDislikes(int dislikes)
+        {
+            this.numDislikes = dislikes;
+            return this;
+        }
+
+        public Comment build()
+        {
+            return new Comment(this);
+        }
+    }*/
+
+
 }

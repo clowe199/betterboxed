@@ -36,7 +36,7 @@ public class MovieTest extends TestConstants {
         assertEquals(TEST_TITLE, m.getMovieName());
         assertEquals(TEST_MOVIE_ID, m.getMovieId());
         assertEquals(TEST_RELEASE_DATE, m.getReleaseDate());
-        assertEquals(TEST_AVG_RATING, m.getAverageRating());
+        assertEquals(TEST_AVG_RATING, m.getAverageRating(), 0);
 
     }
 
