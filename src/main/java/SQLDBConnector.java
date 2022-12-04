@@ -10,8 +10,8 @@ public class SQLDBConnector
 
     public static void main(String[] args)
     {
-        insertSaved("kyle", 175854,"lovedmovies");
-        ArrayList<String[]> sensitiveInfo = getSavedMovies("kyle","lovedmovies");
+        insertComment(0, 0, USER, 0, 0, DB_URL, 0, 0);
+        ArrayList<String[]> sensitiveInfo = getComment("kyle");
         // insertUser("kyle", "mypassword");
         //insertWatchedLater("kyle", 123456);
 
@@ -56,6 +56,19 @@ public class SQLDBConnector
         }
         String password = " ";
         return password;
+    }
+
+    public static void getComment(String user)
+    {
+        
+        ArrayList<String[]> sens = new ArrayList<String[]>();
+            try(Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+             Statement stmt = conn.createStatement();
+    
+              ResultSet rs = stmt.executeQuery(QUERY);)
+              {
+
+              }
     }
     
     public static int insertUser(String username, String password){
@@ -206,19 +219,23 @@ public class SQLDBConnector
     }
     
     //This method does not work
-    public static int insertComment(String username, int movieID, String collectionID)
+    public static int insertComment(int reviewid, int rating, String username, int movieID, int parentid, String content, int numbLikes, int numbDislikes)
     {
         try(Connection conn = DriverManager.getConnection(DB_URL, USER, PASS))
         {
-            CallableStatement cstmt = conn.prepareCall("{? = call insert_saved(?,?,?)}");
+            CallableStatement cstmt = conn.prepareCall("{? = call insert_comment(?,?,?,?,?,?,?,?)}");
             cstmt.registerOutParameter(1, Types.INTEGER);
-            cstmt.setString(2, username);
-            cstmt.setInt(3, movieID);
-            cstmt.setString(4, collectionID);
+            cstmt.setInt(2, reviewid);
+            cstmt.setInt(3, rating);
+            cstmt.setString(4, username);
+            cstmt.setInt(5,movieID);
+            cstmt.setInt(6,parentid);
+            cstmt.setString(7, content);
+            cstmt.setInt(8,numbLikes);
+            cstmt.setInt(9, numbDislikes);
             cstmt.execute();
             int returnCode = cstmt.getInt(1);
             return returnCode;
-
         }
         catch(SQLException e)
         {
@@ -226,12 +243,12 @@ public class SQLDBConnector
         }
         return -1; 
     } 
-
+  
     public static int insertLikedComment(String username, int commentID)
     {
         try(Connection conn = DriverManager.getConnection(DB_URL, USER, PASS))
         {
-            CallableStatement cstmt = conn.prepareCall("{? = call insert_likedComment(?,?,?)}");
+            CallableStatement cstmt = conn.prepareCall("{? = call insert_likedcomment(?,?)}");
             cstmt.registerOutParameter(1, Types.INTEGER);
             cstmt.setString(2, username);
             cstmt.setInt(3, commentID);
