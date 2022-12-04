@@ -58,14 +58,21 @@ public class UserAccount {
         return 0; // nonfinal return value
     }
 
-    // public void rateMovie(int movieId, int rating)
+    // Create new movie Rating and Comment
     public void reviewMovie(int movieId, int rating, String content) {
-        // check if user has reviewed the movie
-        Comment review = new Comment(rating, content, userName, movieId, -1);
-        // save review to database
+        // Create comment object
+        Comment review = new Comment.CommentBuilder()
+                        .content(content)
+                        .rating(rating)
+                        .movieId(movieId)
+                        .userName(this.userName)
+                        .build();
+
+        // Save comment to database
+        SQLDBConnector.insertComment(review);
     }
 
-    public void addComment(String content, int previousCommentId) {
+    public void addComment(String content, int parentId) {
         // comment prev = fetch comment from database
         // Comment newComment = new Comment(content, userName, prev.getMovieId(), previousCommentId);
         // save newComment in database
