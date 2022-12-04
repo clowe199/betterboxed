@@ -46,24 +46,20 @@
                                         <input type="username" id="Username" class="form-control" name="username"/>
                                         <label class="form-label" for="Username">Username</label>
                                     </div>
-                    
                                     <div class="form-outline mb-4">
                                         <input type="password" id="password" class="form-control" name="password"/>
                                         <label class="form-label" for="password">Password</label>
                                     </div>
-                    
                                     <div class="text-center pt-1 mb-5 pb-1">
                                         <button class="btn btn-primary btn-block fa-lg mb-3" type="button">Login</button>
                                     </div>
+                                </form>
                                     <div class="d-flex align-items-center justify-content-center pb-4">
                                         <p class="mb-0 me-2">Don't have an account?</p>
                                         <a href="../pages/register.jsp">
-                                        <button type="button" class="btn btn-outline-danger">
-                                            Create new
-                                        </button>
+                                            <button type="button" class="btn btn-outline-danger">Create new</button>
                                         </a>
                                     </div>
-                                </form>
                             </div>
                         </div>
                         <div id="rightColumn" class="col-lg-6 d-flex align-items-center gradient-custom-2">
