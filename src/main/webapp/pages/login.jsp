@@ -20,8 +20,8 @@
             </button>
             <div class="" id="navbarNavAltMarkup">
               <div class="navbar-nav">
-                <a class="nav-link align-self-end" href="./login.html">Login</a>
-                <a class="nav-link align-self-end" href="./register.html">Register</a>
+                <a class="nav-link align-self-end" href="./login.jsp">Login</a>
+                <a class="nav-link align-self-end" href="./register.jsp">Register</a>
               </div>
             </div>
           </div>
@@ -40,15 +40,15 @@
                                         style="width: 185px;" alt="logo">
                                     <h4 class="mt-1 mb-5 pb-1">Better Box</h4>
                                 </div>
-                                <form action="">
+                                <form action="Login" method="post">
                                     <p>Please login to your account</p>
                                     <div class="form-outline mb-4">
-                                        <input type="email" id="Username" class="form-control"/>
+                                        <input type="username" id="Username" class="form-control" name="username"/>
                                         <label class="form-label" for="Username">Username</label>
                                     </div>
                     
                                     <div class="form-outline mb-4">
-                                        <input type="password" id="password" class="form-control" />
+                                        <input type="password" id="password" class="form-control" name="password"/>
                                         <label class="form-label" for="password">Password</label>
                                     </div>
                     
@@ -57,7 +57,7 @@
                                     </div>
                                     <div class="d-flex align-items-center justify-content-center pb-4">
                                         <p class="mb-0 me-2">Don't have an account?</p>
-                                        <a href="../pages/register.html">
+                                        <a href="../pages/register.jsp">
                                         <button type="button" class="btn btn-outline-danger">
                                             Create new
                                         </button>

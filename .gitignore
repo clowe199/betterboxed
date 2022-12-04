@@ -16,3 +16,4 @@ src/target/classes
 README.txt
 src/main/java/UserData.java
 src/test/java/CollectionTest.java
+.vscode/settings.json

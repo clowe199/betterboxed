@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../css/login.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
-    <title>Login</title>
+    <title>Register</title>
 </head>
 <body>
 <div id="background">
@@ -20,14 +20,14 @@
             </button>
             <div class="" id="navbarNavAltMarkup">
               <div class="navbar-nav">
-                <a class="nav-link align-self-end" href="./login.html">Login</a>
-                <a class="nav-link align-self-end" href="./register.html">Register</a>
+                <a class="nav-link align-self-end" href="./login.jsp">Login</a>
+                <a class="nav-link align-self-end" href="./register.jsp">Register</a>
               </div>
             </div>
           </div>
         </nav>
       </div> 
-    <section class="h-100 gradient-form" style="background-color: #555555">
+    <section class="h-100 gradient-form" style="background-color: #555555;">
     <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-xl-10">
@@ -40,24 +40,25 @@
                                         style="width: 185px;" alt="logo">
                                     <h4 class="mt-1 mb-5 pb-1">Better Box</h4>
                                 </div>
-                                <form action="">
+                                <form action="register" method="post">
+                                    <h3 style="color:red">${message}</h3>
                                     <p>Please create your account</p>
                                     <div class="form-outline mb-4">
-                                        <input type="email" id="form2Example11" class="form-control"/>
+                                        <input type="username" id="form2Example11" class="form-control" name="username"/>
                                         <label class="form-label" for="form2Example11">Username</label>
                                     </div>
                     
                                     <div class="form-outline mb-4">
-                                        <input type="password" id="form2Example22" class="form-control" />
+                                        <input type="password" id="form2Example22" class="form-control" name="password"/>
                                         <label class="form-label" for="form2Example22">Password</label>
                                     </div>
                     
                                     <div class="text-center pt-1 mb-5 pb-1">
-                                        <button class="btn btn-primary btn-block fa-lg mb-3" type="button">Register</button>
+                                        <button class="btn btn-primary btn-block fa-lg mb-3" type="Register">Register</button>
                                     </div>
                                     <div class="d-flex align-items-center justify-content-center pb-4">
                                         <p class="mb-0 me-2">Already have an account?</p>
-                                        <a href="../pages/login.html"><button type="button" class="btn btn-outline-danger">Login Here</button></a>
+                                        <a href="../pages/login.jsp"><button type="button" class="btn btn-outline-danger">Login Here</button></a>
                                     </div>
                                 </form>
                             </div>
