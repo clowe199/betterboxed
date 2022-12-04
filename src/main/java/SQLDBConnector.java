@@ -50,6 +50,10 @@ public class SQLDBConnector
     //this method does not work yet
     public static String encryption(char[] pass)
     {
+        for(int i = 0; i < pass.length;i++)
+        {
+            
+        }
         String password = " ";
         return password;
     }
@@ -220,7 +224,27 @@ public class SQLDBConnector
         {
             e.printStackTrace();
         }
-        return 0; 
+        return -1; 
+    } 
+
+    public static int insertLikedComment(String username, int commentID)
+    {
+        try(Connection conn = DriverManager.getConnection(DB_URL, USER, PASS))
+        {
+            CallableStatement cstmt = conn.prepareCall("{? = call insert_likedComment(?,?,?)}");
+            cstmt.registerOutParameter(1, Types.INTEGER);
+            cstmt.setString(2, username);
+            cstmt.setInt(3, commentID);
+            cstmt.execute();
+            int returnCode = cstmt.getInt(1);
+            return returnCode;
+
+        }
+        catch(SQLException e)
+        {
+            e.printStackTrace();
+        }
+        return -1; 
     } 
 }
 
