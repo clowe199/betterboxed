@@ -10,5 +10,7 @@ import javax.servlet.http.HttpSession;
 
 @WebServlet(urlPatterns = "/home")
 public class HomeServlet extends HttpServlet {
-    
+    // public doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException {
+
+    // }
 }

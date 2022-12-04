@@ -14,7 +14,7 @@
     <div id="nav">
         <nav class="navbar navbar-expand-lg bg-white">
           <div class="container-fluid" style="margin: 0px 40px;">
-            <a class="navbar-brand" href="index.jsp">Better Box</a>
+            <a class="navbar-brand" href="login.jsp">Better Box</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
@@ -42,6 +42,7 @@
                                 </div>
                                 <form action="login" method="post">
                                     <p>Please login to your account</p>
+                                    <h3 name="message"></h3>
                                     <div class="form-outline mb-4">
                                         <input type="username" id="Username" class="form-control" name="username"/>
                                         <label class="form-label" for="Username">Username</label>

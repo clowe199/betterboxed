@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import Accounts.UserAccount;
+
 @WebServlet(urlPatterns = "/login")
 public class LoginServlet extends HttpServlet {
     
@@ -31,8 +33,19 @@ public class LoginServlet extends HttpServlet {
         }
         else{
             System.out.println("Login credentials are entered.");
+            UserAccount tempAccount = new UserAccount(username); 
 
-            
+            if (tempAccount.createAccount(username, password) == (-1)) {
+                session.setAttribute("message","User "+username+" login has been successful.");
+                RequestDispatcher rd = request.getRequestDispatcher("home.jsp");
+                rd.forward(request, response);
+            }
+            else{
+                session.setAttribute("message", "User credentials are invalid.");
+                RequestDispatcher rd = request.getRequestDispatcher("home.jsp");
+                rd.forward(request, response);
+                
+            }
         }
     
     }
