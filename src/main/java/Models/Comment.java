@@ -7,7 +7,7 @@ public class Comment extends Rating {
     private int numLikes;
     private int numDislikes;
 
-    public Comment(double rating, String content, String userName, int movieId, int parentId) {
+    public Comment(int rating, String content, String userName, int movieId, int parentId) {
         super(rating, userName, movieId);
         this.content = content;
         this.parentId = parentId;
