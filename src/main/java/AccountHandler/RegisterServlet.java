@@ -1,7 +1,7 @@
 package AccountHandler;
 import java.io.IOException;
 import java.rmi.ServerException;
-import SQLDBConnector.SQLDBConnector;
+import Accounts.UserAccount;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -34,7 +34,11 @@ public class RegisterServlet extends HttpServlet {
         }
        //Adds them to the database 
         else{
-            SQLDBConnector.insertUser(username, password);
+            UserAccount user = new UserAccount();
+            user.setUsername(username);
+            user.setPassword(password);
+            user.save();
+            session.setAttribute("message", "User "+username+" registered successfully.");
             RequestDispatcher rd = request.getRequestDispatcher("home.jsp");
             rd.forward(request, response);
             System.out.println("User has been added and loggged in");

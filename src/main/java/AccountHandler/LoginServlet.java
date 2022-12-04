@@ -17,9 +17,10 @@ public class LoginServlet extends HttpServlet {
         
         String username = (String) request.getParameter("username");
         String password = (String) request.getParameter("password");
+        System.out.println("Entered User:"+username+"\nEntered Password: "+password);
+        
         response.setContentType("text/html");
         HttpSession session = request.getSession();
-        System.out.println("Entered User:"+username+"\nEntered Password: "+password);
 
         if (username == null || username.equals("") || password == null || password.equals("")) {
             session.setAttribute("message","Please enter credentials and try again.");
@@ -30,6 +31,7 @@ public class LoginServlet extends HttpServlet {
         }
         else{
             System.out.println("Login credentials are entered.");
+
             
         }
     
