@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -41,7 +41,7 @@
                                     <h4 class="mt-1 mb-5 pb-1">Better Box</h4>
                                 </div>
                                 <form action="register" method="post">
-                                    <h3 style="color:red">${message}</h3>
+                                    <h3>${message}</h3>
                                     <p>Please create your account</p>
                                     <div class="form-outline mb-4">
                                         <input type="username" id="form2Example11" class="form-control" name="username"/>
@@ -52,15 +52,15 @@
                                         <input type="password" id="form2Example22" class="form-control" name="password"/>
                                         <label class="form-label" for="form2Example22">Password</label>
                                     </div>
-                    
                                     <div class="text-center pt-1 mb-5 pb-1">
                                         <button class="btn btn-primary btn-block fa-lg mb-3" type="Register">Register</button>
                                     </div>
+                                </form>
                                     <div class="d-flex align-items-center justify-content-center pb-4">
                                         <p class="mb-0 me-2">Already have an account?</p>
                                         <a href="../pages/login.jsp"><button type="button" class="btn btn-outline-danger">Login Here</button></a>
                                     </div>
-                                </form>
+                                
                             </div>
                         </div>
                         <div id="rightColumn" class="col-lg-6 d-flex align-items-center gradient-custom-2">
@@ -87,3 +87,5 @@
 </div>
 
 </body>
+
+</html>
