@@ -19,11 +19,18 @@ public class LoginServlet {
         String username = (String) session.getAttribute("username");
         String password = (String) session.getAttribute("password");
         
+        System.out.println("Made it to Login Credentials Servlet.");
+
         if (username == null || username.equals("") || password == null || password.equals("")) {
             session.setAttribute("message","Please enter credentials and try again.");
             RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
             rd.forward(request, response);
+            System.out.println("User credentials are empty in Login.");
             return;
+        }
+        else{
+            System.out.println("Login credentials are entered.");
+            
         }
     
     }

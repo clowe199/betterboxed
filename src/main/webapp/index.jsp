@@ -1,7 +1,3 @@
-public static void main(String[] args) {
-    System.out.println("Made it to Index!!!!");
-  }
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
