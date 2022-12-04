@@ -1,7 +1,6 @@
 package Api;
 import java.util.List;
 
-import Models.Movie;
 import info.movito.themoviedbapi.TmdbApi;
 import info.movito.themoviedbapi.TmdbMovies;
 import info.movito.themoviedbapi.TmdbSearch;
@@ -22,10 +21,8 @@ public class TMDBController extends ApiKey {
         search = new TmdbSearch(api);
     }
 
-    public Movie getMovieData(int movieId){
-        MovieDb movie = movies.getMovie(movieId, ENGLISH_LANG);
-        Movie testMovie = new Movie(movie);
-        return testMovie;    
+    public MovieDb getMovieData(int movieId){
+       return movies.getMovie(movieId, ENGLISH_LANG);    
     }
 
     public List<MovieDb> searchMovieName(String movieName){

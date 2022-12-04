@@ -33,7 +33,7 @@ public class TMDBControllerTest extends TestConstants{
 
     @Test
     public void testGetMovieData(){
-        Movie m = controller.getMovieData(SEARCH_MOVIE_ID);
+        Movie m = new Movie(controller.getMovieData(SEARCH_MOVIE_ID));
         assertEquals(SEARCH_MOVIE_ID, m.getMovieId());
         assertTrue(m.getAverageRating() >= 0 && m.getAverageRating() <= 10);
         assertEquals(SEARCH_TITLE, m.getMovieName());

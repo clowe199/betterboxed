@@ -1,10 +1,10 @@
-import Rating.Rating;
-
 import static org.junit.Assert.assertEquals;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import Models.Rating;
 
 public class RatingTest extends TestConstants{
     private Rating ratingTest;
