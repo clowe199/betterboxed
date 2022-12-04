@@ -50,23 +50,23 @@ public class UserData {
         emailAddress = a;
     }
 
-    public void addToWatched(Movie m){
+    public void addToWatched(int m){
         watchedList.add(m);
     }
-    public void removeFromWatched(Movie m){
+    public void removeFromWatched(int m){
         watchedList.remove(m);
     }
-    public boolean watchedContains(Movie m){
+    public boolean watchedContains(int m){
         return watchedList.contains(m);
     }
     
-    public void addToWatchLater(Movie m){
+    public void addToWatchLater(int m){
         watchLaterList.add(m);
     }
-    public void removeFromWatchLater(Movie m){
+    public void removeFromWatchLater(int m){
         watchLaterList.remove(m);
     }
-    public boolean watchLaterContains(Movie m){
+    public boolean watchLaterContains(int m){
         return watchLaterList.contains(m);
     }
 
@@ -93,7 +93,7 @@ public class UserData {
 
     
     //adds movie to collection, returns false if collection can't be found
-    public boolean addToCollection(Movie m, String collectionName){
+    public boolean addToCollection(int m, String collectionName){
         for (Collection c: collections){
             if (c.getName().equals(collectionName)){
                 c.add(m);
@@ -103,7 +103,7 @@ public class UserData {
         return false;
     }
     //removes movie from collection, returns false if collection can't be found
-    public boolean removeFromCollection(Movie m, String collectionName){
+    public boolean removeFromCollection(int m, String collectionName){
         for (Collection c: collections){
             if (c.getName().equals(collectionName)){
                 c.remove(m);
@@ -112,7 +112,7 @@ public class UserData {
         }
         return false;
     }
-    public boolean collectionContains(Movie m, String collectionName){
+    public boolean collectionContains(int m, String collectionName){
         for (Collection c: collections){
             if (c.getName().equals(collectionName)){
                 return c.contains(m);

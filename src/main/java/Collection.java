@@ -2,10 +2,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Collection {
-    private List<Movie> movieList;
+    private List<Integer> movieList;
     private String name;
 
-    public List<Movie> getMovieList() {
+    public List<Integer> getMovieList() {
         return movieList;
     }
 
@@ -18,26 +18,26 @@ public class Collection {
     }
 
     public Collection(String name){
-        this(name, new ArrayList<Movie>());
+        this(name, new ArrayList<Integer>());
     }
 
-    public Collection(String name, ArrayList<Movie> movies){
+    public Collection(String name, ArrayList<Integer> movies){
         this.name = name;
-        movieList = new ArrayList<Movie>();
+        movieList = new ArrayList<Integer>();
         movieList.addAll(movies);
     }
 
-    public void add(Movie m){
-        if (!movieList.contains(m))
-            movieList.add(m);
+    public void add(Integer movieId){
+        if (!movieList.contains(movieId))
+            movieList.add(movieId);
     }
 
-    public void remove(Movie m){
-        if (movieList.contains(m))
-            movieList.remove(m);
+    public void remove(Integer movieId){
+        if (movieList.contains(movieId))
+            movieList.remove(movieId);
     }
 
-    public boolean contains(Movie m){
-        return movieList.contains(m);
+    public boolean contains(Integer movieId){
+        return movieList.contains(movieId);
     }
 }

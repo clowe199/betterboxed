@@ -1,3 +1,4 @@
+package SQLDBConnector;
 import java.sql.*;
 import java.util.*;
 
@@ -53,6 +54,7 @@ public class SQLDBConnector
         String password = " ";
         return password;
     }
+
     
     public static int insertUser(String username, String password){
         try(Connection conn = DriverManager.getConnection(DB_URL, USER, PASS)){
@@ -222,4 +224,5 @@ public class SQLDBConnector
         }
         return 0; 
     } 
+
 }
