@@ -65,16 +65,14 @@ public class UserAccount {
 
     // Create new movie Rating and Comment
     public void reviewMovie(int movieId, int rating, String content) {
-        // Create comment object
-        Comment review = new Comment.CommentBuilder()
+        Comment review = new Comment.CommentBuilder()   // Create comment object
                         .content(content)
                         .rating(rating)
                         .movieId(movieId)
                         .userName(this.userName)
                         .build();
 
-        // Save comment to database
-        SQLDBConnector.insertComment(review);
+        SQLDBConnector.insertComment(review);   // Save comment to database
     }
 
     public void addComment(String content, int parentId) {
@@ -82,11 +80,6 @@ public class UserAccount {
         // Comment newComment = new Comment(content, userName, prev.getMovieId(), previousCommentId);
         // save newComment in database
     }
-
-    // public void addMovieToCollection(Movie m, int collindex)
-    // public void removeMovieFromCollection(int movieId int collindex)
-
-
 
 
     public String recommendMovie(int movieId, String email) {
@@ -105,16 +98,43 @@ public class UserAccount {
     // return null;
     // }
 
-    public boolean createNewCollection(String collectionName) { //return collectionName, return empty string if name is taken
-        // if collectionName is taken
-            // return false
-        Collection c = new Collection(collectionName);
-        //save collection in SQL database
 
-        return true;
-    
+    /*
+     * Creates new collection in SQL database with given name and one movieId, returns true
+     * If a collection with given name already exists, false is returned
+     */
+    public boolean createNewCollection(String collectionName, int movieId) 
+    {
+        List<String[]> collectionTest = SQLDBConnector.getSavedMovies(this.userName, collectionName);
+        
+        // If collection does not exist
+        if (collectionTest == null) {
+            Collection newCollection = new Collection(collectionName);
+            newCollection.add(movieId);
+            SQLDBConnector.insertSaved(this.userName, movieId, collectionName);     // Save collection in SQL database
+            return true;
+        }
+
+        return false;
     }
 
+    /*
+     * Adds given movieId to the given collectionName in the SQL database
+     * Returns boolean value indicating success/failure
+     */
+    public boolean addMovieToCollection(int movieId, String collectionId){
+
+        List<String[]> collection = SQLDBConnector.getSavedMovies(this.userName, collectionId);
+
+        if (collection == null)     // If empty collection, create new collection and add movieId
+            return createNewCollection(collectionId, movieId);
+        else    // Else, add the movieId to the DB collection
+            SQLDBConnector.insertSaved(this.userName, movieId, collectionId);
+
+        return true;
+    }
+
+    // public void removeMovieFromCollection(int movieId int collindex)
 
     public boolean deleteCollection(String collectionName) { //return collectionName, return empty string if name is taken
         // if collectionName is taken
@@ -123,6 +143,8 @@ public class UserAccount {
         //delete collection from SQL database
         return true;
     }
+
+
     public void addToWatched(int movieId){
         // SQLDBConnector.insertWatched(userName, movieId);
     }
@@ -130,13 +152,6 @@ public class UserAccount {
         // SQLDBConnector.insertWatchedLater(userName, movieId);
     }
     
-    public boolean addMovieToCollection(int movieId, String collectionName){
-        //if collectionName does not exist
-            //return false
-        //else
-            //insert movie in collection
-            return true;
-    }
 
     public List<Integer> displayHighlyRatedMovies(){
         List<MovieDb> movieList = tmdb.getHighlyRatedMovies();
