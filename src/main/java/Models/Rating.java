@@ -12,7 +12,6 @@ public class Rating {
 
 
     public Rating(RatingBuilder builder){
-        // ratingId = builder.ratingId;
         Random rand = new Random();
         ratingId = new UUID(rand.nextLong(), rand.nextLong()).toString();
         rating = builder.rating;
@@ -62,7 +61,7 @@ public class Rating {
 
     /* Builder Class */
     static public class RatingBuilder{
-        private int rating;
+        private int rating = -1;
         private int movieId;
         private String userName;
 
