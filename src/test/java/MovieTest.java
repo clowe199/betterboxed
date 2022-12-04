@@ -4,6 +4,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import Models.Movie;
+
 public class MovieTest extends TestConstants {
     
     private Movie m = null;

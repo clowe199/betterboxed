@@ -1,3 +1,4 @@
+package Models;
 public class Rating {
     private double rating; //-1 if no number associated
     private String userName;

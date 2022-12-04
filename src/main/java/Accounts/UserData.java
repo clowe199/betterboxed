@@ -1,4 +1,7 @@
+package Accounts;
 import java.util.ArrayList;
+
+import Models.Collection;
 
 public class UserData {
     

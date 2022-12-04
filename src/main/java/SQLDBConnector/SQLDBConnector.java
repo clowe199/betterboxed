@@ -1,5 +1,3 @@
-package SQLDBConnector;
-
 import java.sql.*;
 import java.util.*;
 
@@ -12,8 +10,8 @@ public class SQLDBConnector
 
     public static void main(String[] args)
     {
-        insertComment(0, 0, "kyle", 0, 0, "test", 0, 0);
-        getComment("kyle");
+        insertComment(0, 0, USER, 0, 0, DB_URL, 0, 0);
+        ArrayList<String[]> sensitiveInfo = getComment("kyle");
         // insertUser("kyle", "mypassword");
         //insertWatchedLater("kyle", 123456);
 
@@ -24,9 +22,9 @@ public class SQLDBConnector
         // insertWatchedLater("kyle", 12345);
         //ArrayList<String[]> sensitiveInfo = getWatchLater("kyle");
 
-        // for(String[] movie : sensitiveInfo){
-        //     System.out.println(movie[0]);
-        // }
+        for(String[] movie : sensitiveInfo){
+            System.out.println(movie[0]);
+        }
     }
 
     // public static ArrayList<String[]> getSensitiveInfo(){
@@ -64,17 +62,12 @@ public class SQLDBConnector
     {
         
         ArrayList<String[]> sens = new ArrayList<String[]>();
-        String QUERY = "SELECT * FROM comment";
             try(Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
              Statement stmt = conn.createStatement();
     
               ResultSet rs = stmt.executeQuery(QUERY);)
               {
-                System.out.println(rs.toString());
-              }
-              catch(SQLException e)
-              {
-                e.printStackTrace();
+
               }
     }
     
