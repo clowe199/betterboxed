@@ -9,8 +9,7 @@ public class Movie {
     private String releaseDate;
     private double averageRating;
     private List<Genre> genres;
-    // private List<Comment> comments;
-    // private List<Comment> commentList;
+    // private List<int> comments;  //search by id
 
     public Movie(MovieBuilder b){
         movieName = b.movieName;
@@ -25,7 +24,7 @@ public class Movie {
         releaseDate = mdb.getReleaseDate();
         averageRating = mdb.getVoteAverage();
         genres = mdb.getGenres();
-        // comments = new List<Comment>();
+        // comments = new List<int>();
     }
 
     public int getMovieId() {

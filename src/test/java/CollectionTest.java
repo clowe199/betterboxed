@@ -5,9 +5,6 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
-
-import org.junit.Test;
-
 public class CollectionTest extends TestConstants {
 
     //probably will add some kind of before and after
@@ -15,45 +12,45 @@ public class CollectionTest extends TestConstants {
     @Test
     public void testAddMovie() {
         Collection c = new Collection();
-        Movie m = new Movie.MovieBuilder()
-            .movieId(TEST_MOVIE_ID)
-            .movieName(TEST_TITLE)
-            .releaseDate(TEST_RELEASE_DATE)
-            .averageRating(TEST_AVG_RATING)
-            .build();        
-        assertFalse(c.getMovieList().contains(m));
-        c.add(m);
-        assertTrue(c.getMovieList().contains(m));
+        // Movie m = new Movie.MovieBuilder()
+        //     .movieId(TEST_MOVIE_ID)
+        //     .movieName(TEST_TITLE)
+        //     .releaseDate(TEST_RELEASE_DATE)
+        //     .averageRating(TEST_AVG_RATING)
+        //     .build();        
+        assertFalse(c.getMovieList().contains(TEST_MOVIE_ID));
+        c.add(TEST_MOVIE_ID);
+        assertTrue(c.getMovieList().contains(TEST_MOVIE_ID));
     }
 
     @Test
     public void testRemove() {
         Collection c = new Collection();
-        Movie m = new Movie.MovieBuilder()
-            .movieId(TEST_MOVIE_ID)
-            .movieName(TEST_TITLE)
-            .releaseDate(TEST_RELEASE_DATE)
-            .averageRating(TEST_AVG_RATING)
-            .build();
-        c.getMovieList().add(m);
-        assertTrue(c.getMovieList().contains(m));
-        c.remove(m);
-        assertFalse(c.getMovieList().contains(m));
+        // Movie m = new Movie.MovieBuilder()
+        //     .movieId(TEST_MOVIE_ID)
+        //     .movieName(TEST_TITLE)
+        //     .releaseDate(TEST_RELEASE_DATE)
+        //     .averageRating(TEST_AVG_RATING)
+        //     .build();
+        c.getMovieList().add(TEST_MOVIE_ID);
+        assertTrue(c.getMovieList().contains(TEST_MOVIE_ID));
+        c.remove(TEST_MOVIE_ID);
+        assertFalse(c.getMovieList().contains(TEST_MOVIE_ID));
     }
 
     @Test
     public void testContains(){
         Collection c = new Collection();
-        Movie m = new Movie.MovieBuilder()
-            .movieId(TEST_MOVIE_ID)
-            .movieName(TEST_TITLE)
-            .releaseDate(TEST_RELEASE_DATE)
-            .averageRating(TEST_AVG_RATING)
-            .build();        
+        // Movie m = new Movie.MovieBuilder()
+        //     .movieId(TEST_MOVIE_ID)
+        //     .movieName(TEST_TITLE)
+        //     .releaseDate(TEST_RELEASE_DATE)
+        //     .averageRating(TEST_AVG_RATING)
+        //     .build();        
         
-        c.getMovieList().add(m);
-        assertTrue(c.contains(m));
-        c.getMovieList().remove(m);
-        assertFalse(c.contains(m));
+        c.getMovieList().add(TEST_MOVIE_ID);
+        assertTrue(c.contains(TEST_MOVIE_ID));
+        c.getMovieList().remove(new Integer(TEST_MOVIE_ID));
+        assertFalse(c.contains(TEST_MOVIE_ID));
     }
 }

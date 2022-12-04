@@ -43,10 +43,10 @@ public class UserDataTest extends TestConstants {
             .releaseDate(TEST_RELEASE_DATE)
             .averageRating(TEST_AVG_RATING)
             .build();
-        data.addToWatched(m);
-        assertTrue(data.watchedContains(m));
-        data.removeFromWatched(m);
-        assertFalse(data.watchedContains(m));
+        data.addToWatched(TEST_MOVIE_ID);
+        assertTrue(data.watchedContains(TEST_MOVIE_ID));
+        data.removeFromWatched(TEST_MOVIE_ID);
+        assertFalse(data.watchedContains(TEST_MOVIE_ID));
     }
 
     @Test
@@ -58,10 +58,10 @@ public class UserDataTest extends TestConstants {
             .releaseDate(TEST_RELEASE_DATE)
             .averageRating(TEST_AVG_RATING)
             .build();        
-        data.addToWatchLater(m);
-        assertTrue(data.watchLaterContains(m));
-        data.removeFromWatchLater(m);
-        assertFalse(data.watchLaterContains(m));
+        data.addToWatchLater(TEST_MOVIE_ID);
+        assertTrue(data.watchLaterContains(TEST_MOVIE_ID));
+        data.removeFromWatchLater(TEST_MOVIE_ID);
+        assertFalse(data.watchLaterContains(TEST_MOVIE_ID));
     }
 
     @Test
@@ -98,10 +98,10 @@ public class UserDataTest extends TestConstants {
             .averageRating(TEST_AVG_RATING)
             .build(); 
                    
-        data.addToCollection(m, COLLECTION_NAME1);
-        assertTrue(data.collectionContains(m, COLLECTION_NAME1));
+        data.addToCollection(TEST_MOVIE_ID, COLLECTION_NAME1);
+        assertTrue(data.collectionContains(TEST_MOVIE_ID, COLLECTION_NAME1));
 
-        data.removeFromCollection(m, COLLECTION_NAME1);
-        assertFalse(data.collectionContains(m, COLLECTION_NAME1));
+        data.removeFromCollection(TEST_MOVIE_ID, COLLECTION_NAME1);
+        assertFalse(data.collectionContains(TEST_MOVIE_ID, COLLECTION_NAME1));
     }
 }
