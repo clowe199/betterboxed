@@ -1,6 +1,8 @@
 import java.sql.*;
 import java.util.*;
 
+import Models.Comment;
+
 
 public class SQLDBConnector
 {
@@ -219,20 +221,20 @@ public class SQLDBConnector
     }
     
     //This method does not work
-    public static int insertComment(int reviewid, int rating, String username, int movieID, int parentid, String content, int numbLikes, int numbDislikes)
-    {
+    public static int insertComment(Comment c)
+    {   
         try(Connection conn = DriverManager.getConnection(DB_URL, USER, PASS))
         {
             CallableStatement cstmt = conn.prepareCall("{? = call insert_comment(?,?,?,?,?,?,?,?)}");
             cstmt.registerOutParameter(1, Types.INTEGER);
-            cstmt.setInt(2, reviewid);
-            cstmt.setInt(3, rating);
-            cstmt.setString(4, username);
-            cstmt.setInt(5,movieID);
-            cstmt.setInt(6,parentid);
-            cstmt.setString(7, content);
-            cstmt.setInt(8,numbLikes);
-            cstmt.setInt(9, numbDislikes);
+            cstmt.setInt(2, c.getReviewId());
+            cstmt.setInt(3, c.getRatingValue());
+            cstmt.setString(4, c.getUserName());
+            cstmt.setInt(5, c.getMovieId());
+            cstmt.setInt(6, c.getParentId());
+            cstmt.setString(7, c.getContent());
+            cstmt.setInt(8, c.getNumLikes());
+            cstmt.setInt(9, c.getNumDislikes());
             cstmt.execute();
             int returnCode = cstmt.getInt(1);
             return returnCode;
@@ -244,14 +246,14 @@ public class SQLDBConnector
         return -1; 
     } 
   
-    public static int insertLikedComment(String username, int commentID)
+    public static int insertLikedComment(Comment c)
     {
         try(Connection conn = DriverManager.getConnection(DB_URL, USER, PASS))
         {
             CallableStatement cstmt = conn.prepareCall("{? = call insert_likedcomment(?,?)}");
             cstmt.registerOutParameter(1, Types.INTEGER);
-            cstmt.setString(2, username);
-            cstmt.setInt(3, commentID);
+            cstmt.setString(2, c.getUserName());
+            cstmt.setInt(3, c.getReviewId());
             cstmt.execute();
             int returnCode = cstmt.getInt(1);
             return returnCode;

@@ -76,9 +76,8 @@ public class UserAccount {
 
 
 
-    public void recommendMovie(int movieId, String email) {
-        String emailLink = "mailto:" + email + "?subject=Check%20Out%20This%20Movie%20I%20Found!&body=More%20information%20can%20be%20found%20here:%0d%0ahttps://www.themoviedb.org/movie/" + movieId;
-        
+    public String recommendMovie(int movieId, String email) {
+        return "mailto:" + email + "?subject=Check%20Out%20This%20Movie%20I%20Found!&body=More%20information%20can%20be%20found%20here:%0d%0ahttps://www.themoviedb.org/movie/" + movieId;
     }
 
     // public List<String> displayUserInfo()

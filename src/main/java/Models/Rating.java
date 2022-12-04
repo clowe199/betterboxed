@@ -1,11 +1,11 @@
 package Models;
 public class Rating {
-    private double rating; //-1 if no number associated
+    private int rating; //-1 if no number associated
     private String userName;
     private int movieId;
     private int reviewId;
 
-    public Rating(double rating, String userName, int movieId) {
+    public Rating(int rating, String userName, int movieId) {
         this.rating = rating;
         this.userName = userName;
         this.movieId = movieId;
@@ -16,7 +16,7 @@ public class Rating {
         this(-1, userName, movieId);
     }
 
-    public double getRatingValue() {
+    public int getRatingValue() {
         return rating;
     }
     public String getUserName() {
