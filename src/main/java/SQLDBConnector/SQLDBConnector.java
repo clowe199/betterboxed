@@ -227,8 +227,8 @@ public class SQLDBConnector
         {
             CallableStatement cstmt = conn.prepareCall("{? = call insert_comment(?,?,?,?,?,?,?,?)}");
             cstmt.registerOutParameter(1, Types.INTEGER);
-            cstmt.setInt(2, c.getReviewId());
-            cstmt.setInt(3, c.getRatingValue());
+            cstmt.setInt(2, c.getRatingId());
+            cstmt.setInt(3, c.getRating());
             cstmt.setString(4, c.getUserName());
             cstmt.setInt(5, c.getMovieId());
             cstmt.setInt(6, c.getParentId());

@@ -6,6 +6,7 @@ import java.util.List;
 import Api.TMDBController;
 import Models.Collection;
 import Models.Comment;
+import SQLDBConnector.SQLDBConnector;
 import info.movito.themoviedbapi.model.MovieDb;
 import info.movito.themoviedbapi.model.people.Person;
 
@@ -21,7 +22,7 @@ public class UserAccount {
 
     // private UserAccount = new UserAccount;
     public void createAccount(String pass, String user) {
-        // SQLDBConnector.insertUser(user, pass);
+        SQLDBConnector.insertUser(user, pass);
     }
     // public void login(char[] pass, char[] user)
     // public void logout(){

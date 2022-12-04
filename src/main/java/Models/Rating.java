@@ -1,21 +1,26 @@
 package Models;
 
+import java.util.Random;
+import java.util.UUID;
+
 public class Rating {
     
-    private int ratingId;
+    private String ratingId;
     private int rating;
     private int movieId;
     private String userName;
 
 
     public Rating(RatingBuilder builder){
-        ratingId = builder.ratingId;
+        // ratingId = builder.ratingId;
+        Random rand = new Random();
+        ratingId = new UUID(rand.nextLong(), rand.nextLong()).toString();
         rating = builder.rating;
         movieId = builder.movieId;
         userName = builder.userName;
     }
 
-    public Rating(int ratingId, int rating, int movieId, String userName){
+    public Rating(String ratingId, int rating, int movieId, String userName){
         this.ratingId = ratingId;
         this.rating = rating;
         this.movieId = movieId;
@@ -23,7 +28,7 @@ public class Rating {
     }
 
     /* Getter Methods */
-    public int getRatingId() {
+    public String getRatingId() {
         return ratingId;
     }
 
@@ -41,7 +46,7 @@ public class Rating {
 
 
     /* Setter Methods */
-    public void setRatingId(int ratingId) {
+    public void setRatingId(String ratingId) {
         this.ratingId = ratingId;
     }
 
@@ -61,12 +66,12 @@ public class Rating {
 
     /* Builder Class */
     static public class RatingBuilder{
-        private int ratingId;
+        private String ratingId;
         private int rating;
         private int movieId;
         private String userName;
 
-        public RatingBuilder ratingId(int id){
+        public RatingBuilder ratingId(String id){
             this.ratingId = id;
             return this;
         }
