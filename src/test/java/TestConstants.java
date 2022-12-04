@@ -21,4 +21,9 @@ public class TestConstants extends ApiKey {
     public static final String SEARCH_PERSON_QUERY = "chris hemsworth";
     public static final String SEARCH_PERSON_NAME = "Chris Hemsworth";
     public static final int SEARCH_PERSON_ID = 74568; //hemsworth
+
+    /* Rating Constants */
+    public static final int RATING_ID = 1;
+    public static final int RATING = 3;     // RATING SCALE IS 0-5
+    public static final String USERNAME = "USER";
 }
