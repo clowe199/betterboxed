@@ -41,7 +41,6 @@
                                     <h4 class="mt-1 mb-5 pb-1">Better Box</h4>
                                 </div>
                                 <form action="register" method="post">
-                                    <p>${message}</p>
                                     <p>Please create your account</p>
                                     <div class="form-outline mb-4">
                                         <input type="username" id="form2Example11" class="form-control" name="username"/>
