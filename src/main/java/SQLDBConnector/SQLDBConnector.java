@@ -1,4 +1,3 @@
-package SQLDBConnector;
 import java.sql.*;
 import java.util.*;
 
@@ -59,6 +58,18 @@ public class SQLDBConnector
         return password;
     }
 
+    public static void getComment(String user)
+    {
+        
+        ArrayList<String[]> sens = new ArrayList<String[]>();
+            try(Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+             Statement stmt = conn.createStatement();
+    
+              ResultSet rs = stmt.executeQuery(QUERY);)
+              {
+
+              }
+    }
     
     public static int insertUser(String username, String password){
         try(Connection conn = DriverManager.getConnection(DB_URL, USER, PASS)){
@@ -252,5 +263,5 @@ public class SQLDBConnector
         }
         return -1; 
     } 
-
 }
+
