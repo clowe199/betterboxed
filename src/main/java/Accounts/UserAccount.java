@@ -28,34 +28,34 @@ public class UserAccount {
     // public void logout(){
 
     // }
-    // public boolean likeComment(int commentId) {    //true if liked, false if unliked
-        // if userHasLiked(commentId)
-        //  set to unliked
-        //  return true;
+    public boolean likeComment(Comment comment) {    //true if liked, false if unliked
+        // if (userHasLiked(comment.getRatingId()))
+        // //  set to unliked
+        //     return true;
         // else
-        //  like comment in database
-        //  return false;
-    // }
-    // public boolean dislikeComment(int commentId) {     //true if disliked, false if undisliked
-        // if userHasLiked(commentId)
-        //  set to unliked
-        //  return true;
+            SQLDBConnector.insertLikedComment(comment);
+            return false;
+    }
+    public boolean dislikeComment(Comment comment) {     //true if disliked, false if undisliked
+        // if (userHasLiked(comment.getRatingId()))
+        // //  set to unliked
+        //     return true;
         // else
-        //  like comment in database
-        //  return false;
-    // }
+        // SQLDBConnector.insertDislikedComment(comment);
+        return false;
+    }
     
-    // public boolean userHasLiked(int commentId)
-    public int numLikes(int commentId){
-        // fetch comment/review from database
-        // return number of likes
-        return 0; // nonfinal return value
+    // public boolean userHasLiked(int commentId) {
+    //     // return sql method
+    // }
+    public int numLikes(String commentId){
+        // return SQLDBConnector.getComment(commentId).getNumLikes();
+        return 0; //this line will get deleted
     }
     // public boolean userHasDisliked(int commentId)
-    public int numDislikes(int commentId) {
-        // fetch comment/review from database
-        // return number of dislikes
-        return 0; // nonfinal return value
+    public int numDislikes(String commentId) {
+        // return SQLDBConnector.getComment(commentId).getNumDislikes();
+        return 0; //this line will get deleted
     }
 
     // Create new movie Rating and Comment
