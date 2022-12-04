@@ -1,3 +1,5 @@
+import Api.ApiKey;
+
 public class TestConstants extends ApiKey {
     public static final char[] TEST_PASSWORD = new char[] {'p','a','s','s'};
     public static final char[] TEST_USERNAME = new char[] {'u','s','e','r'};

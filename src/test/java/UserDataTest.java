@@ -9,6 +9,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import Accounts.UserData;
+import Models.Movie;
+
 public class UserDataTest extends TestConstants {
     private UserData data;
 

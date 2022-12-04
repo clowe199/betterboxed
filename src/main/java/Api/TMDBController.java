@@ -1,5 +1,7 @@
+package Api;
 import java.util.List;
 
+import Models.Movie;
 import info.movito.themoviedbapi.TmdbApi;
 import info.movito.themoviedbapi.TmdbMovies;
 import info.movito.themoviedbapi.TmdbSearch;

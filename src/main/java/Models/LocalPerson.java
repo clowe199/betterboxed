@@ -1,3 +1,6 @@
+package Models;
+
+import Api.ApiKey;
 import info.movito.themoviedbapi.model.people.Person;
 
 public class LocalPerson extends ApiKey {

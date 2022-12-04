@@ -1,3 +1,4 @@
+package Models;
 import java.util.List;
 
 public class Comment extends Rating {

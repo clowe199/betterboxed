@@ -1,6 +1,10 @@
+package Accounts;
 import java.util.ArrayList;
 import java.util.List;
 
+import Api.TMDBController;
+import Models.Collection;
+import Models.Comment;
 import info.movito.themoviedbapi.model.MovieDb;
 import info.movito.themoviedbapi.model.people.Person;
 
@@ -69,7 +73,7 @@ public class UserAccount {
     // public void removeMovieFromCollection(int movieId int collindex)
 
 
-    
+
 
     // public void recommendMovie(int movieId, String email)
 

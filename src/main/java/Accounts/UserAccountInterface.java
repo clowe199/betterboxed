@@ -1,3 +1,4 @@
+package Accounts;
 public interface UserAccountInterface {
     
     public void displayAccountInfo();
