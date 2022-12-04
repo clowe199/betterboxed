@@ -34,14 +34,19 @@ public class UserAccount {
         //     return true;
         // else
             SQLDBConnector.insertLikedComment(comment);
+                // if (userHasDisliked(comment.getRatingId()))
+                //     SQLDBConnector.removeLike(comment) // - this is pseudocode basically
+
             return false;
     }
     public boolean dislikeComment(Comment comment) {     //true if disliked, false if undisliked
-        // if (userHasLiked(comment.getRatingId()))
-        // //  set to unliked
+        // if (userHasDisliked(comment.getRatingId()))
+        // //  set to unDisliked
         //     return true;
         // else
-        // SQLDBConnector.insertDislikedComment(comment);
+        //     SQLDBConnector.insertDislikedComment(comment);
+                // if (userHasLiked(comment.getRatingId()))
+                //     SQLDBConnector.removeLike(comment) // - this is pseudocode basically
         return false;
     }
     
