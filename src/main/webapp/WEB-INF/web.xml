@@ -4,4 +4,13 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+  <welcome-file>src/main/webapp/index.jsp</welcome-file>
+  <servlet>
+    <servlet-name>register</servlet-name>
+    <jsp-file>/pages/register.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>register</servlet-name>
+    <url-pattern>/register</url-pattern>
+  </servlet-mapping>
 </web-app>
