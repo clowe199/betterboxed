@@ -21,6 +21,9 @@ public class RegisterServlet extends HttpServlet {
         HttpSession session = request.getSession();
         // session.setAttribute("username", session);
 
+        System.out.println("Entered User:"+username+"\nEntered Password: "+password);
+
+
         //If user doesn't enter anything in one or both of the fields
         if (username == null || username.equals("") || password == null || password.equals("")) {
             session.setAttribute("message","Please enter credentials and try again.");

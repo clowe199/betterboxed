@@ -10,16 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet(urlPatterns = "/Login")
-public class LoginServlet {
+@WebServlet(urlPatterns = "/login")
+public class LoginServlet extends HttpServlet {
     
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         
+        String username = (String) request.getParameter("username");
+        String password = (String) request.getParameter("password");
+        response.setContentType("text/html");
         HttpSession session = request.getSession();
-        String username = (String) session.getAttribute("username");
-        String password = (String) session.getAttribute("password");
-        
-        System.out.println("Made it to Login Credentials Servlet.");
+        System.out.println("Entered User:"+username+"\nEntered Password: "+password);
 
         if (username == null || username.equals("") || password == null || password.equals("")) {
             session.setAttribute("message","Please enter credentials and try again.");

@@ -40,7 +40,7 @@
                                         style="width: 185px;" alt="logo">
                                     <h4 class="mt-1 mb-5 pb-1">Better Box</h4>
                                 </div>
-                                <form action="Login" method="post">
+                                <form action="login" method="post">
                                     <p>Please login to your account</p>
                                     <div class="form-outline mb-4">
                                         <input type="username" id="Username" class="form-control" name="username"/>
@@ -51,14 +51,12 @@
                                         <label class="form-label" for="password">Password</label>
                                     </div>
                                     <div class="text-center pt-1 mb-5 pb-1">
-                                        <button class="btn btn-primary btn-block fa-lg mb-3" type="button">Login</button>
+                                        <button class="btn btn-primary btn-block fa-lg mb-3" type="Register">Login</button>
                                     </div>
                                 </form>
                                     <div class="d-flex align-items-center justify-content-center pb-4">
                                         <p class="mb-0 me-2">Don't have an account?</p>
-                                        <a href="register.jsp">
-                                            <button type="button" class="btn btn-outline-danger">Create new</button>
-                                        </a>
+                                        <a href="register.jsp"><button type="button" class="btn btn-outline-danger">Create new</button></a>
                                     </div>
                             </div>
                         </div>
