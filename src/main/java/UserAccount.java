@@ -17,7 +17,7 @@ public class UserAccount {
 
     // private UserAccount = new UserAccount;
     public void createAccount(String pass, String user) {
-        SQLDBConnector.insertUser(user, pass);
+        // SQLDBConnector.insertUser(user, pass);
     }
     // public void login(char[] pass, char[] user)
     // public void logout(){
@@ -69,7 +69,14 @@ public class UserAccount {
     // public void addMovieToCollection(Movie m, int collindex)
     // public void removeMovieFromCollection(int movieId int collindex)
 
+
+    
+
     // public void recommendMovie(int movieId, String email)
+
+
+
+
     // public List<String> displayUserInfo()
     // public List<String> displaySavedCollection(int collectionId)
 
@@ -101,10 +108,10 @@ public class UserAccount {
         return true;
     }
     public void addToWatched(int movieId){
-        SQLDBConnector.insertWatched(userName, movieId);
+        // SQLDBConnector.insertWatched(userName, movieId);
     }
     public void addToWatchLater(int movieId){
-        SQLDBConnector.insertWatchedLater(userName, movieId);
+        // SQLDBConnector.insertWatchedLater(userName, movieId);
     }
     
     public boolean addMovieToCollection(int movieId, String collectionName){

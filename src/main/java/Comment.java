@@ -4,6 +4,7 @@ public class Comment extends Rating {
     private String content;
     private int parentId; // -1 if
     private int numLikes;
+    private int numDislikes;
 
     public Comment(double rating, String content, String userName, int movieId, int parentId) {
         super(rating, userName, movieId);
@@ -19,7 +20,7 @@ public class Comment extends Rating {
 
     public void replyToComment(String content, String userName) {
         Comment c = new Comment(content, userName, this.getMovieId(), this.getReviewId());
-        //save comment to SQLdb
+        //save comment to SQLdb - SQLDBConnector.insertComment(c);
     }
 
     public List<Comment> getReplies() {
@@ -39,5 +40,18 @@ public class Comment extends Rating {
     public int getNumLikes() {
         return numLikes;
     } 
+    
+    public int getNumDislikes() {
+        return numDislikes;
+    }
 
+    public void setNumLikes(int numLikes) {
+        this.numLikes = numLikes;
+    }
+
+    public void setNumDislikes(int numDislikes) {
+        this.numDislikes = numDislikes;
+    }
+
+    
 }
