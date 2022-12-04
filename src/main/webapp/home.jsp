@@ -19,8 +19,8 @@
         </button>
         <div>
           <div class="navbar-nav">
-            <a class="nav-link align-self-end" href="./pages/profile.jsp">Profile</a>
-            <a class="nav-link align-self-end" href="../index.jsp">Logout</a>
+            <a class="nav-link align-self-end" href="./profile.jsp">Profile</a>
+            <a class="nav-link align-self-end" href="./index.jsp">Logout</a>
           </div>
         </div>
       </div>

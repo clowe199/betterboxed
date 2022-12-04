@@ -1,10 +1,10 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" href="css/login.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
     <title>Register</title>
@@ -14,7 +14,7 @@
     <div id="nav">
         <nav class="navbar navbar-expand-lg bg-white">
           <div class="container-fluid" style="margin: 0px 40px;">
-            <a class="navbar-brand" href="../index.jsp">Better Box</a>
+            <a class="navbar-brand" href="./index.jsp">Better Box</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
@@ -41,7 +41,7 @@
                                     <h4 class="mt-1 mb-5 pb-1">Better Box</h4>
                                 </div>
                                 <form action="register" method="post">
-                                    <h3>${message}</h3>
+                                    <p>${message}</p>
                                     <p>Please create your account</p>
                                     <div class="form-outline mb-4">
                                         <input type="username" id="form2Example11" class="form-control" name="username"/>
@@ -49,7 +49,7 @@
                                     </div>
                     
                                     <div class="form-outline mb-4">
-                                        <input type="password" id="form2Example22" class="form-control" name="password"/>
+                                        <input type="password" id="form2Example2" class="form-control" name="password"/>
                                         <label class="form-label" for="form2Example22">Password</label>
                                     </div>
                                     <div class="text-center pt-1 mb-5 pb-1">
@@ -58,9 +58,8 @@
                                 </form>
                                     <div class="d-flex align-items-center justify-content-center pb-4">
                                         <p class="mb-0 me-2">Already have an account?</p>
-                                        <a href="../pages/login.jsp"><button type="button" class="btn btn-outline-danger">Login Here</button></a>
-                                    </div>
-                                
+                                        <a href="./login.jsp"><button type="button" class="btn btn-outline-danger">Login Here</button></a>
+                                    </div> 
                             </div>
                         </div>
                         <div id="rightColumn" class="col-lg-6 d-flex align-items-center gradient-custom-2">

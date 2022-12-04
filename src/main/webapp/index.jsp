@@ -1,3 +1,7 @@
+public static void main(String[] args) {
+    System.out.println("Made it to Index!!!!");
+  }
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,14 +17,14 @@
   <div id="nav">
     <nav class="navbar navbar-expand-lg bg-white">
       <div class="container-fluid" style="margin: 0px 40px;">
-        <a class="navbar-brand" href="index.jsp">Better Box</a>
+        <a class="navbar-brand" href="./index.jsp">Better Box</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div>
           <div class="navbar-nav">
-            <a class="nav-link align-self-end" href="./pages/login.jsp">Login</a>
-            <a class="nav-link align-self-end" href="./pages/register.jsp">Register</a>
+            <a class="nav-link align-self-end" href="./login.jsp">Login</a>
+            <a class="nav-link align-self-end" href="./register.jsp">Register</a>
           </div>
         </div>
       </div>
@@ -101,7 +105,7 @@
     <div class="container-fluid" id="footer">
       <footer class="py-3">
         <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-          <li class="nav-item"><a href="index.jsp" class="nav-link px-2 text-black">Home</a></li>
+          <li class="nav-item"><a href="./index.jsp" class="nav-link px-2 text-black">Home</a></li>
         </ul>
         <p class="text-center">2022 Better Boxd</p>
       </footer>

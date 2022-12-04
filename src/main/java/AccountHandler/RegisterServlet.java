@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet("/register")
+@WebServlet(urlPatterns = "/register")
 public class RegisterServlet extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServerException, IOException, ServletException {
@@ -21,6 +21,8 @@ public class RegisterServlet extends HttpServlet {
         HttpSession session = request.getSession();
         session.setAttribute("username", session);
         
+        System.out.println("MAde it to the Register Servlet");
+
         //If user doesn't enter anything in one or both of the fields
         if (username == null || username.equals("") || password == null || password.equals("")) {
             session.setAttribute("message","Please enter credentials and try again.");
