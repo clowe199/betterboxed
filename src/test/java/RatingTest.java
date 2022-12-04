@@ -12,20 +12,19 @@ public class RatingTest extends TestConstants{
     @Before
     public void setup(){
         this.ratingTest = new Rating.RatingBuilder()
-               .ratingId(RATING_ID)
                .rating(RATING)
                .movieId(SEARCH_MOVIE_ID)
-               .userName(USERNAME)
+               .userName(USERNAME_STRING)
                .build();
 
     }
 
     @Test
     public void testRatingBuilder(){
-        assertEquals(RATING_ID, ratingTest.getRatingId());
+        // assertEquals(RATING_ID, ratingTest.getRatingId()); // randomly generated id needs a different test
         assertEquals(RATING, ratingTest.getRating());
         assertEquals(SEARCH_MOVIE_ID, ratingTest.getMovieId());
-        assertEquals(USERNAME, ratingTest.getUserName());
+        assertEquals(USERNAME_STRING, ratingTest.getUserName());
     }
 
     @After

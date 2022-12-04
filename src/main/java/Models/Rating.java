@@ -46,10 +46,6 @@ public class Rating {
 
 
     /* Setter Methods */
-    public void setRatingId(String ratingId) {
-        this.ratingId = ratingId;
-    }
-
     public void setRating(int rating) {
         this.rating = rating;
     }
@@ -66,15 +62,9 @@ public class Rating {
 
     /* Builder Class */
     static public class RatingBuilder{
-        private String ratingId;
         private int rating;
         private int movieId;
         private String userName;
-
-        public RatingBuilder ratingId(String id){
-            this.ratingId = id;
-            return this;
-        }
 
         public RatingBuilder rating(int num)
         {

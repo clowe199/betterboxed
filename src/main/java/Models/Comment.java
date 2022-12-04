@@ -1,32 +1,33 @@
 package Models;
-import java.util.List;
+import SQLDBConnector.SQLDBConnector;
 
 public class Comment extends Rating {
-    private String ratingId;
+    private String parentId;
     private String content;
     private int numLikes;
     private int numDislikes;
 
 
-    /*
+    
     public Comment(CommentBuilder builder){
+        super(builder.ratingBuilder);
         this.content = builder.content;
         this.numLikes = builder.numLikes;
         this.numDislikes = builder.numDislikes;
-        super();
+        this.parentId = builder.parentId;
     }
-*/
 
-    public Comment(String ratingId, int rating, int movieId, String userName, String content, int numLikes, int numDislikes){
-        super(ratingId, rating, movieId, userName);
-        this.content = content;
-        this.numLikes = numLikes;
-        this.numDislikes = numDislikes;
-    }
+
+    // public Comment(String ratingId, int rating, int movieId, String userName, String content, int numLikes, int numDislikes){
+    //     super(ratingId, rating, movieId, userName);
+    //     this.content = content;
+    //     this.numLikes = numLikes;
+    //     this.numDislikes = numDislikes;
+    // }
 
     /* Getter Methods */
-    public String getRatingId() {
-        return ratingId;
+    public String getParentId() {
+        return parentId;
     }
 
     public String getContent() {
@@ -43,9 +44,9 @@ public class Comment extends Rating {
 
 
     /* Setter Methods */
-    public void setRatingId(String ratingId) {
-        this.ratingId = ratingId;
-    }
+    // public void setRatingId(String ratingId) {
+    //     this.ratingId = ratingId;
+    // }
 
     public void setContent(String content) {
         this.content = content;
@@ -68,9 +69,15 @@ public class Comment extends Rating {
     }*/
     
 
-    public void replyToComment(String content, String userName) {
-        Comment c = new Comment(this.getRatingId(), this.getRating(), this.getMovieId(), userName, content, this.getNumLikes(), this.getNumDislikes());
-        //save comment to SQLdb - SQLDBConnector.insertComment(c);
+    public void replyToComment(String content, String userName, Comment comment) {
+        Comment reply = new CommentBuilder()
+            .content(content) 
+            .rating(getRating()) 
+            .movieId(getMovieId()) 
+            .userName(userName)  
+            .parentId(comment.getRatingId())
+            .build();
+        SQLDBConnector.insertComment(reply);
     }
 
     /*
@@ -82,37 +89,53 @@ public class Comment extends Rating {
 
 
     /* Builder Class */
-    /*
-    static public class CommentBuilder extends Rating.RatingBuilder{
-        private int ratingId;
+    
+    static public class CommentBuilder {
         private String content;
-        private int numLikes;
-        private int numDislikes;
-        private int rating;
-        private int movieId;
-        private String userName;
-
-        public RatingBuilder ratingId(int id)
-        {
-            this.ratingId = id;
-            return this;
-        }
+        private int numLikes = 0;
+        private int numDislikes = 0;
+        private String parentId;
+        private RatingBuilder ratingBuilder = new RatingBuilder();
         
-        public RatingBuilder content(String comment)
+        public CommentBuilder content(String comment)
         {
             this.content = comment;
             return this;
         }
 
-        public RatingBuilder numLikes(int likes)
+        public CommentBuilder numLikes(int likes)
         {
             this.numLikes = likes;
             return this;
         }
 
-        public RatingBuilder numDislikes(int dislikes)
+        public CommentBuilder numDislikes(int dislikes)
         {
             this.numDislikes = dislikes;
+            return this;
+        }
+
+        public CommentBuilder parentId(String parentId)
+        {
+            this.parentId = parentId;
+            return this;
+        }
+
+        public CommentBuilder rating(int num)
+        {
+            ratingBuilder = ratingBuilder.rating(num);
+            return this;
+        }
+
+        public CommentBuilder movieId(int movie)
+        {
+            ratingBuilder = ratingBuilder.movieId(movie);
+            return this;
+        }
+
+        public CommentBuilder userName(String name)
+        {
+            ratingBuilder = ratingBuilder.userName(name);
             return this;
         }
 
@@ -120,7 +143,7 @@ public class Comment extends Rating {
         {
             return new Comment(this);
         }
-    }*/
+    }
 
 
 }
