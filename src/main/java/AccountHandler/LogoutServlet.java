@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet (urlPatterns = "/logout")
 public class LogoutServlet extends HttpServlet {
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
         response.setStatus(HttpServletResponse.SC_OK);
         request.getSession().invalidate();
