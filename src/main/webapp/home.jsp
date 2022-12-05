@@ -26,6 +26,7 @@
       </div>
     </nav>
   </div>
+  <form action="home">
   <div id="bodyWithoutFoot">
     <!-- Navbar Hear -->
     <div id="hero-slide-nav">
@@ -95,7 +96,8 @@
           </div>
       </div>
     </div>
-  </div>  
+  </div>
+  </form>  
   <div class="gapp"></div>
   <!-- footer? -->
   <div class="container-fluid" id="footer">
