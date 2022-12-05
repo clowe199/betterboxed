@@ -52,9 +52,26 @@
         </button>
       </div>
     </div>
-    <!-- Search Bar here -->    
     <div class="gapp"></div>
     <!-- Movie listings here -->
+    <%
+    String curUser = (String) session.getAttribute("username");
+    System.out.println("Current user: " + curUser);
+
+    UserAccount tempAccount = new UserAccount(curUser);
+    TMDBController apiAccess = new TMDBController();
+
+    List<Integer> movieList= tempAccount.displayHighlyRatedMovies();
+    
+    String movieName = apiAccess.getMovieData(movieList.get(0)).getTitle();
+    session.setAttribute("movie1name", movieName);
+    
+    String movie2Name = apiAccess.getMovieData(movieList.get(1)).getTitle();
+    session.setAttribute("movie2name", movie2Name);
+    
+    String movie3Name = apiAccess.getMovieData(movieList.get(2)).getTitle();
+    session.setAttribute("movie3name", movie3Name);
+    %>
     <div class="container">
       <div class="row">
         <div class="col-md-3">
