@@ -10,6 +10,7 @@ import SQLDBConnector.SQLDBConnector;
 import info.movito.themoviedbapi.model.MovieDb;
 import info.movito.themoviedbapi.model.people.Person;
 
+//Class 
 public class UserAccount {
 
     private String userName;
@@ -19,54 +20,44 @@ public class UserAccount {
     public UserAccount(String user){
         this.userName = user;
         tmdb = new TMDBController();
+        //initialize userData - need sql methods
     }
 
     public int checkUser(String username) {
         return SQLDBConnector.checkUser(username);
     }
 
-    // private UserAccount = new UserAccount;
     public int createAccount(String user, String pass) {
         int accountStatus = SQLDBConnector.insertUser(user, pass);
         return accountStatus;
     }
-    // public void login(char[] pass, char[] user)
-    // public void logout(){
 
-    // }
     public boolean likeComment(Comment comment) {    //true if liked, false if unliked
-        // if (userHasLiked(comment.getRatingId()))
-        // //  set to unliked
-        //     return true;
-        // else
-            SQLDBConnector.insertLikedComment(comment);
-                // if (userHasDisliked(comment.getRatingId()))
-                //     SQLDBConnector.removeLike(comment) // - this is pseudocode basically
-
-            return false;
+        SQLDBConnector.insertLikedComment(comment);
+        return false;
     }
+
     public boolean dislikeComment(Comment comment) {     //true if disliked, false if undisliked
-        // if (userHasDisliked(comment.getRatingId()))
-        // //  set to unDisliked
-        //     return true;
-        // else
-        //     SQLDBConnector.insertDislikedComment(comment);
-                // if (userHasLiked(comment.getRatingId()))
-                //     SQLDBConnector.removeLike(comment) // - this is pseudocode basically
+        SQLDBConnector.insertDislikedComment(userName, comment.getRatingId());
         return false;
     }
     
     // public boolean userHasLiked(int commentId) {
     //     // return sql method
     // }
+
+    // public boolean userHasDisliked(int commentId) {
+    //     // return sql method
+    // }
+
     public int numLikes(String commentId){
-        // return SQLDBConnector.getComment(commentId).getNumLikes();
-        return 0; //this line will get deleted
+        return SQLDBConnector.getComment(commentId).getNumLikes();
     }
+
     // public boolean userHasDisliked(int commentId)
+
     public int numDislikes(String commentId) {
-        // return SQLDBConnector.getComment(commentId).getNumDislikes();
-        return 0; //this line will get deleted
+        return SQLDBConnector.getComment(commentId).getNumDislikes();
     }
 
     // Create new movie Rating and Comment
@@ -89,7 +80,7 @@ public class UserAccount {
             .userName(userName)
             .movieId(prev.getMovieId())
             .build();
-        // save newComment in database
+        SQLDBConnector.insertComment(newComment);
     }
 
 
@@ -103,11 +94,11 @@ public class UserAccount {
     public List<Person> searchPerson(String name){
         return tmdb.searchPerson(name);
     }
-    // public List<Integer> findMoviesByActor(Integer actorId) {//return list of movie ids
-    //     need method in TMDBController
-    
-    // return null;
-    // }
+    public List<Integer> findMoviesByActor(Integer actorId) {//return list of movie ids
+        // need method in TMDBController
+        
+        return null;
+    }
 
 
     /*
