@@ -121,6 +121,12 @@ public class Comment extends Rating {
             return this;
         }
 
+        public CommentBuilder commentId(String id)
+        {
+            this.ratingBuilder.ratingId(id);
+            return this;
+        }
+
         public CommentBuilder rating(int num)
         {
             ratingBuilder = ratingBuilder.rating(num);

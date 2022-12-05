@@ -12,11 +12,10 @@ public class Rating {
 
 
     public Rating(RatingBuilder builder){
-        Random rand = new Random();
-        ratingId = new UUID(rand.nextLong(), rand.nextLong()).toString();
         rating = builder.rating;
         movieId = builder.movieId;
         userName = builder.userName;
+        ratingId = builder.ratingId;
     }
 
     public Rating(String ratingId, int rating, int movieId, String userName){
@@ -64,6 +63,7 @@ public class Rating {
         private int rating = -1;
         private int movieId;
         private String userName;
+        private String ratingId;
 
         public RatingBuilder rating(int num)
         {
@@ -83,8 +83,21 @@ public class Rating {
             return this;
         }
 
+        public void newId(){
+            Random rand = new Random();
+            ratingId = new UUID(rand.nextLong(), rand.nextLong()).toString();
+            // return this;
+        }
+
+        public RatingBuilder ratingId(String ratingId){
+            this.ratingId = ratingId;
+            return this;
+        }
+
         public Rating build()
         {
+            if (ratingId == null)
+                newId();
             return new Rating(this);
         }
     }
