@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta value="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
@@ -62,10 +62,23 @@
           </div>
         </div>
         <div class="col-md-9">
-            <h1 class="card-title" name="movie1name"> Movie Name Here</h1>
-            <p class="card-text" name="movie1desc"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore</p>
-            <p class="rating" name="movie1rating">rating here</p>
-            <p class="likes" name="movie1likes">Likes # here</p>
+            <h1 class="card-title" value="${movie1name}"> Movie Name Here</h1>
+            <p class="card-text" value="${movie1desc}"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore</p>
+            <p class="rating" value="${movie1rating}">rating here</p>
+            <p class="likes" value="${movie1likes}">Likes # here</p>
+          </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <div class="card mb-4">
+            <img src="${movie1img}" alt="images/Temp.png">
+          </div>
+        </div>
+        <div class="col-md-9">
+          <h1 class="card-title" value="${movie2name}"> Movie Name Here</h1>
+          <p class="card-text" value="movie2desc"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore</p>
+          <p class="rating" value="movie2rating">rating here</p>
+          <p class="likes" value="movie2likes">Likes # here</p>
           </div>
       </div>
       <div class="row">
@@ -75,23 +88,10 @@
           </div>
         </div>
         <div class="col-md-9">
-          <h1 class="card-title" name="movie2name"> Movie Name Here</h1>
-          <p class="card-text" name="movie2desc"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore</p>
-          <p class="rating" name="movie2rating">rating here</p>
-          <p class="likes" name="movie2likes">Likes # here</p>
-          </div>
-      </div>
-      <div class="row">
-        <div class="col-md-3">
-          <div class="card mb-4">
-            <img src="images/Temp.png">
-          </div>
-        </div>
-        <div class="col-md-9">
-          <h1 class="card-title" name="movie3name"> Movie Name Here</h1>
-          <p class="card-text" name="movie3desc"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore</p>
-          <p class="rating" name="movie3rating">rating here</p>
-          <p class="likes" name="movie3likes">Likes # here</p>
+          <h1 c:out class="card-title" value="${movie3name}"> Movie Name Here</h1>
+          <p class="card-text" value="movie3desc"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore</p>
+          <p class="rating" value="movie3rating">rating here</p>
+          <p class="likes" value="movie3likes">Likes # here</p>
           </div>
       </div>
     </div>

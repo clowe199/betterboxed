@@ -38,6 +38,7 @@ public class LoginServlet extends HttpServlet {
                 session.setAttribute("message","User "+username+" login has been successful.");
                 RequestDispatcher rd = request.getRequestDispatcher("home.jsp");
                 rd.forward(request, response);
+                
             }
             else{
                 session.setAttribute("message", "User credentials are invalid.");
