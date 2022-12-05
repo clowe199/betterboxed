@@ -14,10 +14,15 @@ public class UserAccount {
 
     private String userName;
     private TMDBController tmdb;
+    private UserData userData;
 
     public UserAccount(String user){
         this.userName = user;
         tmdb = new TMDBController();
+    }
+
+    public int checkUser(String username) {
+        return SQLDBConnector.checkUser(username);
     }
 
     // private UserAccount = new UserAccount;
@@ -76,9 +81,14 @@ public class UserAccount {
         SQLDBConnector.insertComment(review);   // Save comment to database
     }
 
-    public void addComment(String content, int parentId) {
-        // comment prev = fetch comment from database
-        // Comment newComment = new Comment(content, userName, prev.getMovieId(), previousCommentId);
+    public void addComment(String content, String parentId) {
+        Comment prev = SQLDBConnector.getComment(parentId);
+        Comment newComment = new Comment.CommentBuilder()
+            .content(content)
+            .parentId(parentId)
+            .userName(userName)
+            .movieId(prev.getMovieId())
+            .build();
         // save newComment in database
     }
 
