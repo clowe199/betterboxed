@@ -20,11 +20,14 @@
         // Initialize the editor
         function loadHomePage(){
             var loadButton = document.getElementById("loadButton");
-            pageButton.Click();
+            loadButton.Click();
         }
-    </script>
+        document.getElementsByName("body").onload = function(){
+            loadHomePage();
+        }
+        </script>
     <title>Login</title>
-    <body onload="loadHomePage()">
+    <body>
         <div class="container border-1 bg-light">
             <div class="row text-center">
                 <h1 class="fs-1 fw-1">You've been logged in.</h1>
