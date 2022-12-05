@@ -16,7 +16,10 @@ public class UserAccount {
     private String userName;
     private TMDBController tmdb;
     private UserData userData;
-
+    public static void main(String[] args) {
+        UserAccount test = new UserAccount("testkyle");
+        System.err.println(test.getUserData());
+    }
     public UserAccount(String user) {
         this.userName = user;
         tmdb = new TMDBController();
@@ -30,6 +33,10 @@ public class UserAccount {
             .build();
     }
 
+    public UserData getUserData()
+    {
+        return userData;
+    }
     public int checkUser(String username) {
         return SQLDBConnector.checkUser(username);
     }
