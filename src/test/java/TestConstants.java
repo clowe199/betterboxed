@@ -2,7 +2,7 @@ import Api.ApiKey;
 
 public class TestConstants extends ApiKey {
     public static final char[] TEST_PASSWORD = new char[] {'p','a','s','s'};
-    public static final char[] TEST_USERNAME = new char[] {'u','s','e','r'};
+    public static final String TEST_USERNAME = "user"; //new char[] {'u','s','e','r'};
     public static final String TEST_ADDRESS = "address";
     public static final String TEST_NAME = "name";
     public static final String TEST_TITLE = "movie title";
