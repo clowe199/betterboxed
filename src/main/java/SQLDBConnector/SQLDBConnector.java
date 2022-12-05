@@ -3,6 +3,7 @@ import java.sql.*;
 import java.util.*;
 
 import Models.Comment;
+import Models.Comment.CommentBuilder;
 
 
 public class SQLDBConnector
@@ -13,8 +14,9 @@ public class SQLDBConnector
 
     public static void main(String[] args)
     {
-        int foo = checkUser("kyle");
-        System.out.println(foo);
+        // int foo = checkUser("kyle");
+        // System.out.println(foo);
+        getComment("test");
         // ArrayList<String[]> sensitiveInfo = getComment("kyle");
         // insertUser("kyle", "mypassword");
         //insertWatchedLater("kyle", 123456);
@@ -62,18 +64,38 @@ public class SQLDBConnector
         return password;
     }
 
-    public static void getComment(String user)
-    {
-        
-        // ArrayList<String[]> sens = new ArrayList<String[]>();
-        //     try(Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
-        //      Statement stmt = conn.createStatement();
-    
-        //       ResultSet rs = stmt.executeQuery(QUERY);)
-        //       {
 
-        //       }
+    public static Comment getComment(String commentid)
+    {
+        Comment curr;
+        Comment finalc;
+        String query = "SELECT * FROM comment WHERE reviewid = '" + commentid + "'"; 
+        ArrayList<Comment> sens = new ArrayList<Comment>();
+        try(Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+        Statement stmt =  conn.createStatement();
+        ResultSet rs  = stmt.executeQuery(query);)
+        {
+        
+            curr = new Comment.CommentBuilder()
+        .commentId(rs.getString(1)) 
+        .rating(rs.getInt(2)) 
+        .movieId(rs.getInt(4)) 
+        .userName(rs.getString(3))  
+        .parentId(rs.getString(5))
+        .content(rs.getString(6))
+        .numLikes(rs.getInt(7))
+        .numDislikes(rs.getInt(8))
+        .build();
+        sens.add(curr);
+        }
+        catch(SQLException e)
+        {
+            e.printStackTrace();
+        }
+        finalc = sens.get(0);
+        return  finalc;
     }
+
     //This will return -1 if they are in the system and 1 if they are not. 
     public static int insertUser(String username, String password){
         try
@@ -353,8 +375,12 @@ public class SQLDBConnector
             cstmt.setString(3, c.getRatingId());
             cstmt.execute();
             int returnCode = cstmt.getInt(1);
+            CallableStatement cstmt2 = conn.prepareCall("{? = call check_dislikedcomment(?,?)}");
+            cstmt2.registerOutParameter(1, Types.INTEGER);
+            cstmt2.setString(2, c.getUserName());
+            cstmt2.setString(3, c.getRatingId());
+            cstmt2.execute();
             return returnCode;
-
         }
         catch(SQLException e)
         {
@@ -362,6 +388,38 @@ public class SQLDBConnector
         }
         return -1; 
     } 
+
+    public static int insertDislikedComment(Comment c)
+    {
+        try
+        {
+            Class.forName("com.mysql.jdbc.Driver");
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        try(Connection conn = DriverManager.getConnection(DB_URL, USER, PASS))
+        {
+            CallableStatement cstmt = conn.prepareCall("{? = call insert_dislikedcomment(?,?)}");
+            cstmt.registerOutParameter(1, Types.INTEGER);
+            cstmt.setString(2, c.getUserName());
+            cstmt.setString(3, c.getRatingId());
+            cstmt.execute();
+            int returnCode = cstmt.getInt(1);
+            CallableStatement cstmt2 = conn.prepareCall("{? = call check_dislikedcomment(?,?)}");
+            cstmt2.registerOutParameter(1, Types.INTEGER);
+            cstmt2.setString(2, c.getUserName());
+            cstmt2.setString(3, c.getRatingId());
+            cstmt2.execute();
+            return returnCode;
+        }
+        catch(SQLException e)
+        {
+            e.printStackTrace();
+        }
+        return -1; 
+    }
 }
 
 
