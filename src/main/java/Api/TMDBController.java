@@ -10,7 +10,6 @@ import info.movito.themoviedbapi.model.MovieDb;
 import info.movito.themoviedbapi.model.core.MovieResultsPage;
 import info.movito.themoviedbapi.model.people.Person;
 import info.movito.themoviedbapi.model.people.PersonCredits;
-import info.movito.themoviedbapi.model.people.PersonPeople;
 
 public class TMDBController extends ApiKey {
     private static final String ENGLISH_LANG = "en";

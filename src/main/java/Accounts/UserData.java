@@ -1,8 +1,6 @@
 package Accounts;
 import java.util.ArrayList;
 
-import org.apache.commons.lang3.text.StrBuilder;
-
 import Models.Collection;
 
 public class UserData {
@@ -44,6 +42,13 @@ public class UserData {
     }
     public Collection getWatchLaterList(){
         return watchLaterList;
+    }
+    public ArrayList<String> getCollectionTitles(){
+        ArrayList<String> list = new ArrayList<String>();
+        for (Collection collection : collections){
+            list.add(collection.getName());
+        }
+        return list;
     }
 
     //----------------------setters

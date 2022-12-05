@@ -10,7 +10,6 @@ import SQLDBConnector.SQLDBConnector;
 import info.movito.themoviedbapi.model.MovieDb;
 import info.movito.themoviedbapi.model.people.Person;
 
-//Class 
 public class UserAccount {
 
     private String userName;
@@ -20,23 +19,19 @@ public class UserAccount {
         UserAccount test = new UserAccount("testkyle");
         System.err.println(test.getUserData());
     }
+    
     public UserAccount(String user) {
         this.userName = user;
         tmdb = new TMDBController();
-        //initialize userData - need sql methods
 
         userData = new UserData.UserDataBuilder()
             .username(userName)
-            .watchLaterList(new Collection("Watch later", convertToInt(SQLDBConnector.getWatchLater(user))))
-            .watchedList(new Collection("Watched movies", convertToInt(SQLDBConnector.getWatched(user))))
+            .watchLaterList(new Collection(UserData.WATCH_LATER_TITLE, convertToInt(SQLDBConnector.getWatchLater(user))))
+            .watchedList(new Collection(UserData.WATCHED_TITLE, convertToInt(SQLDBConnector.getWatched(user))))
             .collections(getCollections())
             .build();
     }
 
-    public UserData getUserData()
-    {
-        return userData;
-    }
     public int checkUser(String username) {
         return SQLDBConnector.checkUser(username);
     }
@@ -58,10 +53,10 @@ public class UserAccount {
             return false;
     }
     public boolean userHasLiked(String commentId) {
-        return SQLDBConnector.cheeckIfLikedComment(userName, commentId);
+        return SQLDBConnector.checkIfLikedComment(userName, commentId);
     }
     public boolean userHasDisliked(String commentId) {
-        return SQLDBConnector.cheeckIfDislikedComment(userName, commentId);
+        return SQLDBConnector.checkIfDislikedComment(userName, commentId);
     }
     public int numLikes(String commentId){
         return SQLDBConnector.getComment(commentId).getNumLikes();
@@ -93,18 +88,31 @@ public class UserAccount {
         SQLDBConnector.insertComment(newComment);
     }
 
-    // public List<String> displayUserInfo()
-    // public List<String> displaySavedCollection(int collectionId)
-
-    public List<Person> searchPerson(String name){
-        return tmdb.searchPerson(name);
+    /**
+     * 
+     * order of list: username, Watched Id, Watch Later Id, finally any other Collections
+     * 
+     * @return ArrayList<String
+     * 
+     */
+    public ArrayList<String> displayUserInfo() {
+        ArrayList<String> list = new ArrayList<String>();
+        list.add(userName);
+        list.add(UserData.WATCHED_TITLE);
+        list.add(UserData.WATCH_LATER_TITLE);
+        list.addAll(userData.getCollectionTitles());
+        return list;
     }
-    public List<Integer> findMoviesByActor(Integer actorId) {//return list of movie ids
-        // need method in TMDBController
-        
-        return null;
-    }
 
+    public ArrayList<String> displaySavedCollection(String collectionId) {
+        ArrayList<String[]> collection = SQLDBConnector.getSavedMovies(userName, collectionId);
+        ArrayList<String> result = new ArrayList<String>();
+        for (String[] movie :collection){
+            result.add(movie[0]);
+        }
+        return result;
+
+    }
 
     //----------------------Collection methods --------------------
 
@@ -114,14 +122,9 @@ public class UserAccount {
      */
     public boolean createNewCollection(String collectionName)
     {
-        // If collection exists
         if (userData.containsCollection(collectionName))
-        {
             return false;
-        }
-
         userData.addCollection(collectionName);
-        //SQLDBConnector._(this.userName, collectionName);     // Create collection in SQL database
         return true;
     }
 
@@ -129,19 +132,15 @@ public class UserAccount {
      * Adds given movieId to the given collectionName in the SQL database
      * Returns boolean value indicating success/failure
      */
-    public boolean addMovieToCollection(int movieId, String collectionName)
-    {
-        // If collection exists
-        if (userData.containsCollection(collectionName))
-        {
-            SQLDBConnector.insertSaved(this.userName, movieId, collectionName);
-            return (userData.addToCollection(movieId, collectionName));
+    public boolean addMovieToCollection(int movieId, String collectionName) {
+        if (userData.containsCollection(collectionName)) {   // If collection exists
+            if (SQLDBConnector.insertSaved(this.userName, movieId, collectionName)==1) {// if sql is successfull
+                userData.addToCollection(movieId, collectionName);
+                return true;
+            }
         }
-
-        userData.addCollection(collectionName);
-        return (addMovieToCollection(movieId, collectionName)); // Recursive call
+        return false;
     }
-
 
     public void removeMovieFromCollection(int movieId, String collectionName)
     {
@@ -152,7 +151,6 @@ public class UserAccount {
             //SQLDBConnector._(this.userName, movieId, collectionName);     // Delete movieId from collection in database
         }
     }
-
 
     public boolean deleteCollection(String collectionName)
     {
@@ -167,21 +165,30 @@ public class UserAccount {
         return false;
     }
 
-
-    public void addToWatched(int movieId)
+    public boolean addToWatched(int movieId)
     {
-        userData.addToWatched(movieId);
-        SQLDBConnector.insertWatched(this.userName, movieId);
+        if (userData.watchedContains(movieId)) {   // If collection exists
+            if (SQLDBConnector.insertWatched(this.userName, movieId)==1) {// if sql is successfull
+                userData.addToWatched(movieId);
+                return true;
+            }
+        }
+        return false;
     }
 
-
-    public void addToWatchLater(int movieId)
+    public boolean addToWatchLater(int movieId)
     {
-        userData.addToWatchLater(movieId);
-        SQLDBConnector.insertWatchedLater(this.userName, movieId);
+        if (userData.watchLaterContains(movieId)) {   // If collection exists
+            if (SQLDBConnector.insertWatchLater(this.userName, movieId)==1) {// if sql is successfull
+                userData.addToWatched(movieId);
+                return true;
+            }
+        }
+        return false;    
     }
     
 
+    //----------------------TMDB related methods-----------------
     public List<Integer> displayHighlyRatedMovies(){
         List<MovieDb> movieList = tmdb.getHighlyRatedMovies();
         List<Integer> idList = new ArrayList<Integer>();
@@ -198,10 +205,24 @@ public class UserAccount {
         }
         return idList;
     }
+    public List<Person> searchPerson(String name){
+        return tmdb.searchPerson(name);
+    }
+    public List<Integer> findMoviesByActor(Integer actorId) {//return list of movie ids
+        // need method in TMDBController
+        
+        return null;
+    }
 
-    //----------------------miscellaneous------------------------
+    //----------------------recommend movie by email ------------
     public String recommendMovie(int movieId, String email) {
         return "mailto:" + email + "?subject=Check%20Out%20This%20Movie%20I%20Found!&body=More%20information%20can%20be%20found%20here:%0d%0ahttps://www.themoviedb.org/movie/" + movieId;
+    }
+
+    //----------------------miscellaneous------------------------
+    public UserData getUserData()
+    {
+        return userData;
     }
 
     private ArrayList<Integer> convertToInt(ArrayList<String[]> movies){
