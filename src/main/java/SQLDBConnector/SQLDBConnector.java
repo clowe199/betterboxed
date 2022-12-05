@@ -13,7 +13,8 @@ public class SQLDBConnector
 
     public static void main(String[] args)
     {
-        // insertComment(0, 0, USER, 0, 0, DB_URL, 0, 0);
+        int foo = checkUser("kyle");
+        System.out.println(foo);
         // ArrayList<String[]> sensitiveInfo = getComment("kyle");
         // insertUser("kyle", "mypassword");
         //insertWatchedLater("kyle", 123456);
@@ -73,7 +74,7 @@ public class SQLDBConnector
 
         //       }
     }
-    
+    //This will return -1 if they are in the system and 1 if they are not. 
     public static int insertUser(String username, String password){
         try
         {
@@ -96,7 +97,7 @@ public class SQLDBConnector
       } 
       return -1;
     }
-
+    //This will return -1 if they are in the system and 1 if they are not. 
     public static int checkUser(String username)
     {
         try
@@ -108,7 +109,7 @@ public class SQLDBConnector
             e.printStackTrace();
         }
         try(Connection conn = DriverManager.getConnection(DB_URL, USER, PASS)){
-         CallableStatement cstmt = conn.prepareCall("{? = call insert_user(?,?)}");
+         CallableStatement cstmt = conn.prepareCall("{? = call check_user(?)}");
          cstmt.registerOutParameter(1, Types.INTEGER);
          cstmt.setString(2, username);
          cstmt.execute();
@@ -122,6 +123,14 @@ public class SQLDBConnector
 
     public static int insertWatchedLater(String username, int movieID)
     {
+        try
+        {
+            Class.forName("com.mysql.jdbc.Driver");
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
         try(Connection conn = DriverManager.getConnection(DB_URL, USER, PASS))
         {
             CallableStatement cstmt = conn.prepareCall("{? = call insert_watch_later(?,?)}");
@@ -142,6 +151,14 @@ public class SQLDBConnector
     
     public static ArrayList<String[]> getWatchLater(String user)
     {
+        try
+        {
+            Class.forName("com.mysql.jdbc.Driver");
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
         final String QUERY = "SELECT movieid from watchlater where username = '" + user +"'";
         ArrayList<String[]> movies = new ArrayList<String[]>();
         try(Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
@@ -166,6 +183,14 @@ public class SQLDBConnector
 
     public static int insertWatched(String username, int movieID)
     {
+        try
+        {
+            Class.forName("com.mysql.jdbc.Driver");
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
         try(Connection conn = DriverManager.getConnection(DB_URL, USER, PASS))
         {
             CallableStatement cstmt = conn.prepareCall("{? = call insert_watched(?,?)}");
@@ -186,6 +211,14 @@ public class SQLDBConnector
 
     public static ArrayList<String[]> getWatched(String user)
     {
+        try
+        {
+            Class.forName("com.mysql.jdbc.Driver");
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
         final String QUERY = "SELECT movieid from watchedmovies where username = '" + user +"'";
         ArrayList<String[]> movies = new ArrayList<String[]>();
         try(Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
@@ -210,6 +243,14 @@ public class SQLDBConnector
 
     public static int insertSaved(String username, int movieID, String collectionID)
     {
+        try
+        {
+            Class.forName("com.mysql.jdbc.Driver");
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
         try(Connection conn = DriverManager.getConnection(DB_URL, USER, PASS))
         {
             CallableStatement cstmt = conn.prepareCall("{? = call insert_saved(?,?,?)}");
@@ -231,6 +272,14 @@ public class SQLDBConnector
 
     public static ArrayList<String[]> getSavedMovies(String user, String collectionID)
     {
+        try
+        {
+            Class.forName("com.mysql.jdbc.Driver");
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
         final String QUERY = "SELECT movieid from savedmovies where username = '" + user +"' " + "AND collectionid = '" + collectionID +"'";
         ArrayList<String[]> movies = new ArrayList<String[]>();
         try(Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
@@ -255,6 +304,14 @@ public class SQLDBConnector
     //This method does not work
     public static int insertComment(Comment c)
     {   
+        try
+        {
+            Class.forName("com.mysql.jdbc.Driver");
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
         try(Connection conn = DriverManager.getConnection(DB_URL, USER, PASS))
         {
             CallableStatement cstmt = conn.prepareCall("{? = call insert_comment(?,?,?,?,?,?,?,?)}");
@@ -280,6 +337,14 @@ public class SQLDBConnector
   
     public static int insertLikedComment(Comment c)
     {
+        try
+        {
+            Class.forName("com.mysql.jdbc.Driver");
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
         try(Connection conn = DriverManager.getConnection(DB_URL, USER, PASS))
         {
             CallableStatement cstmt = conn.prepareCall("{? = call insert_likedcomment(?,?)}");
