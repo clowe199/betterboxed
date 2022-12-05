@@ -45,7 +45,6 @@ public class Collection {
     public String toString(){
         StringBuilder sb = new StringBuilder();
         sb.append(name + ": ");
-        sb.append(name);
         sb.append(", ");
         for (Integer movieId : movieList){
             sb.append(movieId);
