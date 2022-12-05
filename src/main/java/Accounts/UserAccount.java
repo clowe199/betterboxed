@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Api.TMDBController;
-import Models.Collection;
 import Models.Comment;
 import SQLDBConnector.SQLDBConnector;
 import info.movito.themoviedbapi.model.MovieDb;
@@ -17,7 +16,7 @@ public class UserAccount {
     private TMDBController tmdb;
     private UserData userData;
 
-    public UserAccount(String user){
+    public UserAccount(String user) {
         this.userName = user;
         tmdb = new TMDBController();
         //initialize userData - need sql methods
@@ -32,32 +31,26 @@ public class UserAccount {
         return accountStatus;
     }
 
+    //----------------------Likes and dislikes-------------------------
     public boolean likeComment(Comment comment) {    //true if liked, false if unliked
         SQLDBConnector.insertLikedComment(comment);
         return false;
     }
-
     public boolean dislikeComment(Comment comment) {     //true if disliked, false if undisliked
         if (SQLDBConnector.insertDislikedComment(comment) == 1)
             return true;
         else
             return false;
     }
-    
-    // public boolean userHasLiked(int commentId) {
-    //     // return sql method
-    // }
-
-    // public boolean userHasDisliked(int commentId) {
-    //     // return sql method
-    // }
-
+    public boolean userHasLiked(String commentId) {
+        return SQLDBConnector.cheeckIfLikedComment(userName, commentId);
+    }
+    public boolean userHasDisliked(String commentId) {
+        return SQLDBConnector.cheeckIfDislikedComment(userName, commentId);
+    }
     public int numLikes(String commentId){
         return SQLDBConnector.getComment(commentId).getNumLikes();
     }
-
-    // public boolean userHasDisliked(int commentId)
-
     public int numDislikes(String commentId) {
         return SQLDBConnector.getComment(commentId).getNumDislikes();
     }
@@ -85,11 +78,6 @@ public class UserAccount {
         SQLDBConnector.insertComment(newComment);
     }
 
-
-    public String recommendMovie(int movieId, String email) {
-        return "mailto:" + email + "?subject=Check%20Out%20This%20Movie%20I%20Found!&body=More%20information%20can%20be%20found%20here:%0d%0ahttps://www.themoviedb.org/movie/" + movieId;
-    }
-
     // public List<String> displayUserInfo()
     // public List<String> displaySavedCollection(int collectionId)
 
@@ -102,6 +90,8 @@ public class UserAccount {
         return null;
     }
 
+
+    //----------------------Collection methods --------------------
 
     /*
      * Creates new collection in SQL database with given name, returns true
@@ -193,4 +183,10 @@ public class UserAccount {
         }
         return idList;
     }
+
+    //----------------------miscellaneous------------------------
+    public String recommendMovie(int movieId, String email) {
+        return "mailto:" + email + "?subject=Check%20Out%20This%20Movie%20I%20Found!&body=More%20information%20can%20be%20found%20here:%0d%0ahttps://www.themoviedb.org/movie/" + movieId;
+    }
+
 }

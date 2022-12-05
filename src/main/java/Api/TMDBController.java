@@ -9,6 +9,7 @@ import info.movito.themoviedbapi.TmdbPeople.PersonResultsPage;
 import info.movito.themoviedbapi.model.MovieDb;
 import info.movito.themoviedbapi.model.core.MovieResultsPage;
 import info.movito.themoviedbapi.model.people.Person;
+import info.movito.themoviedbapi.model.people.PersonCredits;
 import info.movito.themoviedbapi.model.people.PersonPeople;
 
 public class TMDBController extends ApiKey {
@@ -35,8 +36,8 @@ public class TMDBController extends ApiKey {
         return list;
     }
 
-    public PersonPeople getPersonData(int personId){
-        return people.getPersonInfo(personId);    
+    public PersonCredits getPersonData(int personId){
+        return people.getCombinedPersonCredits(personId);    
     }
 
     public List<Person> searchPerson(String personName){        
@@ -57,8 +58,8 @@ public class TMDBController extends ApiKey {
 
     public static void main(String[] args) {
         TMDBController controller = new TMDBController();
-        System.out.println(controller.getPersonData(74568));
-        System.out.println(controller.getPersonData(74568).getBiography());
+        System.out.println(controller.getMovieData(controller.getPersonData(74568).getCast().get(0).getId()));
+        // System.out.println(controller.getPersonData(74568).getBiography());
 
     }
 }
