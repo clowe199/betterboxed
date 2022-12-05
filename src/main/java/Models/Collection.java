@@ -41,4 +41,20 @@ public class Collection {
     public boolean contains(Integer movieId){
         return movieList.contains(movieId);
     }
+
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+        sb.append(name + ": ");
+        sb.append(name);
+        sb.append(", ");
+        for (Integer movieId : movieList){
+            sb.append(movieId);
+            sb.append(" ");
+        }
+        return sb.toString();
+    }
+
+    public static void main(String[] args) {
+        
+    }
 }

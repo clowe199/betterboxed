@@ -1,6 +1,8 @@
 package Accounts;
 import java.util.ArrayList;
 
+import org.apache.commons.lang3.text.StrBuilder;
+
 import Models.Collection;
 
 public class UserData {
@@ -9,18 +11,25 @@ public class UserData {
     public static final String WATCH_LATER_TITLE = "Movies to Watch";
     
     private String username;
-    // private char[] password;
-    // private String emailAddress;
     private Collection watchedList;
     private Collection watchLaterList;
     private ArrayList<Collection> collections;
 
-    
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(username + ": ");
+        sb.append("\n" + watchedList.toString());
+        sb.append("\n" + watchedList.toString());
+        for (Collection coll : collections){
+            sb.append(coll.toString());
+            sb.append("\n");
+        }
+        return sb.toString();
+    }
     
     public UserData(UserDataBuilder builder){
         this.username = builder.username;
-        // password = builder.password;
-        // emailAddress = builder.emailAddress;
         this.watchedList = builder.watchedList;
         this.watchLaterList = builder.watchLaterList;
         this.collections = builder.collections;
