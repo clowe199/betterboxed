@@ -23,7 +23,6 @@ public class LoginServlet extends HttpServlet {
         
         response.setContentType("text/html");
         HttpSession session = request.getSession();
-
         if (username == null || username.equals("") || password == null || password.equals("")) {
             session.setAttribute("message","Please enter credentials and try again.");
             RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
