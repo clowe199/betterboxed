@@ -1,3 +1,8 @@
+<% 
+import java.util.List;
+import Accounts.UserAccount;
+import Api.TMDBController;
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>

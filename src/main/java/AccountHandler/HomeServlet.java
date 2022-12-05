@@ -1,5 +1,7 @@
 package AccountHandler;
 import java.util.List;
+import Accounts.UserAccount;
+import Api.TMDBController;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,8 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import Accounts.UserAccount;
-import Api.TMDBController;
 
 
 @WebServlet(urlPatterns = "/home")
