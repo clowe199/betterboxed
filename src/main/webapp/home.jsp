@@ -62,10 +62,10 @@
           </div>
         </div>
         <div class="col-md-9">
-            <h1 class="card-title"> Movie Name Here</h1>
-            <p class="card-text"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore</p>
-            <p class="rating">rating here</p>
-            <p class="likes">Likes # here</p>
+            <h1 class="card-title" name="movie1name"> Movie Name Here</h1>
+            <p class="card-text" name="movie1desc"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore</p>
+            <p class="rating" name="movie1rating">rating here</p>
+            <p class="likes" name="movie1likes">Likes # here</p>
           </div>
       </div>
       <div class="row">
@@ -75,10 +75,10 @@
           </div>
         </div>
         <div class="col-md-9">
-            <h1 class="card-title"> Movie Name Here</h1>
-            <p class="card-text"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore</p>
-            <p class="rating">rating here</p>
-            <p class="likes">Likes # here</p>
+          <h1 class="card-title" name="movie2name"> Movie Name Here</h1>
+          <p class="card-text" name="movie2desc"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore</p>
+          <p class="rating" name="movie2rating">rating here</p>
+          <p class="likes" name="movie2likes">Likes # here</p>
           </div>
       </div>
       <div class="row">
@@ -88,24 +88,24 @@
           </div>
         </div>
         <div class="col-md-9">
-            <h1 class="card-title"> Movie Name Here</h1>
-            <p class="card-text"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore</p>
-            <p class="rating">rating here</p>
-            <p class="likes">Likes # here</p>
+          <h1 class="card-title" name="movie3name"> Movie Name Here</h1>
+          <p class="card-text" name="movie3desc"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore</p>
+          <p class="rating" name="movie3rating">rating here</p>
+          <p class="likes" name="movie3likes">Likes # here</p>
           </div>
       </div>
-      </div>
-  </div>  
-    <div class="gapp"></div>
-    <!-- footer? -->
-    <div class="container-fluid" id="footer">
-      <footer class="py-3">
-        <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-          <li class="nav-item"><a href="home.jsp" class="nav-link px-2 text-black">Home</a></li>
-        </ul>
-        <p class="text-center">2022 Better Boxd</p>
-      </footer>
     </div>
+  </div>  
+  <div class="gapp"></div>
+  <!-- footer? -->
+  <div class="container-fluid" id="footer">
+    <footer class="py-3">
+      <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+        <li class="nav-item"><a href="home.jsp" class="nav-link px-2 text-black">Home</a></li>
+      </ul>
+      <p class="text-center">2022 Better Boxd</p>
+    </footer>
+  </div>
     
   </body>
 </html>
