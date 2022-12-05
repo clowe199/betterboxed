@@ -36,13 +36,13 @@ public class LoginServlet extends HttpServlet {
 
             if (tempAccount.checkUser(username) == (-1)) {
                 session.setAttribute("message","User "+username+" login has been successful.");
-                RequestDispatcher rd = request.getRequestDispatcher("home.jsp");
+                RequestDispatcher rd = request.getRequestDispatcher("loggingIn.html");
                 rd.forward(request, response);
                 
             }
             else{
                 session.setAttribute("message", "User credentials are invalid.");
-                RequestDispatcher rd = request.getRequestDispatcher("home.jsp");
+                RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
                 rd.forward(request, response);
                 
             }
