@@ -1,4 +1,7 @@
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd&quot;&gt;">
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -42,7 +45,7 @@
                                 </div>
                                 <form action="login" method="post">
                                     <p>Please login to your account</p>
-                                    <h3 name="message"></h3>
+                                    <h3>${message}</h3>
                                     <div class="form-outline mb-4">
                                         <input type="username" id="Username" class="form-control" name="username"/>
                                         <label class="form-label" for="Username">Username</label>
