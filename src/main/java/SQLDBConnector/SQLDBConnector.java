@@ -75,11 +75,42 @@ public class SQLDBConnector
     }
     
     public static int insertUser(String username, String password){
+        try
+        {
+            Class.forName("com.mysql.jdbc.Driver");
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
         try(Connection conn = DriverManager.getConnection(DB_URL, USER, PASS)){
          CallableStatement cstmt = conn.prepareCall("{? = call insert_user(?,?)}");
          cstmt.registerOutParameter(1, Types.INTEGER);
          cstmt.setString(2, username);
          cstmt.setString(3, password);
+         cstmt.execute();
+         int returnCode = cstmt.getInt(1);
+         return returnCode;
+      } catch (SQLException e) {
+         e.printStackTrace();
+      } 
+      return -1;
+    }
+
+    public static int checkUser(String username)
+    {
+        try
+        {
+            Class.forName("com.mysql.jdbc.Driver");
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        try(Connection conn = DriverManager.getConnection(DB_URL, USER, PASS)){
+         CallableStatement cstmt = conn.prepareCall("{? = call insert_user(?,?)}");
+         cstmt.registerOutParameter(1, Types.INTEGER);
+         cstmt.setString(2, username);
          cstmt.execute();
          int returnCode = cstmt.getInt(1);
          return returnCode;
@@ -254,7 +285,7 @@ public class SQLDBConnector
             CallableStatement cstmt = conn.prepareCall("{? = call insert_likedcomment(?,?)}");
             cstmt.registerOutParameter(1, Types.INTEGER);
             cstmt.setString(2, c.getUserName());
-            cstmt.setInt(3, c.getReviewId());
+            cstmt.setString(3, c.getRatingId());
             cstmt.execute();
             int returnCode = cstmt.getInt(1);
             return returnCode;
