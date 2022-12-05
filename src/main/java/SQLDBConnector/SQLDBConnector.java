@@ -189,7 +189,6 @@ public class SQLDBConnector
             
             while(rs.next())
             {
-                System.out.println(rs.getString("movieid"));
                 String[] curr = new String[1];
                 curr[0] = rs.getString("movieid");
                 movies.add(curr);
@@ -249,7 +248,6 @@ public class SQLDBConnector
             
             while(rs.next())
             {
-                System.out.println(rs.getString("movieid"));
                 String[] curr = new String[1];
                 curr[0] = rs.getString("movieid");
                 movies.add(curr);
