@@ -15,8 +15,11 @@ public class SQLDBConnector
     {
         // int foo = checkUser("kyle");
         // System.out.println(foo);
-        //getComment("test");
-        ArrayList<String[]> sensitiveInfo = getUserCollections("testkyle");
+        // System.out.println("test");
+        // Comment temp = getComment("test");
+        // System.out.println("test");
+        // System.out.println(temp.getNumDislikes());
+        //ArrayList<String[]> sensitiveInfo = getUserCollections("testkyle");
         // insertUser("kyle", "mypassword");
         //insertWatchedLater("kyle", 123456);
 
@@ -27,9 +30,9 @@ public class SQLDBConnector
         // insertWatchedLater("kyle", 12345);
         //ArrayList<String[]> sensitiveInfo = getWatchLater("kyle");
 
-        for(String[] movie : sensitiveInfo){
-            System.out.println(movie[0]);
-        }
+        // for(String[] movie : sensitiveInfo){
+        //     System.out.println(movie[0]);
+        // }
     }
 
     // public static ArrayList<String[]> getSensitiveInfo(){
@@ -73,8 +76,10 @@ public class SQLDBConnector
         try(Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
         Statement stmt =  conn.createStatement();
         ResultSet rs  = stmt.executeQuery(query);)
-        {
         
+        {
+        while(rs.next())
+        {
             curr = new Comment.CommentBuilder()
         .commentId(rs.getString(1)) 
         .rating(rs.getInt(2)) 
@@ -86,6 +91,7 @@ public class SQLDBConnector
         .numDislikes(rs.getInt(8))
         .build();
         sens.add(curr);
+        }
         }
         catch(SQLException e)
         {
