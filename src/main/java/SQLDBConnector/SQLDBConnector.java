@@ -353,8 +353,7 @@ public class SQLDBConnector
         }
         return movies;
     }
-    
-    //This method does not work
+
     public static int insertComment(Comment c)
     {   
         try
@@ -420,7 +419,7 @@ public class SQLDBConnector
         return -1; 
     } 
 
-    public static int insertDislikedComment(Comment c)
+    public static int insertDislikedComment(String username, String commentId)
     {
         try
         {
@@ -432,17 +431,12 @@ public class SQLDBConnector
         }
         try(Connection conn = DriverManager.getConnection(DB_URL, USER, PASS))
         {
-            CallableStatement cstmt = conn.prepareCall("{? = call insert_dislikedcomment(?,?)}");
+            CallableStatement cstmt = conn.prepareCall("{? = check_ifliked(?,?)}");
             cstmt.registerOutParameter(1, Types.INTEGER);
-            cstmt.setString(2, c.getUserName());
-            cstmt.setString(3, c.getRatingId());
+            cstmt.setString(2, username);
+            cstmt.setString(3, commentId);
             cstmt.execute();
             int returnCode = cstmt.getInt(1);
-            CallableStatement cstmt2 = conn.prepareCall("{? = call check_dislikedcomment(?,?)}");
-            cstmt2.registerOutParameter(1, Types.INTEGER);
-            cstmt2.setString(2, c.getUserName());
-            cstmt2.setString(3, c.getRatingId());
-            cstmt2.execute();
             return returnCode;
         }
         catch(SQLException e)
@@ -451,6 +445,7 @@ public class SQLDBConnector
         }
         return -1; 
     }
+
+
+
 }
-
-
