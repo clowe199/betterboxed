@@ -322,6 +322,37 @@ public class SQLDBConnector
         }
         return movies;
     }
+
+    public static ArrayList<String[]> getUserCollections(String user)
+    {
+        try
+        {
+            Class.forName("com.mysql.jdbc.Driver");
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        final String QUERY = "select collectionid from savedmovies where username = " + user +"'";
+        ArrayList<String[]> movies = new ArrayList<String[]>();
+        try(Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+        Statement stmt =  conn.createStatement();
+        ResultSet rs  = stmt.executeQuery(QUERY);)
+        {
+            
+            while(rs.next())
+            {
+                String[] curr = new String[1];
+                curr[0] = rs.getString("collectionid");
+                movies.add(curr);
+            }
+        }
+        catch(SQLException e)
+        {
+            e.printStackTrace();
+        }
+        return movies;
+    }
     
     //This method does not work
     public static int insertComment(Comment c)
