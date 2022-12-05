@@ -21,8 +21,9 @@ public class UserAccount {
     }
 
     // private UserAccount = new UserAccount;
-    public void createAccount(String pass, String user) {
-        SQLDBConnector.insertUser(user, pass);
+    public int createAccount(String user, String pass) {
+        int accountStatus = SQLDBConnector.insertUser(user, pass);
+        return accountStatus;
     }
     // public void login(char[] pass, char[] user)
     // public void logout(){

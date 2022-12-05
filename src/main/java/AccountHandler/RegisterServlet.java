@@ -37,6 +37,7 @@ public class RegisterServlet extends HttpServlet {
             int accountStatus = newUser.createAccount(username, password);
             if (accountStatus != -1) {
                 session.setAttribute("message", "User "+username+" registered successfully.");
+                session.setAttribute("user", username);
                 RequestDispatcher rd = request.getRequestDispatcher("home.jsp");
                 rd.forward(request, response);
                 System.out.println("User has been added and loggged in");

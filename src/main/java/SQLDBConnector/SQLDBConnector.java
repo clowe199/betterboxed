@@ -1,3 +1,4 @@
+package SQLDBConnector;
 import java.sql.*;
 import java.util.*;
 
@@ -12,8 +13,8 @@ public class SQLDBConnector
 
     public static void main(String[] args)
     {
-        insertComment(0, 0, USER, 0, 0, DB_URL, 0, 0);
-        ArrayList<String[]> sensitiveInfo = getComment("kyle");
+        // insertComment(0, 0, USER, 0, 0, DB_URL, 0, 0);
+        // ArrayList<String[]> sensitiveInfo = getComment("kyle");
         // insertUser("kyle", "mypassword");
         //insertWatchedLater("kyle", 123456);
 
@@ -24,9 +25,9 @@ public class SQLDBConnector
         // insertWatchedLater("kyle", 12345);
         //ArrayList<String[]> sensitiveInfo = getWatchLater("kyle");
 
-        for(String[] movie : sensitiveInfo){
-            System.out.println(movie[0]);
-        }
+        // for(String[] movie : sensitiveInfo){
+        //     System.out.println(movie[0]);
+        // }
     }
 
     // public static ArrayList<String[]> getSensitiveInfo(){
@@ -63,14 +64,14 @@ public class SQLDBConnector
     public static void getComment(String user)
     {
         
-        ArrayList<String[]> sens = new ArrayList<String[]>();
-            try(Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
-             Statement stmt = conn.createStatement();
+        // ArrayList<String[]> sens = new ArrayList<String[]>();
+        //     try(Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+        //      Statement stmt = conn.createStatement();
     
-              ResultSet rs = stmt.executeQuery(QUERY);)
-              {
+        //       ResultSet rs = stmt.executeQuery(QUERY);)
+        //       {
 
-              }
+        //       }
     }
     
     public static int insertUser(String username, String password){
@@ -227,11 +228,11 @@ public class SQLDBConnector
         {
             CallableStatement cstmt = conn.prepareCall("{? = call insert_comment(?,?,?,?,?,?,?,?)}");
             cstmt.registerOutParameter(1, Types.INTEGER);
-            cstmt.setInt(2, c.getRatingId());
+            cstmt.setInt(c.getRatingId(), 2);
             cstmt.setInt(3, c.getRating());
             cstmt.setString(4, c.getUserName());
             cstmt.setInt(5, c.getMovieId());
-            cstmt.setInt(6, c.getParentId());
+            cstmt.setInt(c.getParentId(), 6);
             cstmt.setString(7, c.getContent());
             cstmt.setInt(8, c.getNumLikes());
             cstmt.setInt(9, c.getNumDislikes());
