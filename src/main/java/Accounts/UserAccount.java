@@ -111,56 +111,76 @@ public class UserAccount {
 
 
     /*
-     * Creates new collection in SQL database with given name and one movieId, returns true
+     * Creates new collection in SQL database with given name, returns true
      * If a collection with given name already exists, false is returned
      */
-    public boolean createNewCollection(String collectionName, int movieId) 
+    public boolean createNewCollection(String collectionName)
     {
-        List<String[]> collectionTest = SQLDBConnector.getSavedMovies(this.userName, collectionName);
-        
-        // If collection does not exist
-        if (collectionTest == null) {
-            Collection newCollection = new Collection(collectionName);
-            newCollection.add(movieId);
-            SQLDBConnector.insertSaved(this.userName, movieId, collectionName);     // Save collection in SQL database
-            return true;
+        // If collection exists
+        if (userData.containsCollection(collectionName))
+        {
+            return false;
         }
 
-        return false;
+        userData.addCollection(collectionName);
+        //SQLDBConnector._(this.userName, collectionName);     // Create collection in SQL database
+        return true;
     }
 
     /*
      * Adds given movieId to the given collectionName in the SQL database
      * Returns boolean value indicating success/failure
      */
-    public boolean addMovieToCollection(int movieId, String collectionId){
+    public boolean addMovieToCollection(int movieId, String collectionName)
+    {
+        // If collection exists
+        if (userData.containsCollection(collectionName))
+        {
+            SQLDBConnector.insertSaved(this.userName, movieId, collectionName);
+            return (userData.addToCollection(movieId, collectionName));
+        }
 
-        List<String[]> collection = SQLDBConnector.getSavedMovies(this.userName, collectionId);
-
-        if (collection == null)     // If empty collection, create new collection and add movieId
-            return createNewCollection(collectionId, movieId);
-        else    // Else, add the movieId to the DB collection
-            SQLDBConnector.insertSaved(this.userName, movieId, collectionId);
-
-        return true;
-    }
-
-    // public void removeMovieFromCollection(int movieId int collindex)
-
-    public boolean deleteCollection(String collectionName) { //return collectionName, return empty string if name is taken
-        // if collectionName is taken
-            // return false
-        Collection c = new Collection(collectionName);
-        //delete collection from SQL database
-        return true;
+        userData.addCollection(collectionName);
+        return (addMovieToCollection(movieId, collectionName)); // Recursive call
     }
 
 
-    public void addToWatched(int movieId){
-        // SQLDBConnector.insertWatched(userName, movieId);
+    public void removeMovieFromCollection(int movieId, String collectionName)
+    {
+        // If collection exists
+        if (userData.containsCollection(collectionName))
+        {
+            userData.removeFromCollection(movieId, collectionName);
+            //SQLDBConnector._(this.userName, movieId, collectionName);     // Delete movieId from collection in database
+        }
     }
-    public void addToWatchLater(int movieId){
-        // SQLDBConnector.insertWatchedLater(userName, movieId);
+
+
+    public boolean deleteCollection(String collectionName)
+    {
+        // If collection exists
+        if (userData.containsCollection(collectionName))
+        {
+            //SQLDBConnector._(this.userName, collectionName);   // Delete collection from database
+            userData.removeCollection(collectionName);
+            return true;
+        }
+
+        return false;
+    }
+
+
+    public void addToWatched(int movieId)
+    {
+        userData.addToWatched(movieId);
+        SQLDBConnector.insertWatched(this.userName, movieId);
+    }
+
+
+    public void addToWatchLater(int movieId)
+    {
+        userData.addToWatchLater(movieId);
+        SQLDBConnector.insertWatchedLater(this.userName, movieId);
     }
     
 

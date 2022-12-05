@@ -8,9 +8,9 @@ public class UserData {
     public static final String WATCHED_TITLE = "Watched Movies";
     public static final String WATCH_LATER_TITLE = "Movies to Watch";
     
-    private char[] username;
-    private char[] password;
-    private String emailAddress;
+    private String username;
+    // private char[] password;
+    // private String emailAddress;
     private Collection watchedList;
     private Collection watchLaterList;
     private ArrayList<Collection> collections;
@@ -18,24 +18,24 @@ public class UserData {
     
     
     public UserData(UserDataBuilder builder){
-        username = builder.username;
-        password = builder.password;
-        emailAddress = builder.emailAddress;
-        watchedList = new Collection(WATCHED_TITLE);
-        watchLaterList = new Collection(WATCH_LATER_TITLE);
-        collections = new ArrayList<Collection>();
+        this.username = builder.username;
+        // password = builder.password;
+        // emailAddress = builder.emailAddress;
+        this.watchedList = builder.watchedList;
+        this.watchLaterList = builder.watchLaterList;
+        this.collections = builder.collections;
     }
 
 
-    public char[] getUsername(){
+    public String getUsername(){
         return username;
     }
-    public char[] getPassword(){
-        return password;
-    }
-    public String getEmailAddress(){
-        return emailAddress;
-    }
+    // public char[] getPassword(){
+    //     return password;
+    // }
+    // public String getEmailAddress(){
+    //     return emailAddress;
+    // }
     public Collection getWatchedList(){
         return watchedList;
     }
@@ -43,15 +43,15 @@ public class UserData {
         return watchLaterList;
     }
 
-    public void setUsername(char[] u){
+    public void setUsername(String u){
         username = u;
     }
-    public void setPassword(char[] p){
-        password = p;
-    }
-    public void setEmailAddress(String a){
-        emailAddress = a;
-    }
+    // public void setPassword(char[] p){
+    //     password = p;
+    // }
+    // public void setEmailAddress(String a){
+    //     emailAddress = a;
+    // }
 
     public void addToWatched(int m){
         watchedList.add(m);
@@ -125,31 +125,50 @@ public class UserData {
     }
 
     static public class UserDataBuilder {
-        private char[] username;
-        private char[] password;
-        private String emailAddress;
+        private String username;
+        // private char[] password;
+        // private String emailAddress;
+        private Collection watchedList;
+        private Collection watchLaterList;
+        private ArrayList<Collection> collections;
         
-        public UserDataBuilder username(char[] user)
+        public UserDataBuilder username(String user)
         {
             this.username = user;
             return this;
         }
     
-        public UserDataBuilder password(char[] pass)
-        {
-            this.password = pass;
-            return this;
-        }
+        // public UserDataBuilder password(char[] pass)
+        // {
+        //     this.password = pass;
+        //     return this;
+        // }
     
-        public UserDataBuilder emailAddress(String add)
-        {
-            this.emailAddress = add;
-            return this;
-        }
+        // public UserDataBuilder emailAddress(String add){
+        //     this.emailAddress = add;
+        //     return this;
+        // }
     
         public UserData build(){
             return new UserData(this);
         }
+        
+        public UserDataBuilder watchedList(Collection c){
+            this.watchedList = c;
+            return this;
+        }
+
+        public UserDataBuilder watchLaterList(Collection c){
+            this.watchLaterList = c;
+            return this;
+        }
+
+        public UserDataBuilder collections(ArrayList<Collection> collections){
+            this.collections = collections;
+            return this;
+        }
+
+
     }
 
 
