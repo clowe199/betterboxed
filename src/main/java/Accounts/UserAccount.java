@@ -38,8 +38,10 @@ public class UserAccount {
     }
 
     public boolean dislikeComment(Comment comment) {     //true if disliked, false if undisliked
-        SQLDBConnector.insertDislikedComment(userName, comment.getRatingId());
-        return false;
+        if (SQLDBConnector.insertDislikedComment(comment) == 1)
+            return true;
+        else
+            return false;
     }
     
     // public boolean userHasLiked(int commentId) {
