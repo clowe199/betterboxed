@@ -3,7 +3,6 @@ import java.sql.*;
 import java.util.*;
 
 import Models.Comment;
-import Models.Comment.CommentBuilder;
 
 
 public class SQLDBConnector
@@ -292,6 +291,7 @@ public class SQLDBConnector
         return -1; 
     }
 
+    // returns individual collection
     public static ArrayList<String[]> getSavedMovies(String user, String collectionID)
     {
         try
@@ -323,6 +323,7 @@ public class SQLDBConnector
         return movies;
     }
 
+    // returns array of collection ids
     public static ArrayList<String[]> getUserCollections(String user)
     {
         try
