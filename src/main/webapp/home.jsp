@@ -1,5 +1,7 @@
-
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd&quot;&gt;">
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -63,7 +65,7 @@
           </div>
         </div>
         <div class="col-md-9">
-            <h1 class="card-title" value="${movie1name}"> Movie Name Here</h1>
+            <h1 class="card-title" value="${movie1name}"> ${movie1name}</h1>
             <p class="card-text" value="${movie1desc}"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore</p>
             <p class="rating" value="${movie1rating}">rating here</p>
             <p class="likes" value="${movie1likes}">Likes # here</p>
@@ -76,7 +78,7 @@
           </div>
         </div>
         <div class="col-md-9">
-          <h1 class="card-title" value="${movie2name}"> Movie Name Here</h1>
+          <h1 class="card-title" value="${movie2name}"> ${movie2name}</h1>
           <p class="card-text" value="movie2desc"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore</p>
           <p class="rating" value="movie2rating">rating here</p>
           <p class="likes" value="movie2likes">Likes # here</p>
@@ -89,7 +91,7 @@
           </div>
         </div>
         <div class="col-md-9">
-          <h1 c:out class="card-title" value="${movie3name}"> Movie Name Here</h1>
+          <h1 c:out class="card-title" value="${movie3name}"> ${movie3name}</h1>
           <p class="card-text" value="movie3desc"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore</p>
           <p class="rating" value="movie3rating">rating here</p>
           <p class="likes" value="movie3likes">Likes # here</p>
