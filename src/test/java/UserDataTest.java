@@ -1,9 +1,6 @@
-import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-// import static org.junit.jupiter.api.Assertions.assertEquals;
-// import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.After;
 import org.junit.Before;
@@ -17,9 +14,9 @@ public class UserDataTest extends TestConstants {
     @Before
     public void setup(){
         this.data = new UserData.UserDataBuilder()
-        		.password(TEST_PASSWORD)
+        		// .password(TEST_PASSWORD)
         		.username(TEST_USERNAME)
-        		.emailAddress(TEST_ADDRESS)
+        		// .emailAddress(TEST_ADDRESS)
         		.build();
     }
 
@@ -31,9 +28,9 @@ public class UserDataTest extends TestConstants {
     @Test
     public void testNewUserData(){
         setup();
-        assertEquals(TEST_ADDRESS, data.getEmailAddress());
-        assertArrayEquals(TEST_PASSWORD, data.getPassword());
-        assertArrayEquals(TEST_USERNAME, data.getUsername());
+        // assertEquals(TEST_ADDRESS, data.getEmailAddress());
+        // assertArrayEquals(TEST_PASSWORD, data.getPassword());
+        assertEquals(TEST_USERNAME, data.getUsername());
         assertEquals(UserData.WATCHED_TITLE, data.getWatchedList().getName());
         assertEquals(UserData.WATCH_LATER_TITLE, data.getWatchLaterList().getName());
     }
