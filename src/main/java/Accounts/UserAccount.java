@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Api.TMDBController;
+import Models.Collection;
 import Models.Comment;
 import SQLDBConnector.SQLDBConnector;
 import info.movito.themoviedbapi.model.MovieDb;
@@ -15,13 +16,27 @@ public class UserAccount {
     private String userName;
     private TMDBController tmdb;
     private UserData userData;
-
+    public static void main(String[] args) {
+        UserAccount test = new UserAccount("testkyle");
+        System.err.println(test.getUserData());
+    }
     public UserAccount(String user) {
         this.userName = user;
         tmdb = new TMDBController();
         //initialize userData - need sql methods
+
+        userData = new UserData.UserDataBuilder()
+            .username(userName)
+            .watchLaterList(new Collection("Watch later", convertToInt(SQLDBConnector.getWatchLater(user))))
+            .watchedList(new Collection("Watched movies", convertToInt(SQLDBConnector.getWatched(user))))
+            .collections(getCollections())
+            .build();
     }
 
+    public UserData getUserData()
+    {
+        return userData;
+    }
     public int checkUser(String username) {
         return SQLDBConnector.checkUser(username);
     }
@@ -187,6 +202,23 @@ public class UserAccount {
     //----------------------miscellaneous------------------------
     public String recommendMovie(int movieId, String email) {
         return "mailto:" + email + "?subject=Check%20Out%20This%20Movie%20I%20Found!&body=More%20information%20can%20be%20found%20here:%0d%0ahttps://www.themoviedb.org/movie/" + movieId;
+    }
+
+    private ArrayList<Integer> convertToInt(ArrayList<String[]> movies){
+        ArrayList<Integer> movieIds = new ArrayList<Integer>();
+        for (String[] movie :movies){
+            movieIds.add(Integer.parseInt(movie[0]));
+        }
+        return movieIds;
+    }
+
+    private ArrayList<Collection> getCollections() {
+        ArrayList<Collection> collections = new ArrayList<Collection>();
+        ArrayList<String[]> collectionIds = SQLDBConnector.getUserCollections(userName);
+        for (String[] collection : collectionIds){
+            collections.add(new Collection(collection[0], convertToInt(SQLDBConnector.getSavedMovies(userName, collection[0]))));
+        }
+        return collections;
     }
 
 }

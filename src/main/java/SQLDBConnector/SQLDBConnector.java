@@ -15,8 +15,8 @@ public class SQLDBConnector
     {
         // int foo = checkUser("kyle");
         // System.out.println(foo);
-        getComment("test");
-        // ArrayList<String[]> sensitiveInfo = getComment("kyle");
+        //getComment("test");
+        ArrayList<String[]> sensitiveInfo = getUserCollections("testkyle");
         // insertUser("kyle", "mypassword");
         //insertWatchedLater("kyle", 123456);
 
@@ -27,9 +27,9 @@ public class SQLDBConnector
         // insertWatchedLater("kyle", 12345);
         //ArrayList<String[]> sensitiveInfo = getWatchLater("kyle");
 
-        // for(String[] movie : sensitiveInfo){
-        //     System.out.println(movie[0]);
-        // }
+        for(String[] movie : sensitiveInfo){
+            System.out.println(movie[0]);
+        }
     }
 
     // public static ArrayList<String[]> getSensitiveInfo(){
@@ -334,7 +334,7 @@ public class SQLDBConnector
         {
             e.printStackTrace();
         }
-        final String QUERY = "select collectionid from savedmovies where username = " + user +"'";
+        final String QUERY = "select collectionid from savedmovies where username = '" + user +"'";
         ArrayList<String[]> movies = new ArrayList<String[]>();
         try(Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
         Statement stmt =  conn.createStatement();
