@@ -322,8 +322,38 @@ public class SQLDBConnector
         }
         return movies;
     }
-    
-    //This method does not work
+
+    public static ArrayList<String[]> getUserCollections(String user)
+    {
+        try
+        {
+            Class.forName("com.mysql.jdbc.Driver");
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        final String QUERY = "select collectionid from savedmovies where username = " + user +"'";
+        ArrayList<String[]> movies = new ArrayList<String[]>();
+        try(Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+        Statement stmt =  conn.createStatement();
+        ResultSet rs  = stmt.executeQuery(QUERY);)
+        {
+            
+            while(rs.next())
+            {
+                String[] curr = new String[1];
+                curr[0] = rs.getString("collectionid");
+                movies.add(curr);
+            }
+        }
+        catch(SQLException e)
+        {
+            e.printStackTrace();
+        }
+        return movies;
+    }
+
     public static int insertComment(Comment c)
     {   
         try
@@ -420,6 +450,65 @@ public class SQLDBConnector
         }
         return -1; 
     }
+
+    public static boolean cheeckIfLikedComment(String username, String commentId)
+    {
+        try
+        {
+            Class.forName("com.mysql.jdbc.Driver");
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        try(Connection conn = DriverManager.getConnection(DB_URL, USER, PASS))
+        {
+            CallableStatement cstmt = conn.prepareCall("{? = check_ifliked(?,?)}");
+            cstmt.registerOutParameter(1, Types.INTEGER);
+            cstmt.setString(2, username);
+            cstmt.setString(3, commentId);
+            cstmt.execute();
+            int returnCode = cstmt.getInt(1);
+            if(returnCode == 1)
+                return true;
+            else
+                return false;
+        }
+        catch(SQLException e)
+        {
+            e.printStackTrace();
+        }
+        return false; 
+    
+    }
+
+    public static boolean cheeckIfDislikedComment(String username, String commentId)
+    {
+        try
+        {
+            Class.forName("com.mysql.jdbc.Driver");
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        try(Connection conn = DriverManager.getConnection(DB_URL, USER, PASS))
+        {
+            CallableStatement cstmt = conn.prepareCall("{? = check_ifdisliked(?,?)}");
+            cstmt.registerOutParameter(1, Types.INTEGER);
+            cstmt.setString(2, username);
+            cstmt.setString(3, commentId);
+            cstmt.execute();
+            int returnCode = cstmt.getInt(1);
+            if(returnCode == 1)
+                return true;
+            else
+                return false;
+        }
+        catch(SQLException e)
+        {
+            e.printStackTrace();
+        }
+        return false; 
+    }
 }
-
-

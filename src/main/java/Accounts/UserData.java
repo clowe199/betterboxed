@@ -26,16 +26,10 @@ public class UserData {
         this.collections = builder.collections;
     }
 
-
+    //----------------------getters
     public String getUsername(){
         return username;
     }
-    // public char[] getPassword(){
-    //     return password;
-    // }
-    // public String getEmailAddress(){
-    //     return emailAddress;
-    // }
     public Collection getWatchedList(){
         return watchedList;
     }
@@ -43,16 +37,12 @@ public class UserData {
         return watchLaterList;
     }
 
+    //----------------------setters
     public void setUsername(String u){
         username = u;
     }
-    // public void setPassword(char[] p){
-    //     password = p;
-    // }
-    // public void setEmailAddress(String a){
-    //     emailAddress = a;
-    // }
 
+    //----------------------watchedList methods
     public void addToWatched(int m){
         watchedList.add(m);
     }
@@ -63,6 +53,9 @@ public class UserData {
         return watchedList.contains(m);
     }
     
+    //----------------------other methods
+
+    //----------------------watchLaterList methods
     public void addToWatchLater(int m){
         watchLaterList.add(m);
     }
@@ -73,6 +66,7 @@ public class UserData {
         return watchLaterList.contains(m);
     }
 
+    //----------------------custom collections methods
     public void addCollection(String name){
         if (!this.containsCollection(name))
             collections.add(new Collection(name));
@@ -93,8 +87,6 @@ public class UserData {
         }
         return false;
     }
-
-    
     //adds movie to collection, returns false if collection can't be found
     public boolean addToCollection(int m, String collectionName){
         for (Collection c: collections){
@@ -124,10 +116,9 @@ public class UserData {
         return false;
     }
 
+    //----------------------Builder class --------------------------------
     static public class UserDataBuilder {
         private String username;
-        // private char[] password;
-        // private String emailAddress;
         private Collection watchedList;
         private Collection watchLaterList;
         private ArrayList<Collection> collections;
@@ -137,18 +128,7 @@ public class UserData {
             this.username = user;
             return this;
         }
-    
-        // public UserDataBuilder password(char[] pass)
-        // {
-        //     this.password = pass;
-        //     return this;
-        // }
-    
-        // public UserDataBuilder emailAddress(String add){
-        //     this.emailAddress = add;
-        //     return this;
-        // }
-    
+        
         public UserData build(){
             return new UserData(this);
         }
