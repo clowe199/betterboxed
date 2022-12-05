@@ -20,10 +20,10 @@ public class UserData {
         StringBuilder sb = new StringBuilder();
         sb.append(username + ": ");
         sb.append("\n" + watchedList.toString());
-        sb.append("\n" + watchedList.toString());
+        sb.append("\n" + watchLaterList.toString());
         for (Collection coll : collections){
-            sb.append(coll.toString());
             sb.append("\n");
+            sb.append(coll.toString());
         }
         return sb.toString();
     }
