@@ -34,7 +34,7 @@ public class LoginServlet extends HttpServlet {
             System.out.println("Login credentials are entered.");
             UserAccount tempAccount = new UserAccount(username); 
 
-            if (tempAccount.createAccount(username, password) == (-1)) {
+            if (tempAccount.checkUser(username) == (-1)) {
                 session.setAttribute("message","User "+username+" login has been successful.");
                 RequestDispatcher rd = request.getRequestDispatcher("home.jsp");
                 rd.forward(request, response);
