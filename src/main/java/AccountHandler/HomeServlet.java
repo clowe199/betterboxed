@@ -11,6 +11,6 @@ import javax.servlet.http.HttpSession;
 @WebServlet(urlPatterns = "/home")
 public class HomeServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException {
-        
+        session.setAttribute(
     }
 }
