@@ -1,4 +1,5 @@
 package Models;
+import Api.TMDBController;
 import SQLDBConnector.SQLDBConnector;
 
 public class Comment extends Rating {
@@ -7,7 +8,19 @@ public class Comment extends Rating {
     private int numLikes;
     private int numDislikes;
 
-
+    public String toString() {
+        TMDBController t = new TMDBController();
+        StringBuilder sb = new StringBuilder();
+        sb.append("Movie: " + t.getMovieData(getMovieId()));
+        if (getRating() >= 0 && getRating() <=10)
+            sb.append("\nRating: " + getRating());
+        sb.append("\nPoster: " + getUserName());
+        sb.append("\nContent: " + getContent());
+        sb.append("\nLikes: " + getNumLikes());
+        sb.append("\nDislikes: " + getRatingId());
+        sb.append(getRatingId());
+        return sb.toString();
+    }
     
     public Comment(CommentBuilder builder){
         super(builder.ratingBuilder);
@@ -16,14 +29,6 @@ public class Comment extends Rating {
         this.numDislikes = builder.numDislikes;
         this.parentId = builder.parentId;
     }
-
-
-    // public Comment(String ratingId, int rating, int movieId, String userName, String content, int numLikes, int numDislikes){
-    //     super(ratingId, rating, movieId, userName);
-    //     this.content = content;
-    //     this.numLikes = numLikes;
-    //     this.numDislikes = numDislikes;
-    // }
 
     /* Getter Methods */
     public String getParentId() {
@@ -41,12 +46,6 @@ public class Comment extends Rating {
     public int getNumDislikes() {
         return numDislikes;
     }
-
-
-    /* Setter Methods */
-    // public void setRatingId(String ratingId) {
-    //     this.ratingId = ratingId;
-    // }
 
     public void setContent(String content) {
         this.content = content;
