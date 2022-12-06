@@ -27,9 +27,10 @@ public class RegisterServlet extends HttpServlet {
         
         //If user doesn't enter anything in one or both of the fields
         if (username == null || username.equals("") || password == null || password.equals("")) {
-            session.setAttribute("message","Please enter credentials and try again.");
-            RequestDispatcher rd = request.getRequestDispatcher("register.jsp");
-            rd.forward(request, response);
+            Cookie message = new Cookie("message",URLEncoder.encode("Please enter credentials and try again.","UTF-8"));
+                response.addCookie(message);
+                RequestDispatcher rd = request.getRequestDispatcher("register.jsp");
+                rd.forward(request, response);
             System.out.println("User credentials are empty for registration.");
             return;
         }
@@ -42,13 +43,13 @@ public class RegisterServlet extends HttpServlet {
                 Cookie userCookie = new Cookie("user", URLEncoder.encode(username, "UTF-8"));
                 response.addCookie(userCookie);
                 response.addCookie(message);
-                response.sendRedirect("../../webapp/loggingIn.jsp");
+                response.sendRedirect("loggingIn.jsp");
                 System.out.println("User has been added and loggged in");
             }
             else{
-                Cookie message = new Cookie("message",URLEncoder.encode("User "+username+" registered successfully.","UTF-8"));
+                Cookie message = new Cookie("message",URLEncoder.encode("User already exists. Please try different credentials.","UTF-8"));
                 response.addCookie(message);
-                RequestDispatcher rd = request.getRequestDispatcher("../../webapp/register.jsp");
+                RequestDispatcher rd = request.getRequestDispatcher("register.jsp");
                 rd.forward(request, response);
                 System.out.println("User could not be added");
             }
