@@ -212,7 +212,6 @@ public class UserAccount {
         }
         return false;
     }
-
     public boolean addToWatchLater(int movieId)
     {
         if (userData.watchLaterContains(movieId)) {   // If collection exists
@@ -223,8 +222,18 @@ public class UserAccount {
         }
         return false;    
     }
-    
-
+    public void removeFromWatched(int movieId) {
+        if (userData.watchedContains(movieId)) {   // If collection exists
+            SQLDBConnector.deleteWatchedMovies(userName, String.valueOf(movieId));// if sql is successfull
+            userData.removeFromWatched(movieId);
+        }
+    }
+    public void removeFromWatchLater(int movieId) {
+        if (userData.watchLaterContains(movieId)) {   // If collection exists
+            SQLDBConnector.deleteWatchLater(userName, String.valueOf(movieId));// if sql is successfull
+            userData.removeFromWatchLater(movieId);
+        }
+    }
     //----------------------TMDB related methods-----------------
     public List<Integer> displayHighlyRatedMovies(){
         List<MovieDb> movieList = tmdb.getHighlyRatedMovies();
