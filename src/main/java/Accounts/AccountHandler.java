@@ -485,7 +485,7 @@ public class AccountHandler {
         System.out.println("Enter new collection name: ");
         String newName = scan.nextLine();
         userAccount.changeCollectionName(choice, newName);
-        editCollection();
+        editCollection(); 
     }
 
     //helper function - editCollection
