@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 pageEncoding="ISO-8859-1"%>
+<%@ page import = "pageNumber.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 "http://www.w3.org/TR/html4/loose.dtd&quot;&gt;">
 <html lang="en">
@@ -44,7 +45,8 @@ pageEncoding="ISO-8859-1"%>
                                     <h4 class="mt-1 mb-5 pb-1">Better Box</h4>
                                 </div>
                                 <form action="register" method="post">
-                                    <p name="message">Please create your account</p>
+                                    <p>Please create your account</p>
+                                    <h3><%session.getAttribute("message").toString();%></h3>
                                     <div class="form-outline mb-4">
                                         <input type="username" id="form2Example11" class="form-control" name="username"/>
                                         <label class="form-label" for="form2Example11">Username</label>

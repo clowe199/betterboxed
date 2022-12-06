@@ -6,6 +6,7 @@ import Accounts.UserAccount;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -38,8 +39,9 @@ public class RegisterServlet extends HttpServlet {
             if (accountStatus != -1) {
                 session.setAttribute("message", "User "+username+" registered successfully.");
                 session.setAttribute("user", username);
-                RequestDispatcher rd = request.getRequestDispatcher("home.jsp");
-                rd.forward(request, response);
+                Cookie userCookie = new Cookie("user", username);
+                response.addCookie(userCookie);
+                response.sendRedirect("home.jsp");
                 System.out.println("User has been added and loggged in");
             }
             else{
