@@ -224,7 +224,8 @@ public class AccountHandler {
         List<String> commentIds = userAccount.getComments(id);
         List<String> reviews = new ArrayList<String>();
         for (String cID: commentIds) {
-            if (userAccount.getComment(cID).getRating() > -1){
+            // Checking if database returns anything
+            if (!userAccount.getComment(cID).toString().equals(null)){
                 reviews.add(cID);
             }
         }
@@ -235,7 +236,7 @@ public class AccountHandler {
         else {
             int currReview = 0;
             while (currReview < reviews.size()){
-                System.out.println(userAccount.getComment(reviews.get(currReview)));
+                // System.out.println(userAccount.getComment(reviews.get(currReview)));
                 printReplies(reviews.get(currReview), userAccount.getComment(reviews.get(currReview)).getUserName());
                 currReview++;
             }
@@ -395,7 +396,7 @@ public class AccountHandler {
     {
         userAccount = new UserAccount(user);
         if (userAccount.createAccount(user, pass) == 1) {
-            System.out.println("Welcome to BetterBoxd " + user + "!");1
+            System.out.println("Welcome to BetterBoxd " + user + "!");
             homeScreen();
         }
         else
