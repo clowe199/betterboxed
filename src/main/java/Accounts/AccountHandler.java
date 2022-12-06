@@ -185,6 +185,7 @@ public class AccountHandler {
 
     // Save movie to collection
     private void saveMovie(int id){
+        boolean returnVal = false;
         System.out.println("Save movie: "+ userAccount.getMovieData(id));
         System.out.println("Where would you like to save the movie?"
             +"\n1: Watched movies list"
@@ -197,14 +198,14 @@ public class AccountHandler {
              choiceInt = Integer.parseInt(choice);
              switch (choiceInt){
                 case 1:
-                    userAccount.addToWatched(id);
+                    returnVal = userAccount.addToWatched(id);
                     break;
                 case 2:
-                    userAccount.addToWatchLater(id);
+                    returnVal = userAccount.addToWatchLater(id);
                     break;
                 case 3:
                     String option = chooseCollection();
-                    userAccount.addMovieToCollection(id, option);
+                    returnVal = userAccount.addMovieToCollection(id, option);
                     break;
                 default:
                     System.out.println("Invalid choice");
@@ -214,8 +215,15 @@ public class AccountHandler {
             System.out.println("Invalid choice");
             movieFoundMenu(id);
         }
-        System.out.println("Movie has been saved");
-        goToMovieSearch();
+
+        if (returnVal) {
+            System.out.println("Movie saved");
+            goToMovieSearch();
+        }
+        else {
+            System.out.println("Error - movie not saved");
+            movieFoundMenu(id);
+        }
     }
 
 
@@ -415,6 +423,7 @@ public class AccountHandler {
     }
     public void login(String pass, String user)
     {
+        
         UserAccount u = new UserAccount(user);
         if(u.checkUser(user) != -1)
         {
