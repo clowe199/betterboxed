@@ -2,6 +2,8 @@ package Models;
 import java.util.ArrayList;
 import java.util.List;
 
+import Api.TMDBController;
+
 public class Collection {
     private ArrayList<Integer> movieList;
     private String name;
@@ -47,12 +49,12 @@ public class Collection {
     }
 
     public String toString(){
+        TMDBController t = new TMDBController();
         StringBuilder sb = new StringBuilder();
         sb.append(name + ": ");
-        sb.append(", ");
         for (Integer movieId : movieList){
-            sb.append(movieId);
-            sb.append(" ");
+            sb.append(t.getMovieData(movieId));
+            sb.append(", ");
         }
         return sb.toString();
     }
