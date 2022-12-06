@@ -17,7 +17,7 @@ public class Comment extends Rating {
         sb.append("\nPoster: " + getUserName());
         sb.append("\nContent: " + getContent());
         sb.append("\nLikes: " + getNumLikes());
-        sb.append("\nDislikes: " + getRatingId());
+        sb.append("\nDislikes: " + getNumDislikes());
         sb.append(getRatingId());
         return sb.toString();
     }
@@ -71,8 +71,8 @@ public class Comment extends Rating {
     public void replyToComment(String content, String userName, Comment comment) {
         Comment reply = new CommentBuilder()
             .content(content) 
-            .rating(getRating()) 
-            .movieId(getMovieId()) 
+            .rating(comment.getRating()) 
+            .movieId(comment.getMovieId()) 
             .userName(userName)  
             .parentId(comment.getRatingId())
             .build();
