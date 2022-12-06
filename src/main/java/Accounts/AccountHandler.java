@@ -60,7 +60,6 @@ public class AccountHandler {
              choiceInt = Integer.parseInt(choice);
              switch (choiceInt){
                 case 1:
-                    // login();
                     viewAccountInfo();
                     break;
                 case 2:
@@ -170,21 +169,22 @@ public class AccountHandler {
     private void readReviews(int id){
         List<String> commentIds = userAccount.getComments(id);
         List<String> reviews = new ArrayList<String>();
-        List<String> comments = new ArrayList<String>();
-        for (String cID: commentIds){
+        for (String cID: commentIds) {
             if (userAccount.getComment(cID).getRating() == -1){
                 reviews.add(cID);
-            } else {
-                comments.add(cID);
             }
         }
-
-        boolean cont = true;
-        int 
-        while (cont){
-
+        if (reviews.size() == 0){
+            System.out.println("No reviews");
+            movieFoundMenu(id);
         }
-
+        else {
+            int currReview = 0;
+            while (currReview < reviews.size()){
+                System.out.println(userAccount.getComment(reviews.get(currReview)));
+                printReplies(reviews.get(currReview));
+            }
+        }
 
     }
 
@@ -358,7 +358,8 @@ public class AccountHandler {
 
     public void logout()
     {
-
+        userAccount = null;
+        mainMenu();
     }
 
     /* ---------- Comment Methods ---------- */

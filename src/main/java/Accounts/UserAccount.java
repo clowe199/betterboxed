@@ -98,11 +98,11 @@ public class UserAccount {
             .build();
         SQLDBConnector.insertComment(newComment);
     }
-    public List<String[]> getComments(int movieId) {
-        return SQLDBConnector.getComments(String.valueOf(movieId));
+    public List<String> getComments(int movieId) {
+        return convertToString(SQLDBConnector.getComments(String.valueOf(movieId)));
     }
-    public List<String[]> getReplies(String parentId){
-        return SQLDBConnector.getReplies(parentId);
+    public List<String> getReplies(String parentId){
+        return convertToString(SQLDBConnector.getReplies(parentId));
     }
     public Comment getComment(String commentId){
         return SQLDBConnector.getComment(commentId);
@@ -256,6 +256,14 @@ public class UserAccount {
             movieIds.add(Integer.parseInt(movie[0]));
         }
         return movieIds;
+    }
+
+    private ArrayList<String> convertToString(ArrayList<String[]> movies) {
+        ArrayList<String> ids = new ArrayList<String>();
+        for (String[] movie :movies){
+            ids.add(movie[0]);
+        }
+        return ids;
     }
 
     private ArrayList<Collection> getCollections() {
