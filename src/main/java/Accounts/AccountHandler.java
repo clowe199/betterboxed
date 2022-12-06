@@ -19,7 +19,7 @@ public class AccountHandler {
         AccountHandler handler = new AccountHandler();
         handler.mainMenu();
     }
-
+createAccount
     private void mainMenu() {
         System.out.println("What would you like to do?\n 1: login\n 2: register new account\n 3: close BetterBoxd");
         String choice = scan.nextLine();
@@ -163,24 +163,6 @@ public class AccountHandler {
             movieFoundMenu(id);
         }
         goToMovieSearch();
-    }
-
-    //movieFoundMenu
-    private void leaveReview(int movieId){
-        System.out.println("Enter number rating: ");
-        String rating = scan.nextLine();
-        int ratingInt;
-        try {
-            ratingInt = Integer.parseInt(rating);
-            System.out.println("Enter review content: ");
-            String content = scan.nextLine();
-            userAccount.addReview(content, ratingInt, movieId);
-        } catch (NumberFormatException e) {
-            System.out.println("Invalid rating");
-            leaveReview(movieId);
-            return;
-        }
-        movieFoundMenu(movieId);
     }
 
     //movieFoundMenu
@@ -372,14 +354,17 @@ public class AccountHandler {
     }
     public void login(String pass, String user)
     {
-        // Check if user is in the system
-        // if(userAccount.checkUser(user) == -1)
-        // {
-            // Log user in
+        if(userAccount.checkUser(user) != -1)
+        {
+            System.out.println("Welcome to BetterBoxd " + user + "!");
+            homeScreen();
+        }
+        else
+        {
             userAccount = new UserAccount(user);
             System.out.println("Welcome to BetterBoxd " + user + "!");
             homeScreen();
-        // }
+        }
     }
 
 
