@@ -415,7 +415,8 @@ public class SQLDBConnector
             {
                 String[] curr = new String[1];
                 curr[0] = rs.getString("collectionid");
-                movies.add(curr);
+                if (!movies.contains(curr))
+                    movies.add(curr);
             }
         }
         catch(SQLException e)
