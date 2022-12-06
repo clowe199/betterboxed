@@ -63,8 +63,7 @@ public class Rating {
 
         public void newId(){
             Random rand = new Random();
-            ratingId = new UUID(rand.nextLong(), rand.nextLong()).toString();
-            System.out.println(ratingId);
+            this.ratingId = new UUID(rand.nextLong(), rand.nextLong()).toString();
         }
 
         public RatingBuilder ratingId(String ratingId){
