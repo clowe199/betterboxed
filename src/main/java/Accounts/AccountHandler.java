@@ -165,6 +165,24 @@ public class AccountHandler {
         goToMovieSearch();
     }
 
+    //movieFoundMenu
+    private void leaveReview(int movieId){
+        System.out.println("Enter number rating: ");
+        String rating = scan.nextLine();
+        int ratingInt;
+        try {
+            ratingInt = Integer.parseInt(rating);
+            System.out.println("Enter review content: ");
+            String content = scan.nextLine();
+            userAccount.addReview(content, ratingInt, movieId);
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid rating");
+            leaveReview(movieId);
+            return;
+        }
+        movieFoundMenu(movieId);
+    }
+
     // Save movie to collection
     private void saveMovie(int id){
         System.out.println("Save movie: "+ userAccount.getMovieData(id).getOverview());
