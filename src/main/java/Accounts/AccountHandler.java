@@ -19,7 +19,7 @@ public class AccountHandler {
         AccountHandler handler = new AccountHandler();
         handler.mainMenu();
     }
-createAccount
+
     private void mainMenu() {
         System.out.println("What would you like to do?\n 1: login\n 2: register new account\n 3: close BetterBoxd");
         String choice = scan.nextLine();
@@ -164,6 +164,41 @@ createAccount
         }
         goToMovieSearch();
     }
+
+    // Save movie to collection
+    private void saveMovie(int id){
+        System.out.println("Save movie: "+ userAccount.getMovieData(id).getOverview());
+        System.out.println("Where would you like to save the movie?"
+            +"\n1: Watched movies list"
+            +"\n2: Watch later list"
+            +"\n3: Custom movie list");
+        
+        int choiceInt;
+        String choice = scan.nextLine();
+        try {
+             choiceInt = Integer.parseInt(choice);
+             switch (choiceInt){
+                case 1:
+                    userAccount.addToWatched(id);
+                    break;
+                case 2:
+                    userAccount.addToWatchLater(id);
+                    break;
+                case 3:
+                    String option = chooseCollection(); // Custom movie list
+                    userAccount.addMovieToCollection(id, option);
+                    break;
+                default:
+                    System.out.println("Invalid choice");
+                    movieFoundMenu(id);
+             }
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid choice");
+            movieFoundMenu(id);
+        }
+        goToMovieSearch();
+    }
+
 
     //movieFoundMenu
     private void readReviews(int id){
