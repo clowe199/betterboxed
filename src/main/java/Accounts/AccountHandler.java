@@ -385,8 +385,13 @@ public class AccountHandler {
         int choiceInt;
         String choice = scan.nextLine();
         try {
-             choiceInt = Integer.parseInt(choice);
-             userAccount.removeFromWatchLater(idList.get(choiceInt));
+            choiceInt = Integer.parseInt(choice);
+            if (choiceInt == -1)
+                viewAccountInfo();
+            else {
+                userAccount.removeFromWatchLater(idList.get(choiceInt));
+                viewAccountInfo();
+            }
         } catch (NumberFormatException e) {
             System.out.println("Invalid choice");
             watchLaterListRemoveMenu();
@@ -430,8 +435,13 @@ public class AccountHandler {
         int choiceInt;
         String choice = scan.nextLine();
         try {
-             choiceInt = Integer.parseInt(choice);
-             userAccount.removeFromWatched(idList.get(choiceInt));
+            choiceInt = Integer.parseInt(choice);
+            if (choiceInt == -1)
+                viewAccountInfo();
+            else {
+                userAccount.removeFromWatched(idList.get(choiceInt));
+                viewAccountInfo();
+            }
         } catch (NumberFormatException e) {
             System.out.println("Invalid choice");
             watchedListRemoveMenu();
