@@ -28,6 +28,6 @@ public class UserAccountTest extends TestConstants{
     @Test
     public void testNewUser(){
         setup();
-        assertEquals(TEST_USERNAME, user.checkUser(TEST_USERNAME));
+        assertEquals(1, user.checkUser(TEST_USERNAME));
     }
 }
