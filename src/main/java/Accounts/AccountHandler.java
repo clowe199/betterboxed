@@ -223,7 +223,7 @@ public class AccountHandler {
         List<String> commentIds = userAccount.getComments(id);
         List<String> reviews = new ArrayList<String>();
         for (String cID: commentIds) {
-            if (userAccount.getComment(cID).getRating() == -1){
+            if (userAccount.getComment(cID).getRating() > -1){
                 reviews.add(cID);
             }
         }
@@ -235,11 +235,17 @@ public class AccountHandler {
             int currReview = 0;
             while (currReview < reviews.size()){
                 System.out.println(userAccount.getComment(reviews.get(currReview)));
-                // printReplies(reviews.get(currReview));
+                printReplies(reviews.get(currReview), userAccount.getComment(reviews.get(currReview)).getUserName());
+                currReview++;
             }
+            movieFoundMenu(id);
         }
 
     }
+
+    private void printReplies(String commentText, String user ) {
+        System.out.println(user +" Says: " + commentText);
+	}
 
     //homescreen
     private void viewAccountInfo() {
