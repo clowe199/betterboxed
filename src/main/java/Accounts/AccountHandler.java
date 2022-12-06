@@ -152,7 +152,7 @@ public class AccountHandler {
                     leaveReview(id);
                     break;
                 case 3:
-                    // saveMovie(id);
+                    saveMovie(id);
                     break;
                 default:
                     System.out.println("Invalid choice");
@@ -185,7 +185,7 @@ public class AccountHandler {
 
     // Save movie to collection
     private void saveMovie(int id){
-        System.out.println("Save movie: "+ userAccount.getMovieData(id).getOverview());
+        System.out.println("Save movie: "+ userAccount.getMovieData(id));
         System.out.println("Where would you like to save the movie?"
             +"\n1: Watched movies list"
             +"\n2: Watch later list"
@@ -203,7 +203,7 @@ public class AccountHandler {
                     userAccount.addToWatchLater(id);
                     break;
                 case 3:
-                    String option = chooseCollection(); // Custom movie list
+                    String option = chooseCollection();
                     userAccount.addMovieToCollection(id, option);
                     break;
                 default:
@@ -214,6 +214,7 @@ public class AccountHandler {
             System.out.println("Invalid choice");
             movieFoundMenu(id);
         }
+        System.out.println("Movie has been saved");
         goToMovieSearch();
     }
 
