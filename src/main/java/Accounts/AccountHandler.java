@@ -83,7 +83,8 @@ public class AccountHandler {
     private void goToMovieSearch(){
         System.out.println("what would you like to do?"
             +"\n1: search for a movie by title"
-            +"\n2: search for a movie by actor");
+            +"\n2: search for a movie by actor"
+            +"\n3: go back to home");
 
         int choiceInt;
         String choice = scan.nextLine();
@@ -95,6 +96,9 @@ public class AccountHandler {
                     break;
                 case 2:
                     // searchByActor();
+                    break;
+                case 3:
+                    homeScreen();
                     break;
                 default:
                     System.out.println("Invalid choice");
@@ -132,7 +136,56 @@ public class AccountHandler {
     //searchByTitle
     private void movieFoundMenu(int id){
         System.out.println("Movie found: "+ userAccount.getMovieData(id).getOverview());
-        userAccount.displayComments();
+        System.out.println("What would you like to do?"
+            +"\n1: read reviews"
+            +"\n2: leave review"
+            +"\n3: save movie");
+        
+        int choiceInt;
+        String choice = scan.nextLine();
+        try {
+             choiceInt = Integer.parseInt(choice);
+             switch (choiceInt){
+                case 1:
+                    readReviews(id);
+                    break;
+                case 2:
+                    leaveReview(id);
+                    break;
+                case 3:
+                    saveMovie(id);
+                    break;
+                default:
+                    System.out.println("Invalid choice");
+                    movieFoundMenu(id);
+             }
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid choice");
+            movieFoundMenu(id);
+        }
+        goToMovieSearch();
+    }
+
+    //movieFoundMenu
+    private void readReviews(int id){
+        List<String> commentIds = userAccount.getComments(id);
+        List<String> reviews = new ArrayList<String>();
+        List<String> comments = new ArrayList<String>();
+        for (String cID: commentIds){
+            if (userAccount.getComment(cID).getRating() == -1){
+                reviews.add(cID);
+            } else {
+                comments.add(cID);
+            }
+        }
+
+        boolean cont = true;
+        int 
+        while (cont){
+
+        }
+
+
     }
 
     //homescreen

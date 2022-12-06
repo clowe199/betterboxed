@@ -98,6 +98,15 @@ public class UserAccount {
             .build();
         SQLDBConnector.insertComment(newComment);
     }
+    public List<String[]> getComments(int movieId) {
+        return SQLDBConnector.getComments(String.valueOf(movieId));
+    }
+    public List<String[]> getReplies(String parentId){
+        return SQLDBConnector.getReplies(parentId);
+    }
+    public Comment getComment(String commentId){
+        return SQLDBConnector.getComment(commentId);
+    }
 
     /**
      * 
