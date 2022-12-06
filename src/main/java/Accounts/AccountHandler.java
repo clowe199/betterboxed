@@ -364,15 +364,18 @@ public class AccountHandler {
              choiceInt = Integer.parseInt(choice);
              switch (choiceInt){
                 case 1:
-                    deleteCollection();
+                    createNewCollection();
                     break;
                 case 2:
-                    removeMovieFromCollection();
+                    deleteCollection();
                     break;
                 case 3:
-                    changeCollectionName();
+                    removeMovieFromCollection();
                     break;
                 case 4:
+                    changeCollectionName();
+                    break;
+                case 5:
                     homeScreen();
                     break;
                 default:
@@ -581,8 +584,10 @@ public class AccountHandler {
 
     /* ---------- Collection Methods ---------- */
     
-    public void createNewCollection(String collectionName)
-    {
+    public void createNewCollection( )
+    {   
+        System.out.println("Please enter a new collection name: ");
+        String collectionName = scan.nextLine();
         if (userAccount.createNewCollection(collectionName))
             System.out.println("Collection " + collectionName + " created");
         else
