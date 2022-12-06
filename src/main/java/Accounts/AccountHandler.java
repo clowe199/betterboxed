@@ -141,7 +141,7 @@ public class AccountHandler {
             movieFoundMenu(idList.get(0));
         }
         else {
-            for (int i = 0; i < idList.size(); i++){
+            for (int i = 0; i < idList.size() && i < 20; i++){
                 System.out.println(i+": "+userAccount.getMovieData(idList.get(i)));
             }
             System.out.println("Choose movie (enter number on left, -1 to exit): ");
@@ -149,8 +149,8 @@ public class AccountHandler {
             try {
                 int choiceInt = Integer.parseInt(choice);
                 if (choiceInt == -1)
-                    searchByActor();
-                else if (choiceInt < 0 || choiceInt > idList.size()-1)
+                    homeScreen();
+                else if (choiceInt > 0 && choiceInt < idList.size()-1)
                     movieFoundMenu(idList.get(choiceInt));
                 else {
                     System.out.println("Invalid choice");
@@ -316,9 +316,9 @@ public class AccountHandler {
     //homescreen
     private void viewAccountInfo() {
         ArrayList<String> info = userAccount.displayUserInfo();
-        System.out.println("Username: "+info.get(0));
+        System.out.println("\n\n\nUsername: "+info.get(0));
         System.out.println(userAccount.getUserData().toString());
-        System.out.println("\n\n\nWhat would you like to do?"
+        System.out.println("\nWhat would you like to do?"
             + "\n1: edit watched movies"
             + "\n2: edit movies to watch later"
             + "\n3: edit collections"
@@ -353,7 +353,7 @@ public class AccountHandler {
 
     //viewAccountInfo
     private void editWatchLater() {
-        System.out.println("What would you like to do?"
+        System.out.println("\n\nWhat would you like to do?"
             +"\n1: remove movie from watch later list"
             +"\n2: exit");
         int choiceInt;
@@ -380,15 +380,20 @@ public class AccountHandler {
     //editWatched
     private void watchLaterListRemoveMenu() {
         List<Integer> idList = userAccount.getUserData().getWatchLaterList().getMovieList();
-        System.out.println("Choose movie to remove (-1 to exit): ");
+        System.out.println("\n\nChoose movie to remove (-1 to exit): ");
         for (int i = 0; i < idList.size(); i++){
             System.out.println(i+": " + userAccount.getMovieData(idList.get(i)));
         }
         int choiceInt;
         String choice = scan.nextLine();
         try {
-             choiceInt = Integer.parseInt(choice);
-             userAccount.removeFromWatchLater(idList.get(choiceInt));
+            choiceInt = Integer.parseInt(choice);
+            if (choiceInt == -1)
+                viewAccountInfo();
+            else {
+                userAccount.removeFromWatchLater(idList.get(choiceInt));
+                viewAccountInfo();
+            }
         } catch (NumberFormatException e) {
             System.out.println("Invalid choice");
             watchLaterListRemoveMenu();
@@ -398,7 +403,7 @@ public class AccountHandler {
     
     //viewAccountInfo
     private void editWatched() {
-        System.out.println("What would you like to do?"
+        System.out.println("\n\nWhat would you like to do?"
             +"\n1: remove movie from watched list"
             +"\n2: exit");
         int choiceInt;
@@ -425,15 +430,20 @@ public class AccountHandler {
     //editWatched
     private void watchedListRemoveMenu() {
         List<Integer> idList = userAccount.getUserData().getWatchedList().getMovieList();
-        System.out.println("Choose movie to remove (-1 to exit): ");
+        System.out.println("\n\nChoose movie to remove (-1 to exit): ");
         for (int i = 0; i < idList.size(); i++){
             System.out.println(i+": " + userAccount.getMovieData(idList.get(i)));
         }
         int choiceInt;
         String choice = scan.nextLine();
         try {
-             choiceInt = Integer.parseInt(choice);
-             userAccount.removeFromWatched(idList.get(choiceInt));
+            choiceInt = Integer.parseInt(choice);
+            if (choiceInt == -1)
+                viewAccountInfo();
+            else {
+                userAccount.removeFromWatched(idList.get(choiceInt));
+                viewAccountInfo();
+            }
         } catch (NumberFormatException e) {
             System.out.println("Invalid choice");
             watchedListRemoveMenu();
@@ -443,7 +453,7 @@ public class AccountHandler {
 
     //viewAccountInfo
     private void editCollection(){
-        System.out.println("What would you like to do?"
+        System.out.println("\n\nWhat would you like to do?"
             +"\n1: Create a new collection"
             +"\n2: delete collection"
             +"\n3: remove movie from collection"
@@ -490,7 +500,7 @@ public class AccountHandler {
 
     //helper function - editCollection
     private String chooseCollection() { // return collection id 
-        System.out.println("Which collection? (enter -1 to cancel)");
+        System.out.println("\n\nWhich collection? (enter -1 to cancel)");
         ArrayList<String> info = userAccount.displayUserInfo();
         for (int i = 3; i < info.size(); i++){
             System.out.println((i-2) + ": " + info.get(i));
@@ -531,7 +541,7 @@ public class AccountHandler {
         //         editCollection();
         // }
         // viewAccountInfo();
-        System.out.println("Please Select a collection to remove a movie from: ");
+        System.out.println("\n\nPlease Select a collection to remove a movie from: ");
         String chosenCollectionId = chooseCollection();
         String decision; 
 
