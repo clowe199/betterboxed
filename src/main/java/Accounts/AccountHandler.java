@@ -8,6 +8,7 @@ import com.mysql.cj.x.protobuf.MysqlxDatatypes.Array;
 import Models.Comment;
 import Models.Movie;
 import SQLDBConnector.SQLDBConnector;
+import info.movito.themoviedbapi.model.people.Person;
 
 // ignore this class for now
 
@@ -94,7 +95,7 @@ public class AccountHandler {
                     searchByTitle();
                     break;
                 case 2:
-                    // searchByActor();
+                    searchByActor();
                     break;
                 case 3:
                     homeScreen();
@@ -105,6 +106,58 @@ public class AccountHandler {
             }
         } catch (NumberFormatException e) {
             goToMovieSearch();
+        }
+    }
+
+    //goToMovieSearch
+    private void searchByActor() {
+        System.out.println("Enter search query (actor name): ");
+        String query = scan.nextLine();
+        List<Person> idList = userAccount.findPerson(query);
+        if (idList.size() == 1) {
+            personFoundMenu(idList.get(0).getId());
+        } else {
+            for (int i = 0; i < idList.size(); i++){
+                System.out.println(i+": "+userAccount.getPersonData(idList.get(i).getId()));
+            }
+            System.out.println("Choose person (enter number on left): ");
+            String choice = scan.nextLine();
+            try {
+                int choiceInt = Integer.parseInt(choice);
+                personFoundMenu(idList.get(choiceInt).getId());
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid choice");
+                searchByActor();
+            }
+        }
+    }
+
+    //searchByActor
+    private void personFoundMenu(int id) {
+        List<Integer> idList = userAccount.findMoviesByActor(id);
+        if (idList.size() == 1) {
+            movieFoundMenu(idList.get(0));
+        }
+        else {
+            for (int i = 0; i < idList.size(); i++){
+                System.out.println(i+": "+userAccount.getMovieData(idList.get(i)));
+            }
+            System.out.println("Choose movie (enter number on left, -1 to exit): ");
+            String choice = scan.nextLine();
+            try {
+                int choiceInt = Integer.parseInt(choice);
+                if (choiceInt == -1)
+                    searchByActor();
+                else if (choiceInt < 0 || choiceInt > idList.size()-1)
+                    movieFoundMenu(idList.get(choiceInt));
+                else {
+                    System.out.println("Invalid choice");
+                    personFoundMenu(id);
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid choice");
+                personFoundMenu(id);
+            }
         }
     }
 
@@ -138,7 +191,8 @@ public class AccountHandler {
         System.out.println("What would you like to do?"
             +"\n1: read reviews"
             +"\n2: leave review"
-            +"\n3: save movie");
+            +"\n3: save movie"
+            +"\n4: exit");
         
         int choiceInt;
         String choice = scan.nextLine();
@@ -154,6 +208,9 @@ public class AccountHandler {
                 case 3:
                     saveMovie(id);
                     break;
+                case 4:
+                    searchByTitle();
+                    break;
                 default:
                     System.out.println("Invalid choice");
                     movieFoundMenu(id);
@@ -162,7 +219,6 @@ public class AccountHandler {
             System.out.println("Invalid choice");
             movieFoundMenu(id);
         }
-        goToMovieSearch();
     }
 
     //movieFoundMenu

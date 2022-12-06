@@ -10,6 +10,7 @@ import SQLDBConnector.SQLDBConnector;
 import info.movito.themoviedbapi.model.MovieDb;
 import info.movito.themoviedbapi.model.people.Person;
 import info.movito.themoviedbapi.model.people.PersonCredit;
+import info.movito.themoviedbapi.model.people.PersonCredits;
 
 public class UserAccount {
 
@@ -251,6 +252,9 @@ public class UserAccount {
             idList.add(p.getId());
         }
         return idList;
+    }
+    public PersonCredits getPersonData(int personId){
+        return tmdb.getPersonData(personId);
     }
     public MovieDb getMovieData(int movieId) {
         return tmdb.getMovieData(movieId);
