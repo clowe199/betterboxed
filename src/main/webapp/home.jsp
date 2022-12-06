@@ -98,7 +98,7 @@ pageEncoding="ISO-8859-1"%>
         
         %>
         <div class="col-md-9">
-            <h1 class="card-title" value="${movie1name}"> <%out.println(movie1Name)%></h1>
+            <h1 class="card-title" value="${movie1name}"> <%out.println(movie1Name);%></h1>
             <p class="card-text" value="${movie1desc}"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore</p>
             <p class="rating" value="${movie1rating}">rating here</p>
             <p class="likes" value="${movie1likes}">Likes # here</p>
@@ -111,7 +111,7 @@ pageEncoding="ISO-8859-1"%>
           </div>
         </div>
         <div class="col-md-9">
-          <h1 class="card-title" value="${movie2name}"> <%out.println(movie2Name)%></h1>
+          <h1 class="card-title" value="${movie2name}"> <%out.println(movie2Name);%></h1>
           <p class="card-text" value="movie2desc"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore</p>
           <p class="rating" value="movie2rating">rating here</p>
           <p class="likes" value="movie2likes">Likes # here</p>
@@ -124,7 +124,7 @@ pageEncoding="ISO-8859-1"%>
           </div>
         </div>
         <div class="col-md-9">
-          <h1 c:out class="card-title" value="${movie3name}"> <%out.println(movie3Name)%></h1>
+          <h1 c:out class="card-title" value="${movie3name}"> <%out.println(movie3Name);%></h1>
           <p class="card-text" value="movie3desc"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore</p>
           <p class="rating" value="movie3rating">rating here</p>
           <p class="likes" value="movie3likes">Likes # here</p>
