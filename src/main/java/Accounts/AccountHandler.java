@@ -193,7 +193,8 @@ public class AccountHandler {
             +"\n1: read reviews"
             +"\n2: leave review"
             +"\n3: save movie"
-            +"\n4: exit");
+            +"\n4: exit"
+            +"\n5: recommend rating");
         
         int choiceInt;
         String choice = scan.nextLine();
@@ -211,6 +212,12 @@ public class AccountHandler {
                     break;
                 case 4:
                     homeScreen();
+                    break;
+                case 5:
+                    System.out.println("enter email to send recommendation to");
+                    String email = scan.nextLine();
+                    System.out.println("Paste this to google: " + userAccount.recommendMovie(id, email));
+                    movieFoundMenu(id);
                     break;
                 default:
                     System.out.println("Invalid choice");
