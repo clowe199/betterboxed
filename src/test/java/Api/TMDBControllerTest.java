@@ -1,3 +1,4 @@
+package Api;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -9,6 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import Api.TMDBController;
+import Constants.TestConstants;
 import Models.LocalPerson;
 import Models.Movie;
 import info.movito.themoviedbapi.model.MovieDb;

@@ -1,8 +1,10 @@
+package Models;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.After;
 import org.junit.Test;
 
+import Constants.TestConstants;
 import Models.Rating;
 
 public class RatingTest extends TestConstants{

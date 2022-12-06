@@ -58,14 +58,14 @@ public class UserAccount {
     public boolean userHasDisliked(String commentId) {
         return SQLDBConnector.checkIfDislikedComment(userName, commentId);
     }
-    public int numLikes(String commentId){
+    public int numLikes(String commentId) {
         return SQLDBConnector.getComment(commentId).getNumLikes();
     }
     public int numDislikes(String commentId) {
         return SQLDBConnector.getComment(commentId).getNumDislikes();
     }
 
-    // Create new movie Rating and Comment
+    // Create new Rating and Comment
     public void reviewMovie(int movieId, int rating, String content) {
         Comment review = new Comment.CommentBuilder()   // Create comment object
                         .content(content)
@@ -76,7 +76,11 @@ public class UserAccount {
 
         SQLDBConnector.insertComment(review);   // Save comment to database
     }
-
+    /**
+     * 
+     * @param content
+     * @param parentId -1 if no parent/movie is parent
+     */
     public void addComment(String content, String parentId) {
         Comment prev = SQLDBConnector.getComment(parentId);
         Comment newComment = new Comment.CommentBuilder()
@@ -90,7 +94,7 @@ public class UserAccount {
 
     /**
      * 
-     * order of list: username, Watched Id, Watch Later Id, finally any other Collections
+     * order of list: username, Watched Id, Watch Later Id, finally any other Collection Ids
      * 
      * @return ArrayList<String
      * 
@@ -104,6 +108,11 @@ public class UserAccount {
         return list;
     }
 
+    /**
+     * 
+     * @param collectionId
+     * @return list of movie ids
+     */
     public ArrayList<String> displaySavedCollection(String collectionId) {
         ArrayList<String[]> collection = SQLDBConnector.getSavedMovies(userName, collectionId);
         ArrayList<String> result = new ArrayList<String>();
@@ -120,14 +129,12 @@ public class UserAccount {
      * Creates new collection in SQL database with given name, returns true
      * If a collection with given name already exists, false is returned
      */
-    public boolean createNewCollection(String collectionName)
-    {
+    public boolean createNewCollection(String collectionName) {
         if (userData.containsCollection(collectionName))
             return false;
         userData.addCollection(collectionName);
         return true;
     }
-
     /*
      * Adds given movieId to the given collectionName in the SQL database
      * Returns boolean value indicating success/failure
@@ -141,23 +148,21 @@ public class UserAccount {
         }
         return false;
     }
-
-    public void removeMovieFromCollection(int movieId, String collectionName)
-    {
+    public void removeMovieFromCollection(int movieId, String collectionName) {
         // If collection exists
         if (userData.containsCollection(collectionName))
         {
             userData.removeFromCollection(movieId, collectionName);
-            //SQLDBConnector._(this.userName, movieId, collectionName);     // Delete movieId from collection in database
+            SQLDBConnector.deleteSavedMovie(this.userName, String.valueOf(movieId), collectionName);     // Delete movieId from collection in database
         }
     }
-
-    public boolean deleteCollection(String collectionName)
-    {
+    public boolean deleteCollection(String collectionName) {
         // If collection exists
         if (userData.containsCollection(collectionName))
         {
-            //SQLDBConnector._(this.userName, collectionName);   // Delete collection from database
+            ArrayList<Integer> collection = userData.getCollection(collectionName).getMovieList();
+            for (Integer s : collection)
+                SQLDBConnector.deleteSavedMovie(userName, Integer.toString(s), collectionName);   // Delete collection from database movie by movie
             userData.removeCollection(collectionName);
             return true;
         }
@@ -220,12 +225,11 @@ public class UserAccount {
     }
 
     //----------------------miscellaneous------------------------
-    public UserData getUserData()
-    {
+    public UserData getUserData() {
         return userData;
     }
 
-    private ArrayList<Integer> convertToInt(ArrayList<String[]> movies){
+    private ArrayList<Integer> convertToInt(ArrayList<String[]> movies) {
         ArrayList<Integer> movieIds = new ArrayList<Integer>();
         for (String[] movie :movies){
             movieIds.add(Integer.parseInt(movie[0]));

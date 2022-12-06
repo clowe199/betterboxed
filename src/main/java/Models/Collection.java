@@ -3,10 +3,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Collection {
-    private List<Integer> movieList;
+    private ArrayList<Integer> movieList;
     private String name;
 
-    public List<Integer> getMovieList() {
+    public ArrayList<Integer> getMovieList() {
         return movieList;
     }
 

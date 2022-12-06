@@ -52,6 +52,14 @@ public class UserData {
         }
         return list;
     }
+    public Collection getCollection(String id){
+        for (Collection collection : collections){
+            if (collection.getName().equals(id)){
+                return collection;
+            }
+        }
+        return null;
+    }
 
     //----------------------setters
     public void setUsername(String u){

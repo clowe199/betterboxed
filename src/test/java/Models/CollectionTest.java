@@ -1,7 +1,9 @@
+package Models;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
+import Constants.TestConstants;
 import Models.Collection;
 
 public class CollectionTest extends TestConstants {
