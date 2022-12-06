@@ -31,6 +31,8 @@ public class UserData {
         this.watchedList = builder.watchedList;
         this.watchLaterList = builder.watchLaterList;
         this.collections = builder.collections;
+        this.watchedList = new Collection(WATCHED_TITLE);
+        this.watchLaterList = new Collection(WATCH_LATER_TITLE);
     }
 
     //----------------------getters
@@ -144,6 +146,8 @@ public class UserData {
         }
         
         public UserData build(){
+            if (collections == null)
+                collections = new ArrayList<Collection>();
             return new UserData(this);
         }
         
