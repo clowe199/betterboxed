@@ -84,20 +84,11 @@ pageEncoding="ISO-8859-1"%>
         </button>
       </div>
     </div>
-    <div class="gapp"></div>
-
-    <div class="input-group container-fluid">
-      <form action="search" method="post">
-        <div class="form-outline">
-          <input name ="searchClause" type="search" id="form1" class="form-control" />
-          <label class="form-label" for="form1">Search</label>
-        </div>
-        <button type="Register" class="btn btn-primary btn-block fa-lg mb-3" value="search">
-          <i class="fas fa-search"></i>
-        </button>
-      </form>
+    
+    <div class="gapp">
+      <a href="searchBar.jsp"><h1 class="justify-content-center">Want to search for something?</h1></a>
     </div>
-
+    
     <div class="gapp"></div>
     <!-- Movie listings here -->
     <div class="container">
@@ -142,7 +133,6 @@ pageEncoding="ISO-8859-1"%>
       </div>
     </div>
   </div>
-  </form>  
   <div class="gapp"></div>
   <!-- footer? -->
   <div class="container-fluid" id="footer">

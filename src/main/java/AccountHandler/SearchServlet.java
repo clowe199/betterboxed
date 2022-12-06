@@ -26,6 +26,7 @@ public class SearchServlet extends HttpServlet{
             if(cookie.getName().equals("user")){
                 curUser = cookie.getValue();
             }
+
         }
         UserAccount tempAccount = new UserAccount(curUser);
         TMDBController apiAccess = new TMDBController();
@@ -36,18 +37,22 @@ public class SearchServlet extends HttpServlet{
         List<MovieDb> FilmsFound = apiAccess.searchMovieName(searchClause);
 
         // Get the movie1cookie so we can reuse it later
-        for (Cookie cookie : cookies){
-            if(cookie.getName().equals("movie1name")){
+        for (Cookie cookie : cookies)
+        {
+            if(cookie.getName().equals("movie1Name")){
                 String movieName = apiAccess.getMovieData(FilmsFound.get(0).getId()).getTitle().replaceAll("\\s", "_");
                 cookie.setValue(URLEncoder.encode(movieName, "UTF-8"));
+                response.addCookie(cookie);
             }
-            if(cookie.getName().equals("movie2name")){
+            if(cookie.getName().equals("movie2Name")){
                 String movieName = apiAccess.getMovieData(FilmsFound.get(1).getId()).getTitle().replaceAll("\\s", "_");
                 cookie.setValue(URLEncoder.encode(movieName, "UTF-8"));
+                response.addCookie(cookie);
             }
-            if(cookie.getName().equals("movie3name")){
+            if(cookie.getName().equals("movie3Name")){
                 String movieName = apiAccess.getMovieData(FilmsFound.get(2).getId()).getTitle().replaceAll("\\s", "_");
                 cookie.setValue(URLEncoder.encode(movieName, "UTF-8"));
+                response.addCookie(cookie);
             }
         }
 
