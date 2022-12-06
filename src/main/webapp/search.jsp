@@ -20,11 +20,11 @@ pageEncoding="ISO-8859-1"%>
           movie4name = document.getElementById("movie4name");
           movie5name = document.getElementById("movie5name");
 
-          movie1name.innerHTML = getCookie("movie1Name");
-          movie2name.innerHTML = getCookie("movie2Name");
-          movie3name.innerHTML = getCookie("movie3Name");
-          movie4name.innerHTML = getCookie("movie4Name");
-          movie5name.innerHTML = getCookie("movie5Name");
+          movie1name.innerHTML = getCookie("cookie1");
+          movie2name.innerHTML = getCookie("cookie2");
+          movie3name.innerHTML = getCookie("cookie3");
+          movie4name.innerHTML = getCookie("cookie4");
+          movie5name.innerHTML = getCookie("cookie5");
       }
       function getCookie(cname)
       {
@@ -65,45 +65,52 @@ pageEncoding="ISO-8859-1"%>
   <div class="gapp"></div>
   <!-- Movie listings here -->
   <div class="container">
-    <div class="row">
-      <div class="col-md-3">
-        <div class="card mb-4">
-          <img src="images/Temp.png">
+    <form action="movie" method="post">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="card mb-4">
+            <img src="images/Temp.png">
+          </div>
         </div>
-      </div>
-      <div class="col-md-9">
-          <h1 class="card-title" id="movie1name"> </h1>
+        <div class="col-md-9">
+            <h1 class="card-title" id="movie1name"> </h1>
 
-          <p class="rating" id="movie1rating">rating here</p>
-          <p class="likes" id="movie1likes">Likes # here</p>
+            <p class="rating" id="movie1rating">rating here</p>
+            <p class="likes" id="movie1likes">Likes # here</p>
+          </div>
+      </div>
+    </form>
+    <form action="movie" method="post">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="card mb-4">
+            <img src="movie1img" alt="images/Temp.png">
+          </div>
         </div>
-    </div>
-    <div class="row">
-      <div class="col-md-3">
-        <div class="card mb-4">
-          <img src="movie1img" alt="images/Temp.png">
+        <div class="col-md-9">
+          <h1 class="card-title" id="movie2name"> </h1>
+          
+          <p class="rating" id="movie2rating">rating here</p>
+          <p class="likes" id="movie2likes">Likes # here</p>
         </div>
       </div>
-      <div class="col-md-9">
-        <h1 class="card-title" id="movie2name"> </h1>
-
-        <p class="rating" id="movie2rating">rating here</p>
-        <p class="likes" id="movie2likes">Likes # here</p>
+    </form>
+    <form action="movie" method="post">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="card mb-4">
+            <img src="images/Temp.png">
+          </div>
         </div>
-    </div>
-    <div class="row">
-      <div class="col-md-3">
-        <div class="card mb-4">
-          <img src="images/Temp.png">
-        </div>
+        <div class="col-md-9">
+          <h1 c:out class="card-title" id="movie3name"> </h1>
+          <p class="rating" id="movie3rating">rating here</p>
+          <p class="likes" id="movie3likes">Likes # here</p>
+          </div>
       </div>
-      <div class="col-md-9">
-        <h1 c:out class="card-title" id="movie3name"> </h1>
-        <p class="rating" id="movie3rating">rating here</p>
-        <p class="likes" id="movie3likes">Likes # here</p>
-        </div>
-    </div>
-    <div class="row">
+    </form>
+    <form action="movie" method="post">
+      <div class="row">
         <div class="col-md-3">
           <div class="card mb-4">
             <img src="images/Temp.png">
@@ -114,18 +121,19 @@ pageEncoding="ISO-8859-1"%>
           <p class="rating" id="movie4rating">rating here</p>
           <p class="likes" id="movie4likes">Likes # here</p>
           </div>
-    </div>
+      </div>  
+    </form>
     <div class="row">
-        <div class="col-md-3">
-          <div class="card mb-4">
-            <img src="images/Temp.png">
-          </div>
+      <div class="col-md-3">
+        <div class="card mb-4">
+          <img src="images/Temp.png">
         </div>
-        <div class="col-md-9">
-          <h1 c:out class="card-title" id="movie5name"> </h1>
-          <p class="rating" id="movie3rating">rating here</p>
-          <p class="likes" id="movie3likes">Likes # here</p>
-          </div>
+      </div>
+      <div class="col-md-9">
+        <h1 c:out class="card-title" id="movie5name"> </h1>
+        <p class="rating" id="movie4rating">rating here</p>
+        <p class="likes" id="movie5likes">Likes # here</p>
+      </div>
     </div>
   </div>
 </div>

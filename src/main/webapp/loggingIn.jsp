@@ -15,7 +15,7 @@
             response.sendRedirect("login.jsp");
         }
         else 
-            user = (String) session.getAttribute("user");
+            user = (String) request.getSession(false).getServletContext().getAttribute("user");
         String userName = null;
         Cookie[] cookies = request.getCookies();
         if(cookies !=null){
@@ -27,9 +27,9 @@
             }
         }
         %>
-        <h3>Hi <%=user %>, Login successful.%></h3>
+        <h3>Hi <%=userName %>, Login successful.%></h3>
         <br>
-        User=<%=user %>
+        User=<%=userName %>
         <br>
         <form action="home" method="post">
             <input type="submit" value="login">

@@ -20,11 +20,11 @@ pageEncoding="ISO-8859-1"%>
           movie4name = document.getElementById("movie4name");
           movie5name = document.getElementById("movie5name");
 
-          movie1name.innerHTML = getCookie("movie1Name");
-          movie2name.innerHTML = getCookie("movie2Name");
-          movie3name.innerHTML = getCookie("movie3Name");
-          movie4name.innerHTML = getCookie("movie4Name");
-          movie5name.innerHTML = getCookie("movie5Name");
+          movie1name.innerHTML = getCookie("cookie1");
+          movie2name.innerHTML = getCookie("cookie2");
+          movie3name.innerHTML = getCookie("cookie3");
+          movie4name.innerHTML = getCookie("cookie4");
+          movie5name.innerHTML = getCookie("cookie5");
       }
       function getCookie(cname)
       {

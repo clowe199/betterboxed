@@ -18,9 +18,9 @@ pageEncoding="ISO-8859-1"%>
           movie2name = document.getElementById("movie2name");
           movie3name = document.getElementById("movie3name");
 
-          movie1name.innerHTML = getCookie("movie1Name");
-          movie2name.innerHTML = getCookie("movie2Name");
-          movie3name.innerHTML = getCookie("movie3Name");
+          movie1name.innerHTML = getCookie("cookie1");
+          movie2name.innerHTML = getCookie("cookie2");
+          movie3name.innerHTML = getCookie("cookie3");
       }
       function getCookie(cname)
       {
@@ -84,7 +84,7 @@ pageEncoding="ISO-8859-1"%>
         </button>
       </div>
     </div>
-    
+
     <div class="gapp">
       <a href="searchBar.jsp"><h1 class="justify-content-center">Want to search for something?</h1></a>
     </div>
@@ -108,7 +108,7 @@ pageEncoding="ISO-8859-1"%>
       <div class="row">
         <div class="col-md-3">
           <div class="card mb-4">
-            <img src="movie1img" alt="images/Temp.png">
+            <img src="" alt="images/Temp.png">
           </div>
         </div>
         <div class="col-md-9">
