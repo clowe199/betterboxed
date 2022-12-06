@@ -331,10 +331,10 @@ public class AccountHandler {
              choiceInt = Integer.parseInt(choice);
              switch (choiceInt){
                 case 1:
-                    // editWatched();
+                    editWatched();
                     break;
                 case 2:
-                    // editWatchLater();
+                    editWatchLater();
                     break;
                 case 3:
                     editCollection();
@@ -349,6 +349,96 @@ public class AccountHandler {
         } catch (NumberFormatException e) {
             System.out.println("Invalid choice");
             viewAccountInfo();
+        }
+    }
+
+    //viewAccountInfo
+    private void editWatchLater() {
+        System.out.println("What would you like to do?"
+            +"\n1: remove movie from watch later list"
+            +"\n2: exit");
+        int choiceInt;
+        String choice = scan.nextLine();
+        try {
+             choiceInt = Integer.parseInt(choice);
+             switch (choiceInt){
+                case 1:
+                    watchLaterListRemoveMenu();
+                    break;
+                case 2:
+                    homeScreen();
+                    break;
+                default:
+                    System.out.println("Invalid choice");
+                    viewAccountInfo();
+             }
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid choice");
+            viewAccountInfo();
+        }
+    }
+
+    //editWatched
+    private void watchLaterListRemoveMenu() {
+        List<Integer> idList = userAccount.getUserData().getWatchLaterList().getMovieList();
+        System.out.println("Choose movie to remove (-1 to exit): ");
+        for (int i = 0; i < idList.size(); i++){
+            System.out.println(i+": " + userAccount.getMovieData(idList.get(i)));
+        }
+        int choiceInt;
+        String choice = scan.nextLine();
+        try {
+             choiceInt = Integer.parseInt(choice);
+             userAccount.removeFromWatchLater(idList.get(choiceInt));
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid choice");
+            watchLaterListRemoveMenu();
+            return;
+        }
+    }
+    
+    //viewAccountInfo
+    private void editWatched() {
+        System.out.println("What would you like to do?"
+            +"\n1: remove movie from watched list"
+            +"\n2: exit");
+        int choiceInt;
+        String choice = scan.nextLine();
+        try {
+             choiceInt = Integer.parseInt(choice);
+             switch (choiceInt){
+                case 1:
+                    watchedListRemoveMenu();
+                    break;
+                case 2:
+                    homeScreen();
+                    break;
+                default:
+                    System.out.println("Invalid choice");
+                    viewAccountInfo();
+             }
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid choice");
+            viewAccountInfo();
+        }
+    }
+
+    //editWatched
+    private void watchedListRemoveMenu() {
+        List<Integer> idList = userAccount.getUserData().getWatchedList().getMovieList();
+        System.out.println("Choose movie to remove (-1 to exit): ");
+        for (int i = 0; i < idList.size(); i++){
+            System.out.println(i+": " + userAccount.getMovieData(idList.get(i)));
+        }
+        int choiceInt;
+        String choice = scan.nextLine();
+        try {
+             choiceInt = Integer.parseInt(choice);
+             userAccount.removeFromWatched(idList.get(choiceInt));
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid choice");
+            watchedListRemoveMenu();
+            return;
         }
     }
 
@@ -396,7 +486,7 @@ public class AccountHandler {
         System.out.println("Enter new collection name: ");
         String newName = scan.nextLine();
         userAccount.changeCollectionName(choice, newName);
-        editCollection();
+        editCollection(); 
     }
 
     //helper function - editCollection
