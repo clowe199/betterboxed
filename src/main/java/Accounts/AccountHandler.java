@@ -148,7 +148,7 @@ public class AccountHandler {
             try {
                 int choiceInt = Integer.parseInt(choice);
                 if (choiceInt == -1)
-                    searchByActor();
+                    mainMenu();
                 else if (choiceInt < 0 || choiceInt > idList.size()-1)
                     movieFoundMenu(idList.get(choiceInt));
                 else {
