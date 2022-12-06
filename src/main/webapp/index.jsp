@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 pageEncoding="ISO-8859-1"%>
+<%@ page import = "pageNumber.*"%>
+<%@ page import = "java.lang.*"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 "http://www.w3.org/TR/html4/loose.dtd&quot;&gt;">
 
@@ -12,6 +15,30 @@ pageEncoding="ISO-8859-1"%>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
     <title>Login</title>
+    <script>
+        function clearListCookies()
+        {   
+            var cookies = document.cookie.split(";");
+            for (var i = 0; i < cookies.length; i++)
+            {   
+                var spcook =  cookies[i].split("=");
+                deleteCookie(spcook[0]);
+            }
+            function deleteCookie(cookiename)
+            {
+                var d = new Date();
+                d.setDate(d.getDate() - 1);
+                var expires = ";expires="+d;
+                var name=cookiename;
+                //alert(name);
+                var value="";
+                document.cookie = name + "=" + value + expires + "; path=/acc/html";                    
+            }
+            window.location = ""; // TO REFRESH THE PAGE
+        }
+
+        document.onload() = function() {clearListCookies();};
+    </script>
 </head>
 <body>
 <div id="background">

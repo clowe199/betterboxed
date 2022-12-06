@@ -35,8 +35,8 @@ pageEncoding="ISO-8859-1"%>
           if (c.indexOf(name) == 0) {
             return c.substring(name.length, c.length);
           }
-  }
-  return "";
+        }
+        return "";
       }
     </script>
     <title>Main</title>
@@ -84,6 +84,11 @@ pageEncoding="ISO-8859-1"%>
         </button>
       </div>
     </div>
+    
+    <div class="gapp">
+      <a href="searchBar.jsp"><h1 class="justify-content-center">Want to search for something?</h1></a>
+    </div>
+    
     <div class="gapp"></div>
     <!-- Movie listings here -->
     <div class="container">
@@ -128,7 +133,6 @@ pageEncoding="ISO-8859-1"%>
       </div>
     </div>
   </div>
-  </form>  
   <div class="gapp"></div>
   <!-- footer? -->
   <div class="container-fluid" id="footer">
