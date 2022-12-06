@@ -107,6 +107,15 @@ public class UserAccount {
     public Comment getComment(String commentId){
         return SQLDBConnector.getComment(commentId);
     }
+    public void addReview(String content, int rating, int movieId){
+        Comment review = new Comment.CommentBuilder()   // Create comment object
+                       .content(content)
+                       .rating(rating)
+                       .movieId(movieId)
+                       .userName(userName)
+                       .build();
+        SQLDBConnector.insertComment(review);   // Save comment to database
+    }
 
     /**
      * 
