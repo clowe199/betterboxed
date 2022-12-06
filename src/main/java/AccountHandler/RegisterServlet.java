@@ -1,5 +1,6 @@
 package AccountHandler;
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.rmi.ServerException;
 import Accounts.UserAccount;
 
@@ -37,15 +38,15 @@ public class RegisterServlet extends HttpServlet {
             UserAccount newUser = new UserAccount(username);
             int accountStatus = newUser.createAccount(username, password);
             if (accountStatus != -1) {
-                Cookie message = new Cookie("message","User "+username+" registered successfully.");
-                Cookie userCookie = new Cookie("user", username);
+                Cookie message = new Cookie("message",URLEncoder.encode("User "+username+" registered successfully.","UTF-8"));
+                Cookie userCookie = new Cookie("user", URLEncoder.encode(username, "UTF-8"));
                 response.addCookie(userCookie);
                 response.addCookie(message);
                 response.sendRedirect("../../webapp/loggingIn.jsp");
                 System.out.println("User has been added and loggged in");
             }
             else{
-                Cookie message = new Cookie("message","User "+username+" registered successfully.");
+                Cookie message = new Cookie("message",URLEncoder.encode("User "+username+" registered successfully.","UTF-8"));
                 response.addCookie(message);
                 RequestDispatcher rd = request.getRequestDispatcher("../../webapp/register.jsp");
                 rd.forward(request, response);
