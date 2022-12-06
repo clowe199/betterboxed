@@ -38,20 +38,19 @@ public class LoginServlet extends HttpServlet {
             System.out.println("Login credentials are entered.");
             UserAccount tempAccount = new UserAccount(username); 
             if (tempAccount.checkUser(username) == (-1)) {
+                session.setAttribute("user", username);
                 Cookie message = new Cookie("message",URLEncoder.encode("User "+username+" has logged in successfully.","UTF-8"));
                 Cookie userCookie = new Cookie("user", URLEncoder.encode(username,"UTF-8"));
                 response.addCookie(userCookie);
                 response.addCookie(message);
-                RequestDispatcher rd = request.getRequestDispatcher("loggingIn.jsp");
-                rd.forward(request, response);
+                request.getRequestDispatcher("loggingIn.jsp").forward(request, response);
                 System.out.println("User has been loggged in");
             }
             else{
                 System.out.println("Credentials are invalid.");
                 Cookie message = new Cookie("message", URLEncoder.encode("Credentials invalid, please try again.", "UTF-8"));            
                 response.addCookie(message);
-                RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
-                rd.forward(request, response);
+                request.getRequestDispatcher("login.jsp").forward(request, response);
                 
             }
         }

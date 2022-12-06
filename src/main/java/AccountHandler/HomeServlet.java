@@ -1,4 +1,5 @@
 package AccountHandler;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.List;
@@ -19,7 +20,7 @@ import javax.servlet.http.HttpSession;
 
 @WebServlet(urlPatterns = "/home")
 public class HomeServlet extends HttpServlet {
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException {
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         Cookie[] cookies = request.getCookies();
         String curUser =null;
@@ -39,35 +40,36 @@ public class HomeServlet extends HttpServlet {
 
         List<Integer> movieList= tempAccount.displayHighlyRatedMovies();
         
-        String movieName = apiAccess.getMovieData(movieList.get(0)).getTitle();
-        Cookie movie1name;
+        String movie1Name = apiAccess.getMovieData(movieList.get(0)).getTitle().replaceAll("\\s", "_");
+        Cookie movie1NameCookie;
         try {
-            movie1name = new Cookie(movieName, URLEncoder.encode(movieName, "UTF-8"));
-            response.addCookie(movie1name);
+            movie1NameCookie = new Cookie("movie1Name", URLEncoder.encode(movie1Name, "UTF-8"));
+            response.addCookie(movie1NameCookie);
         } catch (UnsupportedEncodingException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
         
-        String movie2Name = apiAccess.getMovieData(movieList.get(1)).getTitle();
+        String movie2Name = apiAccess.getMovieData(movieList.get(1)).getTitle().replaceAll("\\s", "_");
         Cookie movie2NameCookie;
         try {
-            movie2NameCookie = new Cookie(movie2Name, URLEncoder.encode(movieName, "UTF-8"));
+            movie2NameCookie = new Cookie("movie2Name", URLEncoder.encode(movie2Name, "UTF-8"));
             response.addCookie(movie2NameCookie);
         } catch (UnsupportedEncodingException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
         
-        String movie3Name = apiAccess.getMovieData(movieList.get(2)).getTitle();
+        String movie3Name = apiAccess.getMovieData(movieList.get(2)).getTitle().replaceAll("\\s", "_");
         Cookie movie3NameCookie;
         try {
-            movie3NameCookie = new Cookie(movie3Name, URLEncoder.encode(movieName, "UTF-8"));
+            movie3NameCookie = new Cookie("movie3Name", URLEncoder.encode(movie3Name, "UTF-8"));
             response.addCookie(movie3NameCookie);
         } catch (UnsupportedEncodingException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-    
+        
+        response.sendRedirect("home.jsp");
     }
 }
