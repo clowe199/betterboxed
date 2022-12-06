@@ -152,7 +152,7 @@ public class AccountHandler {
                     leaveReview(id);
                     break;
                 case 3:
-                    saveMovie(id);
+                    // saveMovie(id);
                     break;
                 default:
                     System.out.println("Invalid choice");
@@ -200,7 +200,7 @@ public class AccountHandler {
             int currReview = 0;
             while (currReview < reviews.size()){
                 System.out.println(userAccount.getComment(reviews.get(currReview)));
-                printReplies(reviews.get(currReview));
+                // printReplies(reviews.get(currReview));
             }
         }
 
@@ -263,7 +263,7 @@ public class AccountHandler {
                     removeMovieFromCollection();
                     break;
                 case 3:
-                    // changeCollectionName();
+                    changeCollectionName();
                     break;
                 case 4:
                     homeScreen();
@@ -276,6 +276,15 @@ public class AccountHandler {
             System.out.println("Invalid choice");
             editCollection();
         }
+    }
+
+    //editCollection
+    private void changeCollectionName() {
+        String choice = chooseCollection();
+        System.out.println("Enter new collection name: ");
+        String newName = scan.nextLine();
+        userAccount.changeCollectionName(choice, newName);
+        editCollection();
     }
 
     //helper function - editCollection
