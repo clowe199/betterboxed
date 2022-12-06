@@ -23,9 +23,9 @@ public class TestConstants extends ApiKey {
     public static final String SEARCH_RELEASE_DATE = "2022-06-01"; //jw dominion
     public static final String SEARCH_TITLE = "Jurassic World Dominion";
     public static final String SEARCH_MOVIE_QUERY = "jurassic world dominion";
-    public static final String SEARCH_PERSON_QUERY = "chris hemsworth";
-    public static final String SEARCH_PERSON_NAME = "Chris Hemsworth";
-    public static final int SEARCH_PERSON_ID = 74568; //hemsworth
+    public static final String SEARCH_PERSON_QUERY = "chris pratt";
+    public static final String SEARCH_PERSON_NAME = "Chris Pratt";
+    public static final int SEARCH_PERSON_ID = 73457; //pratt
 
     /* Rating Constants */
     public static final String TEST_RATING_ID = "00000000-0000-0000-0000-000000000000";

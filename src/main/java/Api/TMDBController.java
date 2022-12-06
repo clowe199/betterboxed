@@ -46,7 +46,7 @@ public class TMDBController extends ApiKey {
     }
 
     public List<MovieDb> getSimilarMovies(int movieId) {
-        MovieResultsPage mrp = movies.getSimilarMovies(movieId, apiKey, null);
+        MovieResultsPage mrp = movies.getRecommendedMovies(movieId, apiKey, 0);
         return mrp.getResults();
     }
 
@@ -54,11 +54,4 @@ public class TMDBController extends ApiKey {
         MovieResultsPage mrp = movies.getTopRatedMovies(ENGLISH_LANG, 0);
         return mrp.getResults();
     }    
-
-    public static void main(String[] args) {
-        TMDBController controller = new TMDBController();
-        System.out.println(controller.getMovieData(controller.getPersonData(74568).getCast().get(0).getId()));
-        // System.out.println(controller.getPersonData(74568).getBiography());
-
-    }
 }
