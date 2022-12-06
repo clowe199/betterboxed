@@ -15,6 +15,10 @@ public class Rating {
         movieId = builder.movieId;
         userName = builder.userName;
         ratingId = builder.ratingId;
+        if (ratingId == null) {
+            Random rand = new Random();
+            this.ratingId = new UUID(rand.nextLong(), rand.nextLong()).toString();
+        }
     }
 
     /* Getter Methods */
