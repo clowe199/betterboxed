@@ -10,7 +10,6 @@ public class Rating {
     private int movieId;
     private String userName;
 
-
     public Rating(RatingBuilder builder){
         rating = builder.rating;
         movieId = builder.movieId;
@@ -18,45 +17,24 @@ public class Rating {
         ratingId = builder.ratingId;
     }
 
-    public Rating(String ratingId, int rating, int movieId, String userName){
-        this.ratingId = ratingId;
-        this.rating = rating;
-        this.movieId = movieId;
-        this.userName = userName;
-    }
-
     /* Getter Methods */
     public String getRatingId() {
         return ratingId;
     }
-
     public int getRating() {
         return rating;
     }
-
     public int getMovieId() {
         return movieId;
     }
-
     public String getUserName() {
         return userName;
     }
-
 
     /* Setter Methods */
     public void setRating(int rating) {
         this.rating = rating;
     }
-
-    public void setMovieId(int movieId) {
-        this.movieId = movieId;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-
 
     /* Builder Class */
     static public class RatingBuilder{
@@ -86,7 +64,7 @@ public class Rating {
         public void newId(){
             Random rand = new Random();
             ratingId = new UUID(rand.nextLong(), rand.nextLong()).toString();
-            // return this;
+            System.out.println(ratingId);
         }
 
         public RatingBuilder ratingId(String ratingId){
@@ -100,5 +78,8 @@ public class Rating {
                 newId();
             return new Rating(this);
         }
+    }
+    public static void main(String[] args) {
+        Rating r = new RatingBuilder().build();
     }
 }
