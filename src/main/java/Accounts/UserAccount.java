@@ -33,8 +33,8 @@ public class UserAccount {
 
         userData = new UserData.UserDataBuilder()
             .username(userName)
-            .watchLaterList(new Collection(UserData.WATCH_LATER_TITLE, convertToInt(SQLDBConnector.getWatchLater(user))))
-            .watchedList(new Collection(UserData.WATCHED_TITLE, convertToInt(SQLDBConnector.getWatched(user))))
+            // .watchLaterList(new Collection(UserData.WATCH_LATER_TITLE, convertToInt(SQLDBConnector.getWatchLater(user))))
+            // .watchedList(new Collection(UserData.WATCHED_TITLE, convertToInt(SQLDBConnector.getWatched(user))))
             .collections(getCollections())
             .build();
     }
