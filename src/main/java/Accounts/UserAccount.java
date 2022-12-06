@@ -194,7 +194,13 @@ public class UserAccount {
 
         return false;
     }
-
+    public void changeCollectionName(String oldName, String newName) {
+        createNewCollection(newName);
+        for (int cId: userData.getCollection(oldName).getMovieList()){
+            addMovieToCollection(cId, newName);
+        }
+        deleteCollection(oldName);
+    }
     public boolean addToWatched(int movieId)
     {
         if (userData.watchedContains(movieId)) {   // If collection exists

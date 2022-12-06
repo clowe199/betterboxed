@@ -14,6 +14,10 @@ public class Collection {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public Collection(){
         this("un-named collection");
     }
