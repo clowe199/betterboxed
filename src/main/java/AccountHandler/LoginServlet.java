@@ -27,8 +27,9 @@ public class LoginServlet extends HttpServlet {
         response.setContentType("text/html");
         HttpSession session = request.getSession();
         if (username == null || username.equals("") || password == null || password.equals("")) {
-            session.setAttribute("message","Please enter credentials and try again.");
-            RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+            Cookie message = new Cookie("message", URLEncoder.encode("Credentials empty. Please try again.", "UTF-8"));            
+            response.addCookie(message);
+            RequestDispatcher rd = request.getRequestDispatcher("/login.jsp");
             rd.forward(request, response);
             System.out.println("User credentials are empty in Login.");
             return;
@@ -37,19 +38,19 @@ public class LoginServlet extends HttpServlet {
             System.out.println("Login credentials are entered.");
             UserAccount tempAccount = new UserAccount(username); 
             if (tempAccount.checkUser(username) == (-1)) {
-                Cookie message = new Cookie("message",URLEncoder.encode("User "+username+" registered successfully.","UTF-8"));
+                Cookie message = new Cookie("message",URLEncoder.encode("User "+username+" has logged in successfully.","UTF-8"));
                 Cookie userCookie = new Cookie("user", URLEncoder.encode(username,"UTF-8"));
                 response.addCookie(userCookie);
                 response.addCookie(message);
-                response.sendRedirect("../../webapp/loggingIn.jsp");
+                response.sendRedirect("loggingIn.jsp");
                 System.out.println("User has been added and loggged in");
                 
                 
             }
             else{
-                Cookie message = new Cookie("message", URLEncoder.encode("User "+username+" has logged in successfully.", "UTF-8"));            
+                Cookie message = new Cookie("message", URLEncoder.encode("Credentials invalid, please try again.", "UTF-8"));            
                 response.addCookie(message);
-                RequestDispatcher rd = request.getRequestDispatcher("../../webapp/loggingIn.jsp");
+                RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
                 rd.forward(request, response);
                 
             }
