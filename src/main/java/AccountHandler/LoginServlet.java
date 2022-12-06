@@ -5,6 +5,7 @@ import SQLDBConnector.SQLDBConnector;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,6 +22,8 @@ public class LoginServlet extends HttpServlet {
         String password = (String) request.getParameter("password");
         System.out.println("Entered User:"+username+"\nEntered Password: "+password);
         
+        
+
         response.setContentType("text/html");
         HttpSession session = request.getSession();
         if (username == null || username.equals("") || password == null || password.equals("")) {
@@ -33,11 +36,13 @@ public class LoginServlet extends HttpServlet {
         else{
             System.out.println("Login credentials are entered.");
             UserAccount tempAccount = new UserAccount(username); 
-
             if (tempAccount.checkUser(username) == (-1)) {
                 session.setAttribute("message","User "+username+" login has been successful.");
-                RequestDispatcher rd = request.getRequestDispatcher("loggingIn.html");
-                rd.forward(request, response);
+                
+                Cookie userCookie = new Cookie("user", username);
+                response.addCookie(userCookie);
+                response.sendRedirect("loggingIn.jsp");
+                
                 
             }
             else{

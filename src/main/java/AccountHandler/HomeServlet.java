@@ -6,6 +6,7 @@ import Api.TMDBController;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,8 +18,9 @@ import javax.servlet.http.HttpSession;
 public class HomeServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException {
         HttpSession session = request.getSession();
+        Cookie[] cookies = request.getCookies();
+        String curUser = cookies[0].getValue();
 
-        String curUser = (String) session.getAttribute("username");
         System.out.println("Current user: " + curUser);
 
         UserAccount tempAccount = new UserAccount(curUser);
