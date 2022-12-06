@@ -9,6 +9,7 @@ import Api.TMDBController;
 import Models.Comment;
 import Models.Movie;
 import SQLDBConnector.SQLDBConnector;
+// import info.movito.themoviedbapi.model.people.Person;
 import info.movito.themoviedbapi.model.people.Person;
 
 // ignore this class for now
@@ -287,7 +288,8 @@ public class AccountHandler {
         List<String> reviews = new ArrayList<String>();
         for (String cID: commentIds) {
             // Checking if database returns anything
-            if (!userAccount.getComment(cID).toString().equals(null)){
+            if (!userAccount.getComment(cID).getContent().equals(null))
+            {
                 reviews.add(cID);
             }
         }
@@ -538,20 +540,27 @@ public class AccountHandler {
         
         for (int i = 0; i < moviesInCollection.size(); i++){
             System.out.println("Would you like to remove: " + apiAccess.getMovieData(i).getTitle());
-            System.out.println("Yes or No?");
-            if((decision = scan.nextLine()).equals("Y")){
-                removeMovieFromCollection(i, chosenCollectionId);
-                homeScreen();
+            System.out.println("Y or N?");
+            decision = scan.nextLine();
+            try{
+                if(decision.equals("Y")){
+                    removeMovieFromCollection(i, chosenCollectionId);
+                    homeScreen();
+                }
+                else if(decision.equals("N")){
+                    continue;
+                }
+                else {
+                    System.out.println("Invalid choice");
+                    continue;
+                }
             }
-            else if((decision = scan.nextLine()).equals("N")){
-                continue;
-            }
-            else{
+            catch(NumberFormatException e){
                 System.out.println("Invalid choice");
                 continue;
             }
         }
-        
+        homeScreen();
         // System.out.println("method not finished");
     }
    
