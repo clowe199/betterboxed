@@ -256,7 +256,7 @@ public class UserAccount {
     }
     public List<Integer> findMoviesByActor(Integer actorId) {//return list of movie ids
         List<Integer> idList = new ArrayList<Integer>();
-        List<PersonCredit> movies = tmdb.getPersonData(74568).getCast();
+        List<PersonCredit> movies = tmdb.getPersonData(actorId).getCast();
         for (PersonCredit p: movies) {
             idList.add(p.getId());
         }
