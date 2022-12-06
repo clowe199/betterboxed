@@ -42,7 +42,8 @@ public class LoginServlet extends HttpServlet {
                 Cookie userCookie = new Cookie("user", URLEncoder.encode(username,"UTF-8"));
                 response.addCookie(userCookie);
                 response.addCookie(message);
-                response.sendRedirect("loggingIn.jsp");
+                RequestDispatcher rd = request.getRequestDispatcher("/loggingIn.jsp");
+                rd.forward(request, response);
                 System.out.println("User has been added and loggged in");
                 
                 

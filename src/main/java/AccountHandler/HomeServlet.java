@@ -1,7 +1,10 @@
 package AccountHandler;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.List;
 import Accounts.UserAccount;
 import Api.TMDBController;
+import java.net.URLEncoder;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -37,13 +40,34 @@ public class HomeServlet extends HttpServlet {
         List<Integer> movieList= tempAccount.displayHighlyRatedMovies();
         
         String movieName = apiAccess.getMovieData(movieList.get(0)).getTitle();
-        session.setAttribute("movie1name", movieName);
+        Cookie movie1name;
+        try {
+            movie1name = new Cookie(movieName, URLEncoder.encode(movieName, "UTF-8"));
+            response.addCookie(movie1name);
+        } catch (UnsupportedEncodingException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         
         String movie2Name = apiAccess.getMovieData(movieList.get(1)).getTitle();
-        session.setAttribute("movie2name", movie2Name);
+        Cookie movie2NameCookie;
+        try {
+            movie2NameCookie = new Cookie(movie2Name, URLEncoder.encode(movieName, "UTF-8"));
+            response.addCookie(movie2NameCookie);
+        } catch (UnsupportedEncodingException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         
         String movie3Name = apiAccess.getMovieData(movieList.get(2)).getTitle();
-        session.setAttribute("movie3name", movie3Name);
+        Cookie movie3NameCookie;
+        try {
+            movie3NameCookie = new Cookie(movie3Name, URLEncoder.encode(movieName, "UTF-8"));
+            response.addCookie(movie3NameCookie);
+        } catch (UnsupportedEncodingException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     
     }
 }
