@@ -27,7 +27,7 @@ public class TestConstants extends ApiKey {
     public static final int SEARCH_PERSON_ID = 74568; //hemsworth
 
     /* Rating Constants */
-    public static final String RATING_ID = "rating uuid";
+    public static final String TEST_RATING_ID = "00000000-0000-0000-0000-000000000000";
     public static final int RATING = 3;     // RATING SCALE IS 0-5
     public static final String USERNAME_STRING = "USER";
     public static final String COMMENT_CONTENT = "comment content test";
