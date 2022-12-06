@@ -593,7 +593,7 @@ public class SQLDBConnector
         {
             e.printStackTrace();
         }
-        final String QUERY = "SELECT reviewid from comment where parentid = '-1' and  moviedid = '" + parentId  +"'";
+        final String QUERY = "SELECT reviewid from comment where parentid = '-1' and  movieid = '" + parentId  +"'";
         ArrayList<String[]> movies = new ArrayList<String[]>();
         try(Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
         Statement stmt =  conn.createStatement();
