@@ -93,7 +93,7 @@ public class Comment extends Rating {
         private String content;
         private int numLikes = 0;
         private int numDislikes = 0;
-        private String parentId;
+        private String parentId = "-1";
         private RatingBuilder ratingBuilder = new RatingBuilder();
         
         public CommentBuilder content(String comment)
