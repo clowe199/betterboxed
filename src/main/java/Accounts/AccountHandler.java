@@ -140,7 +140,7 @@ public class AccountHandler {
             movieFoundMenu(idList.get(0));
         }
         else {
-            for (int i = 0; i < idList.size(); i++){
+            for (int i = 0; i < idList.size() && i < 20; i++){
                 System.out.println(i+": "+userAccount.getMovieData(idList.get(i)));
             }
             System.out.println("Choose movie (enter number on left, -1 to exit): ");
