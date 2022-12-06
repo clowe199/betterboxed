@@ -21,10 +21,10 @@ import javax.servlet.http.HttpSession;
 @WebServlet(urlPatterns = "/home")
 public class HomeServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession();
+        HttpSession session = request.getSession(false);
         Cookie[] cookies = request.getCookies();
         String curUser =null;
-        
+        // curUser = (String) request.getSession(false).getServletContext().getAttribute("user");
         if(cookies != null) {
             for(Cookie cookie :cookies){
                 if(cookie.getName().equals("user")){
@@ -43,7 +43,7 @@ public class HomeServlet extends HttpServlet {
         String movie1Name = apiAccess.getMovieData(movieList.get(0)).getTitle().replaceAll("\\s", "_");
         Cookie movie1NameCookie;
         try {
-            movie1NameCookie = new Cookie("movie1Name", URLEncoder.encode(movie1Name, "UTF-8"));
+            movie1NameCookie = new Cookie("cookie1", URLEncoder.encode(movie1Name, "UTF-8"));
             response.addCookie(movie1NameCookie);
         } catch (UnsupportedEncodingException e) {
             // TODO Auto-generated catch block
@@ -53,7 +53,7 @@ public class HomeServlet extends HttpServlet {
         String movie2Name = apiAccess.getMovieData(movieList.get(1)).getTitle().replaceAll("\\s", "_");
         Cookie movie2NameCookie;
         try {
-            movie2NameCookie = new Cookie("movie2Name", URLEncoder.encode(movie2Name, "UTF-8"));
+            movie2NameCookie = new Cookie("cookie2", URLEncoder.encode(movie2Name, "UTF-8"));
             response.addCookie(movie2NameCookie);
         } catch (UnsupportedEncodingException e) {
             // TODO Auto-generated catch block
@@ -63,7 +63,7 @@ public class HomeServlet extends HttpServlet {
         String movie3Name = apiAccess.getMovieData(movieList.get(2)).getTitle().replaceAll("\\s", "_");
         Cookie movie3NameCookie;
         try {
-            movie3NameCookie = new Cookie("movie3Name", URLEncoder.encode(movie3Name, "UTF-8"));
+            movie3NameCookie = new Cookie("cookie3", URLEncoder.encode(movie3Name, "UTF-8"));
             response.addCookie(movie3NameCookie);
         } catch (UnsupportedEncodingException e) {
             // TODO Auto-generated catch block
