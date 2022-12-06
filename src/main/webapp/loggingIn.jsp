@@ -27,13 +27,12 @@
             }
         }
         %>
-        <h3>Hi <%=userName %>, Login successful.%></h3>
+        <h3>Hi <%=user %>, Login successful.%></h3>
         <br>
         User=<%=user %>
         <br>
-        <a href="home.jsp">Continue to Home page</a>
         <form action="home" method="post">
-        <input type="submit" value="login">
+            <input type="submit" value="login">
         </form>
     </body> 
 </html>
