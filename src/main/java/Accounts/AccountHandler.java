@@ -210,7 +210,7 @@ public class AccountHandler {
                     saveMovie(id);
                     break;
                 case 4:
-                    searchByTitle();
+                    homeScreen();
                     break;
                 default:
                     System.out.println("Invalid choice");
@@ -538,6 +538,7 @@ public class AccountHandler {
 
         List<String> moviesInCollection = userAccount.displaySavedCollection(chosenCollectionId);
         TMDBController apiAccess = new TMDBController();
+        
         for (int i = 0; i < moviesInCollection.size(); i++){
             System.out.println("Would you like to remove: " + apiAccess.getMovieData(i).getTitle());
             System.out.println("Yes or No?");
