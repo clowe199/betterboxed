@@ -148,7 +148,7 @@ public class SQLDBConnector
       return -1;
     }
 
-    public static int insertWatchedLater(String username, int movieID)
+    public static int insertWatchLater(String username, int movieID)
     {
         try
         {
@@ -456,7 +456,7 @@ public class SQLDBConnector
         return -1; 
     }
 
-    public static boolean cheeckIfLikedComment(String username, String commentId)
+    public static boolean checkIfLikedComment(String username, String commentId)
     {
         try
         {
@@ -487,7 +487,7 @@ public class SQLDBConnector
     
     }
 
-    public static boolean cheeckIfDislikedComment(String username, String commentId)
+    public static boolean checkIfDislikedComment(String username, String commentId)
     {
         try
         {
