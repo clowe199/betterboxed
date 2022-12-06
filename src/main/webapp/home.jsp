@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 pageEncoding="ISO-8859-1"%>
 <%@ page import = "pageNumber.*"%>
+<%@ page import = "java.lang.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 "http://www.w3.org/TR/html4/loose.dtd&quot;&gt;">
 <html lang="en">
@@ -65,8 +66,39 @@ pageEncoding="ISO-8859-1"%>
             <img src="images/Temp.png">
           </div>
         </div>
+        <%
+          String user = null;
+          if(session.getAttribute("user") == null){
+              response.sendRedirect("login.jsp");
+          }
+          else 
+              user = (String) session.getAttribute("user");
+          String movie1Name = null;
+          String movie2Name = null;
+          String movie3Name = null;
+          Cookie[] cookies = request.getCookies();
+          if(cookies !=null)
+          {
+            for(Cookie cookie : cookies)
+            {
+              if(cookie.getName().equals("move1NameCookie")) 
+              {
+                movie1Name = cookie.getValue();
+              }
+              if(cookie.getName().equals("move2NameCookie")) 
+              {
+                movie2Name = cookie.getValue();
+              }
+              if(cookie.getName().equals("move3NameCookie")) 
+              {
+                movie3Name = cookie.getValue();
+              }
+            }
+          }
+        
+        %>
         <div class="col-md-9">
-            <h1 class="card-title" value="${movie1name}"> ${movie1name}</h1>
+            <h1 class="card-title" value="${movie1name}"> <%out.println(movie1Name)%></h1>
             <p class="card-text" value="${movie1desc}"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore</p>
             <p class="rating" value="${movie1rating}">rating here</p>
             <p class="likes" value="${movie1likes}">Likes # here</p>
@@ -79,7 +111,7 @@ pageEncoding="ISO-8859-1"%>
           </div>
         </div>
         <div class="col-md-9">
-          <h1 class="card-title" value="${movie2name}"> ${movie2name}</h1>
+          <h1 class="card-title" value="${movie2name}"> <%out.println(movie2Name)%></h1>
           <p class="card-text" value="movie2desc"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore</p>
           <p class="rating" value="movie2rating">rating here</p>
           <p class="likes" value="movie2likes">Likes # here</p>
@@ -92,7 +124,7 @@ pageEncoding="ISO-8859-1"%>
           </div>
         </div>
         <div class="col-md-9">
-          <h1 c:out class="card-title" value="${movie3name}"> ${movie3name}</h1>
+          <h1 c:out class="card-title" value="${movie3name}"> <%out.println(movie3Name)%></h1>
           <p class="card-text" value="movie3desc"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore</p>
           <p class="rating" value="movie3rating">rating here</p>
           <p class="likes" value="movie3likes">Likes # here</p>

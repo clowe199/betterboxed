@@ -49,7 +49,7 @@ public class RegisterServlet extends HttpServlet {
             else{
                 Cookie message = new Cookie("message",URLEncoder.encode("User already exists. Please try different credentials.","UTF-8"));
                 response.addCookie(message);
-                RequestDispatcher rd = request.getRequestDispatcher("register.jsp");
+                RequestDispatcher rd = request.getRequestDispatcher("testbetterbox/register.jsp");
                 rd.forward(request, response);
                 System.out.println("User could not be added");
             }
