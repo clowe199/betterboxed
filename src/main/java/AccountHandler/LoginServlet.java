@@ -37,17 +37,19 @@ public class LoginServlet extends HttpServlet {
             System.out.println("Login credentials are entered.");
             UserAccount tempAccount = new UserAccount(username); 
             if (tempAccount.checkUser(username) == (-1)) {
-                session.setAttribute("message","User "+username+" login has been successful.");
-                
+                Cookie message = new Cookie("message","User "+username+" registered successfully.");
                 Cookie userCookie = new Cookie("user", username);
                 response.addCookie(userCookie);
-                response.sendRedirect("loggingIn.jsp");
+                response.addCookie(message);
+                response.sendRedirect("../../webapp/loggingIn.jsp");
+                System.out.println("User has been added and loggged in");
                 
                 
             }
             else{
-                session.setAttribute("message", "User credentials are invalid.");
-                RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+                Cookie message = new Cookie("message","User "+username+" registered successfully.");            
+                response.addCookie(message);
+                RequestDispatcher rd = request.getRequestDispatcher("register.jsp");
                 rd.forward(request, response);
                 
             }

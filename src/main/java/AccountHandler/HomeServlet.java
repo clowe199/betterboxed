@@ -19,10 +19,18 @@ public class HomeServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException {
         HttpSession session = request.getSession();
         Cookie[] cookies = request.getCookies();
-        String curUser = cookies[0].getValue();
-
+        String curUser =null;
+        
+        if(cookies != null) {
+            for(Cookie cookie :cookies){
+                if(cookie.getName().equals("user")){
+                    curUser = cookie.getValue();
+                }
+            }
+        }
+        
         System.out.println("Current user: " + curUser);
-
+        
         UserAccount tempAccount = new UserAccount(curUser);
         TMDBController apiAccess = new TMDBController();
 
