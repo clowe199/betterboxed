@@ -9,6 +9,7 @@ import Models.Comment;
 import SQLDBConnector.SQLDBConnector;
 import info.movito.themoviedbapi.model.MovieDb;
 import info.movito.themoviedbapi.model.people.Person;
+import info.movito.themoviedbapi.model.people.PersonCredit;
 
 public class UserAccount {
 
@@ -17,7 +18,13 @@ public class UserAccount {
     private UserData userData;
     public static void main(String[] args) {
         UserAccount test = new UserAccount("testkyle");
-        System.err.println(test.getUserData());
+        // System.err.println(test.getUserData());
+        System.out.println(test.findPerson("Chris"));
+        System.out.println(test.getMovieData((test.findMoviesByActor(74568)).get(0)));
+        System.out.println(test.getMovieData((test.findMoviesByActor(74568)).get(1)));
+        System.out.println(test.getMovieData((test.findMoviesByActor(74568)).get(2)));
+        System.out.println(test.getMovieData((test.findMoviesByActor(74568)).get(3)));
+
     }
     
     public UserAccount(String user) {
@@ -210,15 +217,20 @@ public class UserAccount {
         }
         return idList;
     }
-    public List<Person> searchPerson(String name){
+    public List<Person> findPerson(String name){
         return tmdb.searchPerson(name);
     }
     public List<Integer> findMoviesByActor(Integer actorId) {//return list of movie ids
-        // need method in TMDBController
-        
-        return null;
+        List<Integer> idList = new ArrayList<Integer>();
+        List<PersonCredit> movies = tmdb.getPersonData(74568).getCast();
+        for (PersonCredit p: movies) {
+            idList.add(p.getId());
+        }
+        return idList;
     }
-
+    public MovieDb getMovieData(int movieId) {
+        return tmdb.getMovieData(movieId);
+    }
     //----------------------recommend movie by email ------------
     public String recommendMovie(int movieId, String email) {
         return "mailto:" + email + "?subject=Check%20Out%20This%20Movie%20I%20Found!&body=More%20information%20can%20be%20found%20here:%0d%0ahttps://www.themoviedb.org/movie/" + movieId;
