@@ -179,7 +179,7 @@ public class SQLDBConnector
             e.printStackTrace();
         }
         try(Connection conn = DriverManager.getConnection(DB_URL, USER, PASS)){
-         CallableStatement cstmt = conn.prepareCall("{? = call delete_watchedmovies(?,?,?)}");
+         CallableStatement cstmt = conn.prepareCall("{? = call delete_savedmovies(?,?,?)}");
          cstmt.registerOutParameter(1, Types.INTEGER);
          cstmt.setString(2, username);
          cstmt.setString(3, movieId);
@@ -189,7 +189,7 @@ public class SQLDBConnector
          e.printStackTrace();
       } 
     }
-    
+
     //This will return -1 if they are in the system and 1 if they are not. 
     public static int checkUser(String username)
     {
@@ -581,5 +581,67 @@ public class SQLDBConnector
             e.printStackTrace();
         }
         return false; 
+    }
+
+    public static ArrayList<String[]> getComments(String parentId)
+    {
+        try
+        {
+            Class.forName("com.mysql.jdbc.Driver");
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        final String QUERY = "SELECT reviewid from comment where parentid = '-1' and  moviedid = '" + parentId  +"'";
+        ArrayList<String[]> movies = new ArrayList<String[]>();
+        try(Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+        Statement stmt =  conn.createStatement();
+        ResultSet rs  = stmt.executeQuery(QUERY);)
+        {
+            
+            while(rs.next())
+            {
+                String[] curr = new String[1];
+                curr[0] = rs.getString("reviewid");
+                movies.add(curr);
+            }
+        }
+        catch(SQLException e)
+        {
+            e.printStackTrace();
+        }
+        return movies;
+    }
+
+    public static ArrayList<String[]> getReplies(String parentId)
+    {
+        try
+        {
+            Class.forName("com.mysql.jdbc.Driver");
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        final String QUERY = "SELECT reviewid from comment where parentid = '" + parentId +"'";
+        ArrayList<String[]> movies = new ArrayList<String[]>();
+        try(Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+        Statement stmt =  conn.createStatement();
+        ResultSet rs  = stmt.executeQuery(QUERY);)
+        {
+            
+            while(rs.next())
+            {
+                String[] curr = new String[1];
+                curr[0] = rs.getString("reviewid");
+                movies.add(curr);
+            }
+        }
+        catch(SQLException e)
+        {
+            e.printStackTrace();
+        }
+        return movies;
     }
 }
