@@ -19,9 +19,9 @@
         String userName = null;
         Cookie[] cookies = request.getCookies();
         if(cookies !=null){
-        for(Cookie cookie : cookies){
-            if(cookie.getName().equals("user")) userName = cookie.getValue();
-        }
+            for(Cookie cookie : cookies){
+                if(cookie.getName().equals("user")) userName = cookie.getValue();
+            }
         }
         %>
         <h3>Hi <%=userName %>, Login successful.%></h3>

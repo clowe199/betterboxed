@@ -21,8 +21,6 @@ public class LoginServlet extends HttpServlet {
         String username = (String) request.getParameter("username");
         String password = (String) request.getParameter("password");
         System.out.println("Entered User:"+username+"\nEntered Password: "+password);
-        
-        
 
         response.setContentType("text/html");
         HttpSession session = request.getSession();
@@ -47,9 +45,9 @@ public class LoginServlet extends HttpServlet {
                 
             }
             else{
-                Cookie message = new Cookie("message","User "+username+" registered successfully.");            
+                Cookie message = new Cookie("message","User "+username+" has logged in successfully.");            
                 response.addCookie(message);
-                RequestDispatcher rd = request.getRequestDispatcher("register.jsp");
+                RequestDispatcher rd = request.getRequestDispatcher("../../webapp/loggingIn.jsp");
                 rd.forward(request, response);
                 
             }

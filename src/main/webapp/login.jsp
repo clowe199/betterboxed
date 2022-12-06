@@ -46,7 +46,13 @@ pageEncoding="ISO-8859-1"%>
                                 </div>
                                 <form action="login" method="post">
                                     <p>Please login to your account</p>
-                                    <h3><%session.getCookie("message").getValue()%></h3>
+                                    <%Cookie[] cookies = request.getCookies();
+                                        if(cookies !=null){
+                                        for(Cookie cookie : cookies){
+                                            if(cookie.getName().equals("message")) message = cookie.getValue();
+                                        }
+                                        }%>
+                                    <h3><%message%></h3>
                                     <div class="form-outline mb-4">
                                         <input type="username" id="Username" class="form-control" name="username"/>
                                         <label class="form-label" for="Username">Username</label>
