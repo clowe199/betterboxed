@@ -13,6 +13,7 @@ public class SQLDBConnector
 
     public static void main(String[] args)
     {
+        //deleteWatchLater("testkyle", "507086");
         // int foo = checkUser("kyle");
         // System.out.println(foo);
         // System.out.println("test");
@@ -124,6 +125,71 @@ public class SQLDBConnector
       } 
       return -1;
     }
+
+    public static void deleteWatchLater(String username, String movieId)
+    {
+        try
+        {
+            Class.forName("com.mysql.jdbc.Driver");
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        try(Connection conn = DriverManager.getConnection(DB_URL, USER, PASS)){
+         CallableStatement cstmt = conn.prepareCall("{? = call delete_watchlater(?,?)}");
+         cstmt.registerOutParameter(1, Types.INTEGER);
+         cstmt.setString(2, username);
+         cstmt.setString(3, movieId);
+         cstmt.execute();
+      } catch (SQLException e) {
+         e.printStackTrace();
+      } 
+    }
+
+    public static void deleteWatchedMovies(String username, String movieId)
+    {
+        try
+        {
+            Class.forName("com.mysql.jdbc.Driver");
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        try(Connection conn = DriverManager.getConnection(DB_URL, USER, PASS)){
+         CallableStatement cstmt = conn.prepareCall("{? = call delete_watchedmovies(?,?)}");
+         cstmt.registerOutParameter(1, Types.INTEGER);
+         cstmt.setString(2, username);
+         cstmt.setString(3, movieId);
+         cstmt.execute();
+      } catch (SQLException e) {
+         e.printStackTrace();
+      } 
+    }
+
+    public static void deleteSavedMovie(String username, String movieId, String collectionId)
+    {
+        try
+        {
+            Class.forName("com.mysql.jdbc.Driver");
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        try(Connection conn = DriverManager.getConnection(DB_URL, USER, PASS)){
+         CallableStatement cstmt = conn.prepareCall("{? = call delete_watchedmovies(?,?,?)}");
+         cstmt.registerOutParameter(1, Types.INTEGER);
+         cstmt.setString(2, username);
+         cstmt.setString(3, movieId);
+         cstmt.setString(4, collectionId);
+         cstmt.execute();
+      } catch (SQLException e) {
+         e.printStackTrace();
+      } 
+    }
+    
     //This will return -1 if they are in the system and 1 if they are not. 
     public static int checkUser(String username)
     {
