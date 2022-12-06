@@ -148,8 +148,8 @@ public class AccountHandler {
             try {
                 int choiceInt = Integer.parseInt(choice);
                 if (choiceInt == -1)
-                    mainMenu();
-                else if (choiceInt < 0 || choiceInt > idList.size()-1)
+                    homeScreen();
+                else if (choiceInt > 0 && choiceInt < idList.size()-1)
                     movieFoundMenu(idList.get(choiceInt));
                 else {
                     System.out.println("Invalid choice");
