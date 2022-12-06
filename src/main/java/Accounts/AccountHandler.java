@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import com.mysql.cj.x.protobuf.MysqlxDatatypes.Array;
 
+import Api.TMDBController;
 import Models.Comment;
 import Models.Movie;
 import SQLDBConnector.SQLDBConnector;
@@ -441,7 +442,29 @@ public class AccountHandler {
         //         editCollection();
         // }
         // viewAccountInfo();
-        System.out.println("method not finished");
+        System.out.println("Please Select a collection to remove a movie from: ");
+        String chosenCollectionId = chooseCollection();
+        String decision; 
+
+        List<String> moviesInCollection = userAccount.displaySavedCollection(chosenCollectionId);
+        TMDBController apiAccess = new TMDBController();
+        for (int i = 0; i < moviesInCollection.size(); i++){
+            System.out.println("Would you like to remove: " + apiAccess.getMovieData(i).getTitle());
+            System.out.println("Yes or No?");
+            if((decision = scan.nextLine()).equals("Y")){
+                removeMovieFromCollection(i, chosenCollectionId);
+                homeScreen();
+            }
+            else if((decision = scan.nextLine()).equals("N")){
+                continue;
+            }
+            else{
+                System.out.println("Invalid choice");
+                continue;
+            }
+        }
+        
+        // System.out.println("method not finished");
     }
    
    
