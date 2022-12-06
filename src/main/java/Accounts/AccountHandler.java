@@ -354,10 +354,11 @@ public class AccountHandler {
     //viewAccountInfo
     private void editCollection(){
         System.out.println("What would you like to do?"
-            +"\n1: delete collection"
-            +"\n2: remove movie from collection"
-            +"\n3: change name of collection"
-            +"\n4: exit profile");
+            +"\n1: Create a new collection"
+            +"\n2: delete collection"
+            +"\n3: remove movie from collection"
+            +"\n4: change name of collection"
+            +"\n5: exit profile");
         int choiceInt;
         String choice = scan.nextLine();
         try {
