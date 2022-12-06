@@ -37,15 +37,16 @@ public class RegisterServlet extends HttpServlet {
             UserAccount newUser = new UserAccount(username);
             int accountStatus = newUser.createAccount(username, password);
             if (accountStatus != -1) {
-                session.setAttribute("message", "User "+username+" registered successfully.");
-                session.setAttribute("user", username);
+                Cookie message = new Cookie("message","User "+username+" registered successfully.");
                 Cookie userCookie = new Cookie("user", username);
                 response.addCookie(userCookie);
-                response.sendRedirect("home.jsp");
+                response.addCookie(message);
+                response.sendRedirect("../../webapp/loggingIn.jsp");
                 System.out.println("User has been added and loggged in");
             }
             else{
-                session.setAttribute("message", "User "+username+" could not be registered. Please try different credentials.");
+                Cookie message = new Cookie("message","User "+username+" registered successfully.");
+                response.addCookie(message);
                 RequestDispatcher rd = request.getRequestDispatcher("register.jsp");
                 rd.forward(request, response);
                 System.out.println("User could not be added");

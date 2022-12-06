@@ -46,7 +46,7 @@ pageEncoding="ISO-8859-1"%>
                                 </div>
                                 <form action="login" method="post">
                                     <p>Please login to your account</p>
-                                    <h3><%session.getAttribute("message").toString();%></h3>
+                                    <h3><%session.getCookie("message").getValue()%></h3>
                                     <div class="form-outline mb-4">
                                         <input type="username" id="Username" class="form-control" name="username"/>
                                         <label class="form-label" for="Username">Username</label>
