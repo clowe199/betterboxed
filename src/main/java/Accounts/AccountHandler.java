@@ -181,7 +181,7 @@ public class AccountHandler {
                 movieFoundMenu(idList.get(choiceInt));
             } catch (NumberFormatException e) {
                 System.out.println("Invalid choice");
-                searchByTitle();
+                goToMovieSearch();
             }
         }
     }
@@ -242,12 +242,12 @@ public class AccountHandler {
 
     // Save movie to collection
     private void saveMovie(int id){
-        boolean returnVal = false;
         System.out.println("Save movie: "+ userAccount.getMovieData(id));
         System.out.println("Where would you like to save the movie?"
             +"\n1: Watched movies list"
             +"\n2: Watch later list"
-            +"\n3: Custom movie list");
+            +"\n3: Custom movie list"
+            +"\n4: Exit");
         
         int choiceInt;
         String choice = scan.nextLine();
@@ -255,14 +255,20 @@ public class AccountHandler {
              choiceInt = Integer.parseInt(choice);
              switch (choiceInt){
                 case 1:
-                    returnVal = userAccount.addToWatched(id);
+                    userAccount.addToWatched(id);
+                    movieFoundMenu(id);
                     break;
                 case 2:
-                    returnVal = userAccount.addToWatchLater(id);
+                    userAccount.addToWatchLater(id);
+                    movieFoundMenu(id);
                     break;
                 case 3:
                     String option = chooseCollection();
-                    returnVal = userAccount.addMovieToCollection(id, option);
+                    userAccount.addMovieToCollection(id, option);
+                    movieFoundMenu(id);
+                    break;
+                case 4:
+                    movieFoundMenu(id);
                     break;
                 default:
                     System.out.println("Invalid choice");
@@ -270,16 +276,7 @@ public class AccountHandler {
              }
         } catch (NumberFormatException e) {
             System.out.println("Invalid choice");
-            movieFoundMenu(id);
-        }
-
-        if (returnVal) {
-            System.out.println("Movie saved");
-            goToMovieSearch();
-        }
-        else {
-            System.out.println("Error - movie not saved");
-            movieFoundMenu(id);
+            saveMovie(id);
         }
     }
 
