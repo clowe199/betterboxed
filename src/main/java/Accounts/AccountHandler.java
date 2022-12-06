@@ -19,7 +19,7 @@ public class AccountHandler {
         AccountHandler handler = new AccountHandler();
         handler.mainMenu();
     }
-createAccount
+
     private void mainMenu() {
         System.out.println("What would you like to do?\n 1: login\n 2: register new account\n 3: close BetterBoxd");
         String choice = scan.nextLine();
@@ -326,7 +326,7 @@ createAccount
     {
         userAccount = new UserAccount(user);
         if (userAccount.createAccount(user, pass) == 1) {
-            System.out.println("Welcome to BetterBoxd " + user + "!");
+            System.out.println("Welcome to BetterBoxd " + user + "!");1
             homeScreen();
         }
         else
@@ -345,8 +345,10 @@ createAccount
     }
     public void login(String pass, String user)
     {
-        if(userAccount.checkUser(user) != -1)
+        UserAccount u = new UserAccount(user);
+        if(u.checkUser(user) != -1)
         {
+            userAccount = new UserAccount(user);
             System.out.println("Welcome to BetterBoxd " + user + "!");
             homeScreen();
         }
