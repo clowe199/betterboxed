@@ -591,12 +591,11 @@ public class AccountHandler {
         String collectionName = scan.nextLine();
         if (userAccount.createNewCollection(collectionName)){
             System.out.println("Collection " + collectionName + " created");
-            mainMenu();
         }
         else{
             System.out.println("Collection " + collectionName + " already exists");
-            mainMenu();
         }
+        homeScreen();
     }
 
     public void addMovieToCollection(int movieId, String collectionName)
