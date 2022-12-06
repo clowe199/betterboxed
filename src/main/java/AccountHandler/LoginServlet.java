@@ -38,6 +38,7 @@ public class LoginServlet extends HttpServlet {
             System.out.println("Login credentials are entered.");
             UserAccount tempAccount = new UserAccount(username); 
             if (tempAccount.checkUser(username) == (-1)) {
+                session.setAttribute("user", username);
                 Cookie message = new Cookie("message",URLEncoder.encode("User "+username+" has logged in successfully.","UTF-8"));
                 Cookie userCookie = new Cookie("user", URLEncoder.encode(username,"UTF-8"));
                 response.addCookie(userCookie);

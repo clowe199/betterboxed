@@ -31,7 +31,7 @@ pageEncoding="ISO-8859-1"%>
       </div>
     </nav>
   </div>
-  <form action="home">
+  <form action="home" method="post">
   <div id="bodyWithoutFoot">
     <!-- Navbar Hear -->
     <div id="hero-slide-nav">

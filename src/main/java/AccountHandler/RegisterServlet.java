@@ -39,6 +39,7 @@ public class RegisterServlet extends HttpServlet {
             UserAccount newUser = new UserAccount(username);
             int accountStatus = newUser.createAccount(username, password);
             if (accountStatus != -1) {
+                session.setAttribute("user", username);
                 Cookie message = new Cookie("message",URLEncoder.encode("User "+username+" registered successfully.","UTF-8"));
                 Cookie userCookie = new Cookie("user", URLEncoder.encode(username, "UTF-8"));
                 response.addCookie(userCookie);
