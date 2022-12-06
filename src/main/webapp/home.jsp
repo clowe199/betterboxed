@@ -35,8 +35,8 @@ pageEncoding="ISO-8859-1"%>
           if (c.indexOf(name) == 0) {
             return c.substring(name.length, c.length);
           }
-  }
-  return "";
+        }
+        return "";
       }
     </script>
     <title>Main</title>
@@ -84,6 +84,20 @@ pageEncoding="ISO-8859-1"%>
         </button>
       </div>
     </div>
+    <div class="gapp"></div>
+
+    <div class="input-group container-fluid">
+      <form action="search" method="post">
+        <div class="form-outline">
+          <input name ="searchClause" type="search" id="form1" class="form-control" />
+          <label class="form-label" for="form1">Search</label>
+        </div>
+        <button type="Register" class="btn btn-primary btn-block fa-lg mb-3" value="search">
+          <i class="fas fa-search"></i>
+        </button>
+      </form>
+    </div>
+
     <div class="gapp"></div>
     <!-- Movie listings here -->
     <div class="container">
