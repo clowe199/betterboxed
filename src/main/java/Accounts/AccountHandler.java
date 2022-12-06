@@ -388,7 +388,7 @@ public class AccountHandler {
     {
         userAccount = new UserAccount(user);
         if (userAccount.createAccount(user, pass) == 1) {
-            System.out.println("Welcome to BetterBoxd " + user + "!");
+            System.out.println("Welcome to BetterBoxd " + user + "!");1
             homeScreen();
         }
         else
@@ -407,8 +407,10 @@ public class AccountHandler {
     }
     public void login(String pass, String user)
     {
-        if(userAccount.checkUser(user) != -1)
+        UserAccount u = new UserAccount(user);
+        if(u.checkUser(user) != -1)
         {
+            userAccount = new UserAccount(user);
             System.out.println("Welcome to BetterBoxd " + user + "!");
             homeScreen();
         }
